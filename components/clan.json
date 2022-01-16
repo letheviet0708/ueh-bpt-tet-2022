@@ -1,0 +1,294 @@
+{
+    "gen": [
+        {
+            "label" : "K44",
+            "value" : "K44"
+        },
+        {
+            "label" : "K45",
+            "value" : "K45"
+        },
+        {
+            "label" : "K46",
+            "value" : "K46"
+        },
+        {
+            "label" : "K47",
+            "value" : "K47"
+        }
+    ],
+
+    "Khoa":[
+        {
+            "label" : "Kinh doanh quốc tế - Marketing (KQM)",
+            "value" : "KQM"
+        },
+        {
+            "label" : "Quản trị (SOM)",
+            "value" : "SOM"
+        },
+        {
+            "label" : "Kinh tế (SOE)",
+            "value" : "SOE"
+        },
+        {
+            "label" : "Tài chính (SOF)",
+            "value" : "SOF"
+        },
+        {
+            "label" : "Kế toán (KET)",
+            "value" : "KET"
+        },
+        {
+            "label" : "Luật (SOL)",
+            "value" : "SOL"
+        },
+        {
+            "label" : "Ngân hàng (SOB)",
+            "value" : "SOB"
+        },
+        {
+            "label" : "Khoa học xã hội (KHXH)",
+            "value" :"KHXH"
+        },
+        {
+            "label" : "Công nghệ thông tin kinh doanh (BIT)",
+            "value" :"BIT"
+        },
+        {
+            "label" : "Viện du lịch (VDL)",
+            "value" :"VDL"
+        },
+        {
+            "label" : "Ngoại ngữ (NN)",
+            "value" :"NN"
+        },
+        {
+            "label" : "Tài chính công (TCC)",
+            "value" :"TCC"
+        },
+        {
+            "label" : "Toán - Thống kê (TTK)",
+            "value" :"TTK"
+        },
+        {
+            "label" : "Quản lý nhà nước (SOG)",
+            "value" :"SOG"
+        },
+        {
+            "label" : "Viện ISB (ISB)",
+            "value" :"ISB"
+        },
+        {
+            "label" : "Viện Đô thị thông minh và quản lý (ISCM)",
+            "value" :"ISCM"
+        }
+    ],
+
+    "Unit":[
+        {
+            "label":"Đội Công tác xã hội",
+            "value": 1
+        },
+        {
+            "label":"Câu lạc bộ Anh Văn - BELL",
+            "value": 2
+        },
+        {
+            "label":"Câu lạc bộ Bóng chuyền",
+            "value": 3
+        },
+        {
+            "label":"Câu lạc bộ Giai điệu trẻ",
+            "value": 4
+        },
+        {
+            "label":"Đội Văn nghệ xung kích",
+            "value": 5
+        },
+        {
+            "label":"Câu lạc bộ Guitar - UEHG",
+            "value": 6
+        },
+        {
+            "label":"Câu lạc bộ Dân ca",
+            "value": 7
+        },
+        {
+            "label":"Nhóm Truyền thông Sinh viên - S Communications",
+            "value": 8
+        },
+        {
+            "label":"Câu lạc bộ Võ thuật",
+            "value": 9
+        },
+        {
+            "label":"Đội Cộng tác viên",
+            "value": 10
+        },
+        {
+            "label":"Câu lạc bộ Tiếng Pháp - CFE",
+            "value": 11
+        },
+        {
+            "label":"Câu lạc bộ Nghiên cứu Kinh tế Trẻ - YoRE",
+            "value": 12
+        },
+        {
+            "label":"Câu lạc bộ Chuyên viên Nhân sự Tập sự - HuReA",
+            "value": 13
+        },
+        {
+            "label":"Câu lạc bộ Bất động sản - REC",
+            "value": 14
+        },
+        {
+            "label":"Nhóm Sinh Viên Nghiên Cứu Tài Chính - SFR",
+            "value": 15
+        },
+        {
+            "label":"Nhóm Hỗ Trợ Sinh Viên - SSG",
+            "value": 16
+        },
+        {
+            "label":"Câu lạc bộ Tiếng Anh - Apple Club",
+            "value": 17
+        },
+        {
+            "label":"Nhóm Sinh Viên Nghiên Cứu Thuế - TaxGroup",
+            "value": 18
+        },
+        {
+            "label":"Câu lạc bộ Công nghệ Kinh tế - ET Group",
+            "value": 19
+        },
+        {
+            "label":"Câu lạc bộ Kinh doanh quốc tế - IBC",
+            "value": 20
+        },
+        {
+            "label":"Câu lạc bộ Thương mại - IC",
+            "value": 21
+        },
+        {
+            "label":"Nhóm Sinh viên Nghiên cứu Marketing - Margroup",
+            "value": 22
+        },
+        {
+            "label":"Câu lạc bộ Nhân Sự Khởi Nghiệp - HR Startup",
+            "value": 23
+        },
+        {
+            "label":"Câu lạc bộ Chứng khoán - SCUE",
+            "value": 24
+        },
+        {
+            "label":"Câu lạc bộ Kế toán - Kiểm toán A²C",
+            "value": 25
+        },
+        {
+            "label":"Câu lạc bộ Pháp lý",
+            "value": 26
+        },
+        {
+            "label":"Câu lạc bộ Chuyện to nhỏ",
+            "value": 27
+        },
+        {
+            "label":"Câu lạc bộ Dynamic",
+            "value": 28
+        },
+        {
+            "label":"Câu lạc bộ Lý luận trẻ",
+            "value": 29
+        },
+        {
+            "label":"Nhóm Sinh viên Nghiên cứu Du lịch - Travel Group",
+            "value": 30
+        },
+        {
+            "label":"LCH SV Khoa Luật",
+            "value": 31
+        },
+        {
+            "label":"LCH SV Khoa Quản trị",
+            "value": 32
+        },
+        {
+            "label":"LCH SV Khoa Tài chính công",
+            "value": 33
+        },
+        {
+            "label":"LCH SV Khoa Kế toán",
+            "value": 34
+        },
+        {
+            "label":"LCH SV Khoa Toán Thống kê",
+            "value": 35
+        },
+        {
+            "label":"LCH SV Khoa Tài chính",
+            "value": 36
+        },
+        {
+            "label":"LCH SV Khoa Khoa học xã hội",
+            "value": 37
+        },
+        {
+            "label":"LCH SV Khoa Công nghệ thông tin kinh doanh",
+            "value": 38
+        },
+        {
+            "label":"LCH SV Khoa Ngoại ngữ",
+            "value": 39
+        },
+        {
+            "label":"LCH SV Khoa Ngân hàng",
+            "value": 40
+        },
+        {
+            "label":"LCH SV Khoa Kinh tế",
+            "value": 41
+        },
+        {
+            "label":"LCH SV Khoa Kinh doanh quốc tế - Marketing",
+            "value": 42
+        },
+        {
+            "label":"LCH SV KTX 43 - 45 Nguyễn Chí Thanh",
+            "value": 43
+        },
+        {
+            "label":"Đoàn Khoa Viện Du lịch",
+            "value": 44
+        },
+        {
+            "label":"Đoàn Khoa Viện ISB",
+            "value": 45
+        },
+        {
+            "label":"Đoàn Khoa Quản lý Nhà nước",
+            "value": 46
+        },
+        {
+            "label":"Ban Phong trào - Tình nguyện UEH",
+            "value": 47
+        },
+        {
+            "label":"Ban Tình nguyện - Hỗ trợ sinh viên UEH",
+            "value": 47
+        },
+        {
+            "label":"Ban Học tập - Nghiên cứu Khoa học - Quan hệ Quốc tế Đoàn trường UEH",
+            "value": 49
+        },
+        {
+            "label":"Ban Tổ chức - Xây dựng Hội",
+            "value": 50
+        },
+        {
+            "label":"Ban Tổ chức - Xây dựng Đoàn",
+            "value": 51
+        }
+    ]
+}
