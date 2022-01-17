@@ -14,6 +14,10 @@ class PersonDataService {
     return http.get(`/person/${uid}`)
   }
 
+  saveProfiles(uid, data){
+    return http.post(`/person/${uid}`, data);
+  }
+
   getActivity(id) {
     return http.get(`/person/${id}/activity`)
   }

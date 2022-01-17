@@ -16,8 +16,13 @@ import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import Fab from '@mui/material/Fab';
-import Popover from "@mui/material/Popover";
+import CTSnackbar from "../components/SnackBar";
 
+import firebase from 'firebase/app';
+import personService from "../Services/person.service";
+
+import clientID from '../components/ClientID.json'
+import b64toBlob from "b64-to-blob";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
@@ -60,16 +65,70 @@ class UserModify extends Component{
             cls: '',
             clan: '',
             mssv: '',
+            avatar: '',
             khoaList: null,
-            avatar: 'https://lh3.googleusercontent.com/a-/AOh14Gh-fmWjNqdBZKiwv2CdaiV5Kx8n6XePHSO5QwdQ=s96-c',
             anchorEl: null,
-            openAvatarEditor: false
+            openAvatarEditor: false,
+            user: null,
+            openSB: false,
+            messageSB: 'nothing',
+            severitySB: 'info',
+            luser: null,
+            saved: false,
+            avatarChanged: false
         }
+    }
+
+    getUserInfor = () =>{
+        console.log(firebase.auth().currentUser)
+            personService.findOne(firebase.auth().currentUser.uid)
+                .then(response => {
+                    let user = response.data.data
+                    console.log(user)
+                    if (response.data.data == null){
+                        this.handleSBClick("Hãy nhập thông tin của mình!", "info")
+                        console.log(firebase.auth().currentUser.photoURL)
+                        this.setState({
+                            avatar: firebase.auth().currentUser.photoURL,
+                            email: firebase.auth().currentUser.email
+                        })
+                    }else{
+                        this.setState({
+                            email: user.email,
+                            phone: user.phone,
+                            Name: user.name,
+                            cls: user.cls,
+                            clan: user.clan,
+                            mssv: user.mssv,
+                            avatar: user.avatar
+                        })
+                    }
+                    this.setState({luser: user})
+                })
+                .catch(e=> {
+                    console.log(e);
+                });
+        
+    }
+
+    
+    init = () => {
+        console.log("bruh bruh")
+        this.getUserInfor()
+    }
+
+    check = () => {
+        if (firebase.auth().currentUser) {
+          this.init();
+          return;
+        }
+        setTimeout(this.check, 200);
     }
 
     componentDidMount(){
         console.log(clan.Khoa)
         this.setState({khoaList: clan.Khoa})
+        this.check()
     }
 
     handleChange = (event) => {
@@ -98,12 +157,156 @@ class UserModify extends Component{
 
     setAvatar = () =>{
         let avatarURL = this.state.avatarEditor.getImageScaledToCanvas().toDataURL();
-        this.setState({avatar : avatarURL});
+        console.log(avatarURL)
+        this.setState({avatar : avatarURL, avatarChanged: true});
         this.handleAvatarClose();
     }
 
+    checkForm = () =>{
+        return (
+            Boolean(this.state.email) &&
+            Boolean(this.state.phone) &&
+            Boolean(this.state.Name) &&
+            Boolean(this.state.cls) &&
+            Boolean(this.state.clan) &&
+            Boolean(this.state.mssv) &&
+            Boolean(this.state.avatar) 
+        )
+    }
+
+    handleSBClick = (message, severity) => {
+        this.setState({openSB: true, messageSB: message, severitySB: severity})
+    }
+
+    handleSBClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        this.setState({openSB: false})
+    } 
+    
+    dataURItoBlob = (dataURI) => {
+        // convert base64/URLEncoded data component to raw binary data held in a string
+        var byteString;
+        if (dataURI.split(',')[0].indexOf('base64') >= 0)
+            byteString = atob(dataURI.split(',')[1]);
+        else
+            byteString = unescape(dataURI.split(',')[1]);
+    
+        // separate out the mime component
+        var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+    
+        // write the bytes of the string to a typed array
+        var ia = new Uint8Array(byteString.length);
+        for (var i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
+        }
+    
+        return new Blob([ia], {type:mimeString});
+    }
+
+    uploadImage = async(base64, clientid) => {
+        const dataURI = base64
+        var byteString;
+        if (dataURI.split(',')[0].indexOf('base64') >= 0)
+            byteString = atob(dataURI.split(',')[1]);
+        else
+            byteString = unescape(dataURI.split(',')[1]);
+    
+        // separate out the mime component
+        var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+    
+        // write the bytes of the string to a typed array
+        var ia = new Uint8Array(byteString.length);
+        for (var i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
+        }
+
+        const file = new Blob([ia], {type:mimeString})
+
+        return new Promise((resolve, reject) => {
+            const formData = new FormData();
+            //console.log(file)
+            formData.append("image", file);
+            fetch("https://api.imgur.com/3/image", {
+                method: "POST",
+                headers: {
+                    Authorization: "Client-ID " + clientid
+                    //Accept: "application/json",
+                },
+                body: formData,
+            })
+                .then((response) => response.json())
+                .then((response) => {
+                    console.log(response);
+                    if (!response.success){
+                        return resolve(null);
+                    }
+                    //console.log(response.data.link);
+                    const imageLink = response.data.link;
+                    //console.log(imageLink);
+                    return resolve(imageLink)
+            })
+            .catch((e) => {
+                this.setState({unsubmited: true})
+                console.log(e)
+                return resolve(e)
+            });
+        })
+    }    
+
+    uploadProfile = (uid, data) =>{
+        personService.saveProfiles(uid, data)
+            .then(response => {
+                console.log(response.data);
+                this.setState({saved: true})
+                this.handleSBClick("Đã lưu thành công!", "success")
+            })
+            .catch(e=> {
+                console.log(e);
+                this.handleSBClick("Có lỗi xảy ra vui lòng thử lại!", "error")
+            });
+    }
+
     handleSubmit = () => {
-        // your submit logic
+        const imgurID = "6e181c86bf0af44"
+        const uid = firebase.auth().currentUser.uid
+        if (this.checkForm()){
+            if (this.state.avatarChanged){
+                this.uploadImage(this.state.avatar, imgurID)
+                    .then((imageLink) => {
+                        const data = {
+                            uid: uid,
+                            email: this.state.email,
+                            phone: this.state.phone,
+                            Name: this.state.Name,
+                            cls: this.state.cls,
+                            clan: this.state.clan,
+                            mssv: this.state.mssv,
+                            avatar: imageLink
+                        }
+
+                        this.uploadProfile(uid, data)
+                    })
+            }else{
+                const data = {
+                    uid: uid,
+                    email: this.state.email,
+                    phone: this.state.phone,
+                    name: this.state.Name,
+                    cls: this.state.cls,
+                    clan: this.state.clan,
+                    mssv: this.state.mssv,
+                    avatar: this.state.avatar
+                }
+
+                this.uploadProfile(uid, data)
+            }
+
+        }else{
+            this.handleSBClick("Bạn cần nhập đầy đủ thông tin!", "warning")
+        }
     }
 
     render() {
@@ -120,7 +323,10 @@ class UserModify extends Component{
                         paddingTop: "20px"
                     }}
                 >
-                    <FormControl >
+                    <Box sx = {{
+                        display: 'flex',
+                        flexDirection: 'column'
+                    }}>
                         <Box sx = {{
                                 mt: "20px",
                                 ml: "auto",
@@ -136,7 +342,7 @@ class UserModify extends Component{
                                 }
                             >                            
                                 <Avatar 
-                                    alt="Travis Howard" 
+                                    alt="Ueher" 
                                     src= {avatar}
                                     sx={{
                                         width: "100px",
@@ -153,6 +359,7 @@ class UserModify extends Component{
                         <div className = "containerForm">
 
                             <TextField
+                                required
                                 className = "tiems"
                                 label="Tên"
                                 onChange={this.handleChange}
@@ -163,6 +370,7 @@ class UserModify extends Component{
                             />
 
                             <TextField
+                                required
                                 className = "tiems"
                                 label="MSSV"
                                 onChange={this.handleChange}
@@ -173,6 +381,7 @@ class UserModify extends Component{
                             />
                             
                             <TextField
+                                required
                                 className = "tiems"
                                 label="Lớp - Khóa"
                                 onChange={this.handleChange}
@@ -183,6 +392,7 @@ class UserModify extends Component{
                             />
                             
                             <TextField
+                                required
                                 className = "tiems"
                                 select
                                 label="Khoa"
@@ -198,6 +408,7 @@ class UserModify extends Component{
                             </TextField>
 
                             <TextField
+                                required
                                 className = "tiems"
                                 label="Số điện thoại"
                                 onChange={this.handleChange}
@@ -208,6 +419,7 @@ class UserModify extends Component{
                             />
 
                             <TextField
+                                disabled
                                 className = "tiems"
                                 label="Email"
                                 onChange={this.handleChange}
@@ -221,6 +433,7 @@ class UserModify extends Component{
                         <Button 
                             type="submit" 
                             variant="contained" 
+                            onClick={this.handleSubmit}
                             sx = {{
                                 mt: "20px",
                                 width:"100px",
@@ -228,7 +441,7 @@ class UserModify extends Component{
                                 mr: "auto"
                             }}>Lưu</Button>
 
-                    </FormControl>
+                    </Box>
                 </div>
                 
             </PageWrapper>
@@ -282,6 +495,13 @@ class UserModify extends Component{
                 </Box>
             </Box>
             }
+            <CTSnackbar 
+                handleClick ={this.handleSBClick}
+                open = {this.state.openSB}
+                handleClose = {this.handleSBClose}
+                message = {this.state.messageSB}
+                severity = {this.state.severitySB}
+            />
         </div>
         );
     }

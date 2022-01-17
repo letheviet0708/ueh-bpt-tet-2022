@@ -12,8 +12,8 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import firebaseConfig from './firebaseConfig';
 import personService from '../Services/person.service'
+import { useRouter } from 'next/router'
 
-import {getAuth} from 'firebase/auth'
 
 class User extends Component{
     constructor(props){
@@ -22,7 +22,8 @@ class User extends Component{
             settingsLogged : ['Profile', 'Logout'],
             settingsNotLogged: ['Sign in with Google'],
             anchorElUser : false,
-            logged: false
+            logged: false,
+            avatar: ''
         }
     }
     
@@ -43,7 +44,12 @@ class User extends Component{
     checkNewUser = () =>{
         personService.findOne(firebase.auth().currentUser.uid)
             .then(response => {
-                console.log(response);
+                if (response.data.data == null){
+                    console.log("need create profile");
+                    this.props.changePage('oo');
+                }else{
+                    this.setState({avatar: response.data.data.avatar})
+                }
             })
             .catch(e=> {
                 console.log(e);
@@ -70,11 +76,13 @@ class User extends Component{
         console.log("bruh")
         this.props.signInWithGoogle()
         console.log("check user", this.props.user)
-        this.checkNewUser()
+        this.check();
     }
     
     signOut = () =>{
-        this.props.signOut()
+        this.props.signOut().then(()=>{
+            this.props.reloadPage();
+        })
         console.log("check user", this.props.user)
     }
     
@@ -84,7 +92,7 @@ class User extends Component{
         <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={this.handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Ueher" src={this.state.avatar} />
               </IconButton>
             </Tooltip>
 

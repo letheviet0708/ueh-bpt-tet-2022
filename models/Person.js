@@ -7,10 +7,9 @@ const personSchema = new mongoose.Schema({
         mssv: String,
         clan: String,
         avatar: String,
-        gen: String,
-        sex: String,
+        cls: String,
         phone: String,
-        mail: String,
+        email: String,
         uid: String,
         activity: [{
           type: mongoose.Schema.Types.ObjectId,

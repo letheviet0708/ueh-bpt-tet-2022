@@ -12,6 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 
 import Image from 'next/image'
 import User from './User'
+import { useRouter } from 'next/router'
 
 const pages = ['Giai Đoạn 1', 'Giai Đoạn 2', 'Blog'];
 
@@ -20,7 +21,7 @@ const pages = ['Giai Đoạn 1', 'Giai Đoạn 2', 'Blog'];
 const ResponsiveNavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+  const router = useRouter()
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -28,6 +29,14 @@ const ResponsiveNavBar = () => {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
+
+  const changePage = (link) =>{
+    router.push('/userModify')
+  }
+
+  const reloadPage = () => {
+    router.reload()
+  }
 
   const logo = (
     <div id="brand" >
@@ -102,11 +111,14 @@ const ResponsiveNavBar = () => {
             ))}
           </Box>
 
-          <User/>
+          <User
+            changePage = {changePage}
+            reloadPage = {reloadPage}
+          />
         </Toolbar>
       </Container>
     </AppBar>
     </React.Fragment>
   );
 };
-export default ResponsiveNavBar;
+export default ResponsiveNavBar
