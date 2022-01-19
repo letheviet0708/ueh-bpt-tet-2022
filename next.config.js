@@ -1,7 +1,7 @@
 module.exports = {
   reactStrictMode: true,
   env: {
-      //MONGO_URI: "mongodb+srv://LeTheViet:159753vietle@demodatabase.xygjo.mongodb.net/noivongtaylondemodatabase"
+    GDPR: 1,
   },
   images: {
     domains: ['i.imgur.com'],

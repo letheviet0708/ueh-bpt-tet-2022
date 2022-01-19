@@ -8,6 +8,9 @@ import personService from "../Services/person.service";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
+const GDPR = process.env.GDPR
+const env = process.env.NODE_ENV
+
 class Result extends Component {
     constructor(props){
         super(props)
@@ -57,6 +60,7 @@ class Result extends Component {
                 Data[x.activityIndex] = x
             }
         }
+        console.log(env, GDPR)
         return (<div>
             <PageWrapper>
                 <div id = "contentWrapper"
@@ -69,18 +73,24 @@ class Result extends Component {
                 >
                     {user &&
                         <Box>
-                            <GiaiDoan1From
-                                Data= {Data[1]}
-                                uid= {user.uid}
-                            />
-                            <GiaiDoan2Form
-                                Data= {Data[2]}
-                                uid= {user.uid}
-                            />
-                            <GiaiDoan3Form
-                                Data= {Data[3]}
-                                uid= {user.uid}
-                            />
+                            {(env == "development" || (env != "development" && GDPR >= 1))&&
+                                <GiaiDoan1From
+                                    Data= {Data[1]}
+                                    uid= {user.uid}
+                                />
+                            }
+                            {(env == "development" || (env != "development" && GDPR >= 2))&&
+                                <GiaiDoan2Form
+                                    Data= {Data[2]}
+                                    uid= {user.uid}
+                                />
+                            }
+                            {(env == "development" || (env != "development" && GDPR >= 3))&&
+                                <GiaiDoan3Form
+                                    Data= {Data[3]}
+                                    uid= {user.uid}
+                                />
+                            }                       
                         </Box>
                     }
                 </div>

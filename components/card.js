@@ -81,17 +81,17 @@ class CardImg extends Component{
                                     borderRadius: 3
                                 }}
                             >   
-                            <Box sx={{}}
-                            >   
-                                <IconButton>
-                                    <CancelIcon onClick={this.handleClose}/>
-                                </IconButton>
-                            </Box>
+                                <Box sx={{}}
+                                >   
+                                    <IconButton>
+                                        <CancelIcon onClick={this.handleClose}/>
+                                    </IconButton>
+                                </Box>
                                 <Box 
                                     className="wideScreen">
                                 <Box 
                                     sx={{
-                                        pb: "20px",
+                                        //pb: "20px",
                                         pl: "20px",
                                         pr: "20px",
                                         height: '100%',
@@ -125,7 +125,7 @@ class CardImg extends Component{
                                                     __html: `<img class="cardI" style=" width: 100%;border-radius: 8px;" src="${this.props.image}" />` 
                                             }} />
                                         </Box>
-                                        <Box className="imgText" style={{overflow: 'auto'}}>
+                                        <Box className="imgText" style={{}}>
                                             
                                             <Box sx={{display: "flex"}}>
                                                 <Avatar alt="Remy Sharp" src={this.props.user.avatar} />                        
@@ -138,8 +138,8 @@ class CardImg extends Component{
                                                     </Typography>
                                                 </Box>
                                             </Box>
-                                            <Box sx={{border: 1, borderColor: 'grey.500',borderRadius: 2}}>
-                                                <Typography sx = {{m:"5px"}}>{this.props.text}</Typography>
+                                            <Box sx={{overflow: 'auto', border: 1, borderColor: 'grey.500',borderRadius: 2}}>
+                                                <Typography sx = {{m:"20px"}}>{this.props.text}</Typography>
                                             </Box>
                                         </Box>
                                     </Box>
@@ -167,7 +167,7 @@ class CardImg extends Component{
                                                     __html: `<img class="cardI" style=" width: 100%;border-radius: 8px;" src="${this.props.image}" />` 
                                             }} />
                                         </Box>
-                                        <Box style={{overflow: 'auto'}}>
+                                        <Box >
                                             
                                             <Box sx={{mt: "10px", display: "flex"}}>
                                                 <Avatar alt="Remy Sharp" src={this.props.user.avatar} />                        
@@ -184,6 +184,9 @@ class CardImg extends Component{
                                         </Box>
 
                                 </Box>
+                                <Typography sx={{textAlign: "center", fontSize: "9px", mb:"1px" }} paragraph={true} variant="caption" display="block">
+                                    Chúc lời yêu thương - Tết mới 2022
+                                </Typography>
                             </Box>
                         </Box>
                     }
