@@ -73,19 +73,19 @@ class Result extends Component {
                 >
                     {user &&
                         <Box>
-                            {(env == "development" || (env != "development" && GDPR >= 1))&&
+                            {(env == "development" || (GDPR >= 1))&&
                                 <GiaiDoan1From
                                     Data= {Data[1]}
                                     uid= {user.uid}
                                 />
                             }
-                            {(env == "development" || (env != "development" && GDPR >= 2))&&
+                            {(env == "development" || (GDPR >= 2))&&
                                 <GiaiDoan2Form
                                     Data= {Data[2]}
                                     uid= {user.uid}
                                 />
                             }
-                            {(env == "development" || (env != "development" && GDPR >= 3))&&
+                            {(env == "development" || (GDPR >= 3))&&
                                 <GiaiDoan3Form
                                     Data= {Data[3]}
                                     uid= {user.uid}
