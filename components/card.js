@@ -137,7 +137,9 @@ class CardImg extends Component{
                                                     </Typography>
                                                 </Box>
                                             </Box>
-                                            <Typography>{this.props.text}</Typography>
+                                            <Box sx={{border: 1, borderColor: 'grey.500',borderRadius: 2}}>
+                                                <Typography sx = {{m:"5px"}}>{this.props.text}</Typography>
+                                            </Box>
                                         </Box>
                                     </Box>
                                 </Box>
