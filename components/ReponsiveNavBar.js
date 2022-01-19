@@ -49,11 +49,7 @@ const ResponsiveNavBar = () => {
   };
 
   const changePage = (link) =>{
-      if (router.pathname == link){
-        router.reload()
-      }else{
         router.replace(link)
-      }
   }
 
   const reloadPage = () => {
