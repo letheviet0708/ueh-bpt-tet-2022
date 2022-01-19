@@ -88,6 +88,8 @@ class CardImg extends Component{
                                 </IconButton>
                             </Box>
                                 <Box 
+                                    className="wideScreen">
+                                <Box 
                                     sx={{
                                         pb: "20px",
                                         pl: "20px",
@@ -97,7 +99,6 @@ class CardImg extends Component{
                                         flexDirection: 'column',
                                         justifyContent: 'center',
                                     }}
-                                    className="wideScreen"
                                 >
                                 <Box id="ccc" sx={{width: "80vw"}}>
                                 <Box
@@ -145,7 +146,7 @@ class CardImg extends Component{
                                 </Box>
                                 </Box>
                                 </Box>
-                                
+                                </Box>
                                 <Box
                                     className="smallScreen"
                                     sx={{
