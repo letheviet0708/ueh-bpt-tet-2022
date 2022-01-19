@@ -81,10 +81,9 @@ class GiaiDoan1Check extends Component {
             <TableRow>
               <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
                 <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-                  <Box sx={{ margin: 1}}>
-                    <LinearProgress color="secondary" />                    
+                  <Box sx={{ margin: 1}}>                   
                     <Box sx={{display: "flex"}}>
-                      <Box sx={{width: "50%"}}>
+                      <Box sx={{flex: "0 0 40%"}}>
                         <div 
                             dangerouslySetInnerHTML={{ 
                                 __html: `<img class="cardI" style=" width: 100%; " src="${this.props.result.images[0]}" />` 
