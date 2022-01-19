@@ -25,15 +25,120 @@ a {
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
-
+@media screen and (max-width: 666px){
+  .wideScreen{
+    display: none;
+  }
+}
 @media screen and (max-width: 666px){
   .tiems{
     flex: 0 0 80%;
   }
+
+  #gd1Container{
+    display: flex;
+    flex-direction: column;
+  }
+
+  #gd1Text{
+    margin-top: 10px;
+  }
+
+  #gd1Button{
+    
+  }
+
+  #imgToolLg{
+    display: none;
+  }
 }
 
 @media screen and (min-width: 666px){
+  .smallScreen{
+    display: none;
+  }
   .tiems{
     flex: 0 0 46%;
   }
+
+  #gd1Container{
+    display: flex;
+  }
+
+  #gd1Text{
+    flex-grow: 1;
+    margin-left: 10px;
+  }
+
+  #gd1Button{
+    /*display: flex;*/
+    width: 50%;
+  }
+
+  #imgToolSm{
+    display: none;
+  }
+}
+
+#cardsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+@media screen and (max-width: 603px){
+  .cardimg{
+    padding: 5px;
+    width: 100%
+  }
+}
+
+@media screen and (min-width: 603px){
+  .cardimg{
+    flex: 0 0 50%;
+    padding: 5px
+  }
+
+
+}
+
+
+@media screen and (min-width: 875px){
+  .cardimg{
+    flex: 0 0 33.33333333%;
+    padding: 5px
+  }
+}
+
+@media screen and (min-width: 1300px){
+  .cardimg{
+    flex: 0 0 25%;
+    padding: 5px
+  }
+}
+
+.anchor {
+  display: block;
+  position: relative;
+  top: -90px;
+  visibility: hidden;
+}
+
+.viewCardContainer{
+  display: flex;
+  max-height: 275px;
+  max-width: 750px;
+}
+
+.imgCard{
+  flex: 0 0 50%;
+}
+
+.imgText{
+  max-height: 100%;
+  overflow: auto;
+  flex: 0 0 50%;
+  padding-left: 10px;
 }

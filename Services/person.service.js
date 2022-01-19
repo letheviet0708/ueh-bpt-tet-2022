@@ -11,6 +11,7 @@ class PersonDataService {
   }
 
   findOne(uid) {
+    console.log(`/person/${uid}`)
     return http.get(`/person/${uid}`)
   }
 
@@ -18,6 +19,18 @@ class PersonDataService {
     return http.post(`/person/${uid}`, data);
   }
 
+  saveResult(uid, data){
+    return http.post(`/person/${uid}/result`, data);
+  }
+
+  retrieveResult(data){
+    return http.post("/result", data)
+  }
+
+  updateResult(uid, data){
+    return http.put(`/person/${uid}/result`, data)
+  }
+  
   getActivity(id) {
     return http.get(`/person/${id}/activity`)
   }

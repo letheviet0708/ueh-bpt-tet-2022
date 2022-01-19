@@ -1,11 +1,9 @@
 import { Component } from "react";
 import Button from '@mui/material/Button';
-import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import PageWrapper from "../components/PageWrapper";
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
 import clan from "../components/clan.json"
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
@@ -20,38 +18,10 @@ import CTSnackbar from "../components/SnackBar";
 
 import firebase from 'firebase/app';
 import personService from "../Services/person.service";
+import { withRouter } from "next/router";
 
 import clientID from '../components/ClientID.json'
-import b64toBlob from "b64-to-blob";
-
-const StyledBadge = styled(Badge)(({ theme }) => ({
-    '& .MuiBadge-badge': {
-      backgroundColor: '#44b700',
-      color: '#44b700',
-      boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
-      '&::after': {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        borderRadius: '50%',
-        animation: 'ripple 1.2s infinite ease-in-out',
-        border: '1px solid currentColor',
-        content: '""',
-      },
-    },
-    '@keyframes ripple': {
-      '0%': {
-        transform: 'scale(.8)',
-        opacity: 1,
-      },
-      '100%': {
-        transform: 'scale(2.4)',
-        opacity: 0,
-      },
-    },
-  }));
+import uploadImage from '../components/uploadImg'
 
 class UserModify extends Component{
 
@@ -111,7 +81,6 @@ class UserModify extends Component{
         
     }
 
-    
     init = () => {
         console.log("bruh bruh")
         this.getUserInfor()
@@ -157,7 +126,6 @@ class UserModify extends Component{
 
     setAvatar = () =>{
         let avatarURL = this.state.avatarEditor.getImageScaledToCanvas().toDataURL();
-        console.log(avatarURL)
         this.setState({avatar : avatarURL, avatarChanged: true});
         this.handleAvatarClose();
     }
@@ -206,55 +174,7 @@ class UserModify extends Component{
         return new Blob([ia], {type:mimeString});
     }
 
-    uploadImage = async(base64, clientid) => {
-        const dataURI = base64
-        var byteString;
-        if (dataURI.split(',')[0].indexOf('base64') >= 0)
-            byteString = atob(dataURI.split(',')[1]);
-        else
-            byteString = unescape(dataURI.split(',')[1]);
     
-        // separate out the mime component
-        var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-    
-        // write the bytes of the string to a typed array
-        var ia = new Uint8Array(byteString.length);
-        for (var i = 0; i < byteString.length; i++) {
-            ia[i] = byteString.charCodeAt(i);
-        }
-
-        const file = new Blob([ia], {type:mimeString})
-
-        return new Promise((resolve, reject) => {
-            const formData = new FormData();
-            //console.log(file)
-            formData.append("image", file);
-            fetch("https://api.imgur.com/3/image", {
-                method: "POST",
-                headers: {
-                    Authorization: "Client-ID " + clientid
-                    //Accept: "application/json",
-                },
-                body: formData,
-            })
-                .then((response) => response.json())
-                .then((response) => {
-                    console.log(response);
-                    if (!response.success){
-                        return resolve(null);
-                    }
-                    //console.log(response.data.link);
-                    const imageLink = response.data.link;
-                    //console.log(imageLink);
-                    return resolve(imageLink)
-            })
-            .catch((e) => {
-                this.setState({unsubmited: true})
-                console.log(e)
-                return resolve(e)
-            });
-        })
-    }    
 
     uploadProfile = (uid, data) =>{
         personService.saveProfiles(uid, data)
@@ -262,6 +182,7 @@ class UserModify extends Component{
                 console.log(response.data);
                 this.setState({saved: true})
                 this.handleSBClick("Đã lưu thành công!", "success")
+                this.props.router.reload()
             })
             .catch(e=> {
                 console.log(e);
@@ -270,24 +191,29 @@ class UserModify extends Component{
     }
 
     handleSubmit = () => {
-        const imgurID = "6e181c86bf0af44"
+        const imgurID = clientID.clientID[0]
         const uid = firebase.auth().currentUser.uid
         if (this.checkForm()){
             if (this.state.avatarChanged){
-                this.uploadImage(this.state.avatar, imgurID)
+                uploadImage(this.state.avatar, imgurID)
                     .then((imageLink) => {
-                        const data = {
-                            uid: uid,
-                            email: this.state.email,
-                            phone: this.state.phone,
-                            Name: this.state.Name,
-                            cls: this.state.cls,
-                            clan: this.state.clan,
-                            mssv: this.state.mssv,
-                            avatar: imageLink
-                        }
+                        console.log(imageLink)
+                        if (imageLink){
+                            const data = {
+                                uid: uid,
+                                email: this.state.email,
+                                phone: this.state.phone,
+                                name: this.state.Name,
+                                cls: this.state.cls,
+                                clan: this.state.clan,
+                                mssv: this.state.mssv,
+                                avatar: imageLink
+                            }
 
-                        this.uploadProfile(uid, data)
+                            console.log(data)
+
+                            this.uploadProfile(uid, data)
+                        }
                     })
             }else{
                 const data = {
@@ -507,4 +433,4 @@ class UserModify extends Component{
     }
 }
 
-export default UserModify
+export default withRouter(UserModify)

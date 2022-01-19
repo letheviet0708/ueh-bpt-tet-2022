@@ -11,10 +11,28 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 
 import Image from 'next/image'
+import Link from 'next/link'
 import User from './User'
 import { useRouter } from 'next/router'
 
-const pages = ['Giai Đoạn 1', 'Giai Đoạn 2', 'Blog'];
+const pages = [
+  {
+    title: 'DANH SÁCH HOẠT ĐỘNG',
+    link: ''
+  }, 
+  {
+    title: 'ALBUM TẾT MỚI TRONG TIM',
+    link: ''
+  }, 
+  {
+    title: 'CHÚC LỜI YÊU THƯƠNG',
+    link: '/chuc-loi-yeu-thuong#view'
+  }, 
+  {
+    title: 'TRANG CHỦ',
+    link: '/'
+  }
+];
 
 
 
@@ -31,7 +49,11 @@ const ResponsiveNavBar = () => {
   };
 
   const changePage = (link) =>{
-    router.push('/userModify')
+      if (router.pathname == link){
+        router.reload()
+      }else{
+        router.replace(link)
+      }
   }
 
   const reloadPage = () => {
@@ -41,8 +63,8 @@ const ResponsiveNavBar = () => {
   const logo = (
     <div id="brand" >
         <Box sx={{display: 'inline-flex'}}>
-        <div style={{paddingRight: "5px"}} ><Image src ="/log1.png" width="77px" height="40px"/></div>
-        <div style={{paddingRight: "5px"}} ><Image src ="/log3.png" width="40px" height="40px"/></div>
+        <div style={{paddingRight: "10px"}} ><Image src ="/log1.png" width="77px" height="40px"/></div>
+        <div style={{paddingRight: "10px"}} ><Image src ="/log3.png" width="40px" height="40px"/></div>
         <div><Image src ="/log4.png" width="40px" height="40px"/></div>
         </Box>
     </div>
@@ -86,28 +108,30 @@ const ResponsiveNavBar = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
+              {pages.map((page, i) => (
+                <Link key={i} href={page.link}>
+                  <MenuItem onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">{page.title}</Typography>
+                  </MenuItem>
+                </Link>
               ))}
             </Menu>
           </Box>
-
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             {logo}
           </Box>
 
           <Box sx={{ flexGrow: 1, flexDirection: 'row-reverse', display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
+            {pages.map((page, i) => (
+              <Link key={i} href={page.link}>
+                <Button
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'white', display: 'block' , fontWeight: 'bold' }}
+                >
+                  {page.title}
+                </Button>
+              </Link>
             ))}
           </Box>
 

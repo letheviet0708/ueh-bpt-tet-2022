@@ -1,6 +1,8 @@
+const activityResultSchema = require('./ActivityResult')
 
 const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
+
 
 const personSchema = new mongoose.Schema({
         name: String,
@@ -11,10 +13,16 @@ const personSchema = new mongoose.Schema({
         phone: String,
         email: String,
         uid: String,
-        activity: [{
+        count: Number,
+        result: [{
           type: mongoose.Schema.Types.ObjectId,
-          ref: "Activity"
-        }]
+          ref: "ActivityResult"
+        }],
+        gifCharacter:{
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "GifCharacter"
+        }
+
     },{ timestamps: true });
 
 personSchema.method("toJSON", function() {

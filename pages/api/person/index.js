@@ -1,6 +1,5 @@
 import dbConnect from "../../../utils/dbConnect";
 import Person from "../../../models/Person"
-import Activity from "../../../models/Activity"
 
 dbConnect();
 
@@ -32,7 +31,7 @@ export default async (req, res) => {
                     if (sort){
                         options = {
                             sort: {[sort]: -1},
-                            populate: 'activity',
+                            populate: 'result',
                             lean: true,
                             offset: offset, 
                             limit: limit
@@ -47,7 +46,7 @@ export default async (req, res) => {
                         currentPage: persons.page - 1,
                     })                           
                 }else{
-                    const persons = await Person.find()
+                    const persons = await Person.find().populate('result')
                     res.send(persons)
                 }
 

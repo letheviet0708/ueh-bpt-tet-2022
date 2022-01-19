@@ -6,13 +6,16 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import PersonIcon from '@mui/icons-material/Person';
+import RateReviewIcon from '@mui/icons-material/RateReview';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 import withFirebaseAuth from 'react-with-firebase-auth'
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import firebaseConfig from './firebaseConfig';
 import personService from '../Services/person.service'
-import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 
 class User extends Component{
@@ -46,7 +49,7 @@ class User extends Component{
             .then(response => {
                 if (response.data.data == null){
                     console.log("need create profile");
-                    this.props.changePage('oo');
+                    this.props.changePage('/userModify');
                 }else{
                     this.setState({avatar: response.data.data.avatar})
                 }
@@ -81,10 +84,12 @@ class User extends Component{
     
     signOut = () =>{
         this.props.signOut().then(()=>{
-            this.props.reloadPage();
+            this.props.changePage("/");
         })
         console.log("check user", this.props.user)
     }
+
+    
     
     render(){
         let settings = (this.state.logged) ? this.state.settingsLogged : this.state.settingsNotLogged
@@ -116,15 +121,21 @@ class User extends Component{
             {
                 this.props.user ?
                 <div>
+                    <Link href="/userModify">
                     <MenuItem onClick={this.handleCloseNavMenu}>
-                        <Typography onClick = {this.signIn} textAlign="center">Thông tin cá nhân</Typography>
+                        <PersonIcon/><Typography sx={{ml:"5px"}} textAlign="center">Thông tin cá nhân</Typography>
                     </MenuItem>
+                    </Link>
+                    <Link href="/result">
                     <MenuItem onClick={this.handleCloseNavMenu}>
-                        <Typography onClick = {this.signIn} textAlign="center">Điền kết quả</Typography>
+                        <RateReviewIcon/><Typography sx={{ml:"5px"}} textAlign="center">Điền kết quả</Typography>
                     </MenuItem>
+                    </Link>
+                    <Link href="/">
                     <MenuItem onClick={this.handleCloseNavMenu}>
-                        <Typography onClick = {this.signOut} textAlign="center">Đăng xuất</Typography>
+                        <LogoutIcon/><Typography sx={{ml:"5px"}} onClick = {this.signOut} textAlign="center">Đăng xuất</Typography>
                     </MenuItem>
+                    </Link>
                 </div>
                 :
                 <div>
