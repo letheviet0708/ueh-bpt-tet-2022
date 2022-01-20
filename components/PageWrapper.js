@@ -52,7 +52,7 @@ class PageWrapper extends Component{
                                     </a></Link> </li>
                                     
                                 </ul>
-                                <p className="" style={{color:"white"}}>Ban Phong trào - Tình Nguyện UEH</p>
+                                <p className="" style={{color:"white"}}>Ban Phong trào - Tình nguyện UEH</p>
                             </div>
                         </div>
                     </div>
