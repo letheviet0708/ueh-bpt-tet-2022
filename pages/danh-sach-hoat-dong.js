@@ -19,7 +19,7 @@ class DanhSachHoatDong extends Component {
           <Box sx={{maxWidth: "1200px", mr: "auto", ml:"auto"}}>
             <Box sx={{ p: "20px"}}>
             <Box id="infomation">
-                <h1 style={{ textAlign: "center", color:"#990000", marginBottom: "23px"}}>INFORMATION SECTION</h1>
+                <h1 style={{ textAlign: "center", color:"#990000", marginBottom: "23px"}}>DANH SÁCH HOẠT ĐỘNG</h1>
                 <p  style={{ color: "white" }}>Hãy tham gia đầy đủ các hoạt động để đạt được số điểm cao nhất và cập nhật mã vạch nha!</p>
                 <Box id="activity" style={{display:"flex", justifyContent:"center"}}>
                   <Box sx={{maxWidth:"400px"}}>

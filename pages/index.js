@@ -100,8 +100,8 @@ class Home extends Component {
                 </Box>
               </Box>
               <Box id="infomation">
-                <h1 style={{ textAlign: "center", color:"#ff9933", marginBottom: "23px"}}>INFORMATION SECTION</h1>
-                <Box id="session">
+                {/*<h1 style={{ textAlign: "center", color:"#ff9933", marginBottom: "23px"}}>INFORMATION SECTION</h1>*/}
+                <Box id="session" sx={{pt:"21px"}}>
                   
                   <SessionCard
                     link="/chuc-loi-yeu-thuong#view"
