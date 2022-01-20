@@ -29,6 +29,7 @@ function MyApp({ Component, pageProps }) {
       />
       <Script
         strategy="afterInteractive"
+        id="my-script"
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
