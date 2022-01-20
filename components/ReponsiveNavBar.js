@@ -21,7 +21,7 @@ import { useRouter } from 'next/router'
 const pages = [
   {
     title: 'DANH SÁCH HOẠT ĐỘNG',
-    link: '/danh-sach-hoat-dong'
+    link: '/danh-sach-hoat-dong#view'
   }, /*
   {
     title: 'ALBUM TẾT MỚI TRONG TIM',

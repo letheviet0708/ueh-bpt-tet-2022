@@ -4,6 +4,16 @@ import Button from '@mui/material/Button';
 import Slider from '@mui/material/Slider';
 //import ImageCrop from './ImageCrop';
 
+import { alpha, styled } from '@mui/material/styles';
+
+const ColorButton = styled(Button)({
+    color: 'white',
+    backgroundColor: '#1b4338',
+    '&:hover': {
+      backgroundColor: '#1b4338',
+    },
+});
+
 class AvatarUpload extends Component {
     constructor(props, context) {
         super(props, context);
@@ -84,7 +94,7 @@ class AvatarUpload extends Component {
                                 scaleValue={this.state.scaleValue}
                                 onScaleChange={this.onScaleChange}
                             />
-                            <Button type="button" variant="contained" color="primary" onClick={this.handleDivclick}>Ảnh khác</Button>
+                            <ColorButton type="button" variant="contained" color="primary" onClick={this.handleDivclick}>Ảnh khác</ColorButton>
                             <div className="inputRange">
                                 <div>Điều chỉnh thanh kéo để phóng to</div>
                                 <Slider
@@ -92,6 +102,7 @@ class AvatarUpload extends Component {
                                     min={1} 
                                     max={10}
                                     step={0.2}
+                                    sx={{color:"#1b4338"}}
                                     onChange={this.onScaleChange} 
                                 />
                             </div>

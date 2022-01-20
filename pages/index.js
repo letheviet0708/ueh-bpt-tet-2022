@@ -116,7 +116,7 @@ class Home extends Component {
                     sessionDescription = "Album này sẽ ghi dấu lại những khoảnh khắc đẹp của các bạn trong dịp Tết 2022. Hãy chọn những bức ảnh mà bạn thích thú và ưng ý nhất thể hiện được những hoạt động của mình trong Tết năm nay nhé!"
                   />
                   <SessionCard
-                    link="/danh-sach-hoat-dong"
+                    link="/danh-sach-hoat-dong#view"
                     sessionName="Danh sách hoạt động"
                     img="https://i.imgur.com/23gCmXn.png"
                     sessionDescription = "Các giai đoạn của chuỗi truyền thông “Tết mới” sẽ được cập nhật ở đây. Các bạn nhớ theo dõi để không bỏ lỡ các hoạt động nhé!"

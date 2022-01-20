@@ -15,6 +15,7 @@ class DanhSachHoatDong extends Component {
         <PageWrapper>
           <Banner/>
           <Box className="backGroundI">
+                <a className="anchor" id="view"/>
           <Box sx={{maxWidth: "1200px", mr: "auto", ml:"auto"}}>
             <Box sx={{ p: "20px"}}>
             <Box id="infomation">

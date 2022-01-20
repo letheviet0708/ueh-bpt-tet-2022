@@ -320,7 +320,7 @@ class GiaiDoan1From extends Component {
                                             min={1} 
                                             max={10}
                                             step={0.2}
-                                            sx={{color:"#1b4338"}}
+                                            sx={{ml:"5px", color:"#1b4338"}}
                                             onChange={this.onScaleChange} 
                                         />
                                     </Box>
