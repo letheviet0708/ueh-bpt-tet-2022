@@ -277,7 +277,8 @@ class Manager extends Component {
 
     render(){
         const {filter, updateAt, section, state, number,mssv} = this.state
-        return(<Box sx = {{mt: "50px"}}>
+        return(<div style={{backgroundColor:"white"}}>
+        <Box sx = {{pt: "50px"}}>
                 <Box sx = {{display: "flex"}}>
                     <Box>
                         <TextField
@@ -451,7 +452,7 @@ class Manager extends Component {
                 message = {this.state.messageSB}
                 severity = {this.state.severitySB}
             />
-        </Box>)
+        </Box></div>)
     }
 }
 
