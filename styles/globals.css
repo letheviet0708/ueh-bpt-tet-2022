@@ -121,6 +121,12 @@ h1 {
   .smallScreen{
     display: none;
   }
+  .avaLop{
+    font-size: 14px;
+  }
+  .avaName{
+    font-size: 16px;
+  }
   .tiems{
     flex: 0 0 46%;
   }
@@ -193,6 +199,13 @@ h1 {
   .cardimg{
     flex: 0 0 33.33333333%;
     padding: 5px
+  }
+  
+  .avaLop{
+    font-size: 14px;
+  }
+  .avaName{
+    font-size: 22px;
   }
 }
 
