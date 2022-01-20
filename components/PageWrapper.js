@@ -14,6 +14,8 @@ class PageWrapper extends Component{
         return (
             <div>
                 <Head>
+                    <title>TẾT MỚI</title>
+                    <link rel="icon" href="https://i.imgur.com/IV6j1V4.png" />
                     <link rel="stylesheet" href="/static/assets/fonts/font-awesome.min.css" />
                     <link rel="stylesheet" href="/static/assets/bootstrap/css/bootstrap.min.css" />
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossOrigin="anonymous" />
