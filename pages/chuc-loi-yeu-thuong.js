@@ -110,7 +110,7 @@ class ChucLoiYeuThuong extends Component{
                 <a className="anchor" id="view"/>
                 <Box >
                 <Box sx={{mr: "20px", ml: "20px"}}>
-                    <h1 style={{ textAlign: "center", color:"#ff9933"}}>CHÚC LỜI YÊU THƯƠNG</h1>
+                    <h1 style={{ textAlign: "center", color:"#ff9933", marginTop: "20px", marginBottom:" -16px"}}>CHÚC LỜI YÊU THƯƠNG</h1>
                     <p style={{color: "white"}}>Lời chúc năm mới sẽ là món quà chân thành các bạn có thể dành tặng cho gia đình mình. Những lời chúc qua mạng xã hội biến việc thể hiện tình cảm qua trở nên mới mẻ, cực kỳ thuận tiện nếu các bạn gửi cho một người thân đang ở xa.</p>
                 </Box>
                 <div className = "cardsWrapper">
@@ -159,7 +159,7 @@ class ChucLoiYeuThuong extends Component{
                 }
                 </div>
                 <Box sx={{display: "flex", justifyContent: "center",mt: "10px"}}>
-                        <Pagination  count={this.state.numberOfPage} page={this.state.page} onChange={this.handelPageChange} />
+                        <Pagination color="warning"  count={this.state.numberOfPage} page={this.state.page} onChange={this.handelPageChange} />
                     </Box>
                 </Box>
             </PageWrapper>

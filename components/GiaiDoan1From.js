@@ -17,6 +17,35 @@ import CTSnackbar from "./SnackBar"
 import PendingIcon from '@mui/icons-material/Pending';
 import ErrorIcon from '@mui/icons-material/Error';
 
+import { alpha, styled } from '@mui/material/styles';
+
+const CssTextField = styled(TextField)({
+    backgroundColor: "white",
+    borderRadius: "5px 5px 0px 0px",
+    '& label.Mui-focused': {
+        color: '#1b4338',
+        fontWeight: 'bold'
+    },
+    '& label': {
+        color: '#1b4338'
+    },
+    '& .MuiOutlinedInput-root': {
+      
+      '&.Mui-focused fieldset': {
+        borderColor: '#1b4338',
+        border: "3 solid"
+      },
+    },
+});
+
+const ColorButton = styled(Button)({
+    color: 'white',
+    backgroundColor: '#1b4338',
+    '&:hover': {
+      backgroundColor: '#1b4338',
+    },
+});
+
 class GiaiDoan1From extends Component {
     constructor(props){
         super(props)
@@ -49,9 +78,7 @@ class GiaiDoan1From extends Component {
             })
         }
     }
-
     
-
     handleTextChange = (event) => {
         this.setState({ 
             text : event.target.value,
@@ -188,20 +215,20 @@ class GiaiDoan1From extends Component {
     render(){
         const {imgH, imgW, openCropper, selectedImage, scaleValue, text,hasChange} = this.state
         let saveButton= (
-            <Button onClick={this.submit} variant="contained" startIcon={<CheckCircleIcon />}>
+            <ColorButton  sx={{backgroundColor:"#1b4338"}} onClick={this.submit} variant="contained" startIcon={<CheckCircleIcon />}>
                 Lưu
-            </Button>)
+            </ColorButton>)
         if (this.props.Data == null){
             if (hasChange)
             saveButton = (
-                <Button onClick={this.submit} variant="contained" startIcon={<CheckCircleIcon />}>
+                <ColorButton sx={{backgroundColor:"#1b4338"}} onClick={this.submit} variant="contained" startIcon={<CheckCircleIcon />}>
                     Lưu
-                </Button>)
+                </ColorButton>)
             else
             saveButton = (
-                <Button disabled onClick={this.submit} variant="contained" startIcon={<CheckCircleIcon />}>
+                <ColorButton disabled onClick={this.submit} variant="contained" startIcon={<CheckCircleIcon />}>
                     Lưu
-                </Button>)
+                </ColorButton>)
         }else{
             if (this.props.Data.images[0] == this.state.selectedImage
                 && this.props.Data.text[0] == this.state.text){
@@ -229,7 +256,7 @@ class GiaiDoan1From extends Component {
         }
         
         return (<div>
-            <Box sx={{ borderRadius: 2,boxShadow: 3,
+            <Box sx={{ borderRadius: 2,boxShadow: 3, backgroundColor: "white",
                     mt: "20px",
                     mr:"10px",
                     ml:"10px"}}>
@@ -239,7 +266,7 @@ class GiaiDoan1From extends Component {
                     pl:"10px",
                     pr:"10px",
                 }}>
-                    <Typography sx={{fontWeight: "bold"}}>Giai Đoạn 1: Chúc lời yêu thương</Typography>
+                    <Typography sx={{fontSize: "22px", fontWeight: "bold", mb: "12px", mt:"6px"}}>Stage 1: Chúc lời yêu thương</Typography>
                     <Box id="gd1Container" >
                         <Box id="gd1Button">
                             {openCropper ?
@@ -279,13 +306,13 @@ class GiaiDoan1From extends Component {
                                         </Box>
                                     </Box>
                                     <Box id="imgToolSm">
-                                        <Button 
+                                        <ColorButton 
                                             type="button" 
                                             variant="contained" 
                                             color="primary" 
                                             onClick={this.handleDivclick}
                                             sx={{mt:"5px"}}
-                                            >Ảnh khác</Button>
+                                            >Ảnh khác</ColorButton>
                                         <Typography
                                             sx={{mt:"5px"}}>Phóng to</Typography>
                                         <Slider
@@ -293,7 +320,7 @@ class GiaiDoan1From extends Component {
                                             min={1} 
                                             max={10}
                                             step={0.2}
-                                            size="small"
+                                            sx={{color:"#1b4338"}}
                                             onChange={this.onScaleChange} 
                                         />
                                     </Box>
@@ -305,7 +332,7 @@ class GiaiDoan1From extends Component {
                             }       
                         </Box>
                         <Box id="gd1Text">
-                            <TextField
+                            <CssTextField
                                 label="Lời chúc của bạn"
                                 multiline
                                 rows={4}
@@ -317,21 +344,20 @@ class GiaiDoan1From extends Component {
                             />
                             {openCropper &&
                             <Box id="imgToolLg">
-                                <Button 
+                                <ColorButton 
                                     type="button" 
                                     variant="contained" 
                                     color="primary" 
                                     onClick={this.handleDivclick}
-                                    sx={{mt:"5px"}}
-                                    >Ảnh khác</Button>
+                                    sx={{mt:"5px",backgroundColor:"#1b4338"}}
+                                    >Ảnh khác</ColorButton>
                                 <Typography>Phóng to</Typography>
                                 <Slider
                                     value={scaleValue} 
                                     min={1} 
                                     max={10}
-                                    step={0.2}
-                                    size="small"
-                                    sx={{mt:"5px"}}
+                                    step={0.2}  
+                                    sx={{mt:"5px", ml:"5px", color:"#1b4338"}}
                                     onChange={this.onScaleChange} 
                                 />
                             </Box>
@@ -341,7 +367,7 @@ class GiaiDoan1From extends Component {
                     <Box sx={{
                         display: "flex",
                         justifyContent: "flex-end",
-                        mt: "10px"
+                        mt: "-12px"
                     }}
                     >
                         {saveButton}

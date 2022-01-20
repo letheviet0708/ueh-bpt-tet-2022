@@ -47,16 +47,16 @@ class CardImg extends Component{
                         </Tooltip>
                         <Box sx={{mt:"5px"}}>
                             <Box sx={{display: "flex"}}>
-                                <Avatar alt="Remy Sharp" src={this.props.user.avatar} />                        
-                                <Box sx = {{ml: "10px"}}>
-                                    <Typography sx={{ fontWeight: 'bold', fontSize: "17px", color:"#ff9933", fontFamily: 'Montserrat'}} variant="subtitle2" component="div">
+                            <Avatar sx={{ width: 56, height: 56 }} alt="Remy Sharp" src={this.props.user.avatar} />                        
+                            <Box sx = {{ml: "10px"}}>
+                                <Typography sx={{ fontWeight: 'bold', fontSize: "22px", color:"white", fontFamily: 'Montserrat'}} variant="subtitle2" component="div">
                                         {this.props.user.name}
-                                    </Typography>
-                                    <Typography sx={{ textAlign: 'left', fontWeight: 'light', fontSize: "12px", color:"#ff9933", fontFamily: 'Montserrat' }} paragraph={true} variant="caption" display="block">
-                                        {this.props.user.cls}
-                                    </Typography>
-                                </Box>
+                                </Typography>
+                                <Typography sx={{ textAlign: 'left', fontWeight: 'light', fontSize: "14px", marginTop: "-7px", color:"#ff9933", fontFamily: 'Montserrat' }} paragraph={true} variant="caption" display="block">
+                                    {this.props.user.cls}
+                                </Typography>
                             </Box>
+                        </Box>
                         </Box>
                         <CardActions>
                         </CardActions>
@@ -135,10 +135,10 @@ class CardImg extends Component{
                                                 <Box sx={{display: "flex"}}>
                                                     <Avatar sx={{ width: 56, height: 56 }} alt="Remy Sharp" src={this.props.user.avatar} />                        
                                                     <Box sx = {{ml: "10px"}}>
-                                                        <Typography sx={{ fontWeight: 'bold', fontSize: "17px", color:"#ff9933", fontFamily: 'Montserrat'}} variant="subtitle2" component="div">
+                                                        <Typography sx={{ fontWeight: 'bold', fontSize: "22px", color:"white", fontFamily: 'Montserrat'}} variant="subtitle2" component="div">
                                                             {this.props.user.name}
                                                         </Typography>
-                                                        <Typography sx={{ textAlign: 'left', fontWeight: 'light', fontSize: "12px", color:"#ff9933", fontFamily: 'Montserrat' }} paragraph={true} variant="caption" display="block">
+                                                        <Typography sx={{ textAlign: 'left', fontWeight: 'light', fontSize: "14px", marginTop: "-7px", color:"#ff9933", fontFamily: 'Montserrat' }} paragraph={true} variant="caption" display="block">
                                                             {this.props.user.cls}
                                                         </Typography>
                                                     </Box>
@@ -188,10 +188,10 @@ class CardImg extends Component{
                                             <Box sx={{mt: "10px", display: "flex"}}>
                                                 <Avatar sx={{ width: 56, height: 56 }} alt="Remy Sharp" src={this.props.user.avatar} />                        
                                                 <Box sx = {{ml: "10px"}}>
-                                                    <Typography sx={{ fontWeight: 'bold', fontSize: "17px", color:"#ff9933", fontFamily: 'Montserrat'}} variant="subtitle2" component="div">
-                                                        {this.props.user.name}
+                                                    <Typography sx={{ fontWeight: 'bold', fontSize: "22px", color:"white", fontFamily: 'Montserrat'}} variant="subtitle2" component="div">
+                                                            {this.props.user.name}
                                                     </Typography>
-                                                    <Typography sx={{ textAlign: 'left', fontWeight: 'light', fontSize: "12px", color:"#ff9933", fontFamily: 'Montserrat' }} paragraph={true} variant="caption" display="block">
+                                                    <Typography sx={{ textAlign: 'left', fontWeight: 'light', fontSize: "14px", marginTop: "-7px", color:"#ff9933", fontFamily: 'Montserrat' }} paragraph={true} variant="caption" display="block">
                                                         {this.props.user.cls}
                                                     </Typography>
                                                 </Box>

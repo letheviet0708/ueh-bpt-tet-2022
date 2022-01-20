@@ -21,12 +21,12 @@ import { useRouter } from 'next/router'
 const pages = [
   {
     title: 'DANH SÁCH HOẠT ĐỘNG',
-    link: ''
-  }, 
+    link: '/danh-sach-hoat-dong'
+  }, /*
   {
     title: 'ALBUM TẾT MỚI TRONG TIM',
     link: ''
-  }, 
+  }, */
   {
     title: 'CHÚC LỜI YÊU THƯƠNG',
     link: '/chuc-loi-yeu-thuong#view'

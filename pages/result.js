@@ -61,7 +61,7 @@ class Result extends Component {
             }
         }
         console.log(env, GDPR)
-        return (<div>
+        return (<div id="anotherBg">
             <PageWrapper>
                 <div id = "contentWrapper"
                     style = {{
@@ -79,6 +79,7 @@ class Result extends Component {
                                     uid= {user.uid}
                                 />
                             }
+                            {/*
                             {(env == "development" || (GDPR >= 2))&&
                                 <GiaiDoan2Form
                                     Data= {Data[2]}
@@ -90,7 +91,8 @@ class Result extends Component {
                                     Data= {Data[3]}
                                     uid= {user.uid}
                                 />
-                            }                       
+                            }    
+                        */ }                  
                         </Box>
                     }
                 </div>

@@ -8,7 +8,6 @@ import clan from "../components/clan.json"
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 import AvatarUpload from "../components/avatarEdit/avatarUpload";
-import { styled } from '@mui/material/styles';
 import Badge from '@mui/material/Badge';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
@@ -22,6 +21,26 @@ import { withRouter } from "next/router";
 
 import clientID from '../components/ClientID.json'
 import uploadImage from '../components/uploadImg'
+
+import { alpha, styled } from '@mui/material/styles';
+
+const CssTextField = styled(TextField)({
+    backgroundColor: "white",
+    borderRadius: "5px 5px 0px 0px",
+    '& label.Mui-focused': {
+        color: '#1b4338',
+        fontWeight: 'bold'
+    },
+    fontFamily: 'Montserrat'
+});
+
+const ColorButton = styled(Button)({
+    color: 'white',
+    backgroundColor: '#1b4338',
+    '&:hover': {
+      backgroundColor: '#1b4338',
+    },
+});
 
 class UserModify extends Component{
 
@@ -175,9 +194,7 @@ class UserModify extends Component{
         }
     
         return new Blob([ia], {type:mimeString});
-    }
-
-    
+    }    
 
     uploadProfile = (uid, data) =>{
         personService.saveProfiles(uid, data)
@@ -244,7 +261,7 @@ class UserModify extends Component{
         const { email, Name, phone, clan, mssv, cls, khoaList, gen, openAvatarEditor, avatar } = this.state;
 
         return (
-            <div>
+            <div id="anotherBg">
             <PageWrapper>
                 <div id = "contentWrapper"
                     style = {{
@@ -284,60 +301,57 @@ class UserModify extends Component{
                                     />
                             </Badge>
                         </Box>
-
-                        
-
                         <div className = "containerForm">
 
-                            <TextField
+                            <CssTextField
                                 required
                                 className = "tiems"
                                 label="Tên"
                                 onChange={this.handleChange}
                                 name="Name"
                                 value={Name}
-                                variant="outlined" 
+                                variant="filled" 
                                 sx = {{mt: "20px"}}
                             />
 
-                            <TextField
+                            <CssTextField
                                 required
                                 className = "tiems"
                                 label="MSSV"
                                 onChange={this.handleChange}
                                 name="mssv"
                                 value={mssv}
-                                variant="outlined" 
+                                variant="filled" 
                                 sx = {{mt: "20px"}}
                             />
                             <Box sx = {{mt: "20px", display:"flex"}}
                                 className = "tiems">
-                                <TextField
+                                <CssTextField
                                     required
                                     label="Lớp"
                                     onChange={this.handleChange}
                                     name="cls"
                                     value={cls}
-                                    variant="outlined" 
+                                    variant="filled" 
                                     
                                 />
-                                <TextField
+                                <CssTextField
                                     required
                                     select
                                     label="Khóa"
                                     onChange={this.handleChange2}
                                     name="gen"
                                     value={gen}
-                                    variant="outlined" 
+                                    variant="filled" 
                                     sx = {{ml: "10px", flexGrow: 1}}
                                 >
                                     <MenuItem value="K45" >K45</MenuItem>
                                     <MenuItem value="K46" >K46</MenuItem>
                                     <MenuItem value="K47" >K47</MenuItem>
-                                </TextField>
+                                </CssTextField>
                             </Box>
                             
-                            <TextField
+                            <CssTextField
                                 required
                                 className = "tiems"
                                 select
@@ -345,38 +359,38 @@ class UserModify extends Component{
                                 onChange={this.handleChange2}
                                 name="clan"
                                 value={clan}
-                                variant="outlined" 
+                                variant="filled" 
                                 sx = {{mt: "20px"}}
                             >
                                 {khoaList && khoaList.map((khoa, index) => (
                                     <MenuItem value={khoa.value} key={index}>{khoa.label}</MenuItem>
                                 ))}  
-                            </TextField>
+                            </CssTextField>
 
-                            <TextField
+                            <CssTextField
                                 required
                                 className = "tiems"
                                 label="Số điện thoại"
                                 onChange={this.handleChange}
                                 name="phone"
                                 value={phone}
-                                variant="outlined" 
+                                variant="filled" 
                                 sx = {{mt: "20px"}}
                             />
 
-                            <TextField
+                            <CssTextField
                                 disabled
                                 className = "tiems"
                                 label="Email"
                                 onChange={this.handleChange}
                                 name="email"
                                 value={email}
-                                variant="outlined" 
+                                variant="filled" 
                                 sx = {{mt: "20px"}}
                             />
                         </div>
                         
-                        <Button 
+                        <ColorButton 
                             type="submit" 
                             variant="contained" 
                             onClick={this.handleSubmit}
@@ -385,7 +399,7 @@ class UserModify extends Component{
                                 width:"100px",
                                 ml: "auto",
                                 mr: "auto"
-                            }}>Lưu</Button>
+                            }}>Lưu</ColorButton>
 
                     </Box>
                 </div>
