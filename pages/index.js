@@ -110,13 +110,13 @@ class Home extends Component {
                     sessionDescription = "Đây là nơi tổng hợp những hình ảnh và lời chúc của mọi người đến những người thân xung quanh mình. Hãy trao đi những tâm tình có giá trị để Tết năm nay sẽ trọn vẹn và mang nhiều kỷ niệm đẹp đẽ, sâu sắc hơn nhé!"
                   />
                   <SessionCard
-                    link="/chuc-loi-yeu-thuong#view"
+                    link=""
                     sessionName="Album Tết mới trong tim"
                     img="https://i.imgur.com/z0R9wvx.png"
                     sessionDescription = "Album này sẽ ghi dấu lại những khoảnh khắc đẹp của các bạn trong dịp Tết 2022. Hãy chọn những bức ảnh mà bạn thích thú và ưng ý nhất thể hiện được những hoạt động của mình trong Tết năm nay nhé!"
                   />
                   <SessionCard
-                    link="/chuc-loi-yeu-thuong#view"
+                    link="/danh-sach-hoat-dong"
                     sessionName="Danh sách hoạt động"
                     img="https://i.imgur.com/23gCmXn.png"
                     sessionDescription = "Các giai đoạn của chuỗi truyền thông “Tết mới” sẽ được cập nhật ở đây. Các bạn nhớ theo dõi để không bỏ lỡ các hoạt động nhé!"
