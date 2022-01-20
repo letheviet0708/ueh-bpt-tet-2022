@@ -10,6 +10,9 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 
+import { createTheme , ThemeProvider} from '@mui/material/styles';
+import Theme from './theme'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import User from './User'
@@ -34,7 +37,21 @@ const pages = [
   }
 ];
 
-
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#990000',
+    },
+    secondary: {
+      main: '#ff9933',
+    },
+    typography: {
+      fontFamily: [
+        'Montserrat'
+      ].join(','),
+    },
+  },
+});
 
 const ResponsiveNavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -68,6 +85,7 @@ const ResponsiveNavBar = () => {
 
   return (
     <React.Fragment>
+    <ThemeProvider theme={theme}>
     <AppBar position="fixed">
       <Container maxWidth="lg">
         <Toolbar sx = {{height: 80}} disableGutters>
@@ -138,6 +156,7 @@ const ResponsiveNavBar = () => {
         </Toolbar>
       </Container>
     </AppBar>
+    </ThemeProvider>
     </React.Fragment>
   );
 };

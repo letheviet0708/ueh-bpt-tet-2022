@@ -25,6 +25,7 @@ export default async (req, res) => {
                     clan: req.body.clan,
                     avatar: req.body.avatar,
                     cls: req.body.cls,
+                    gen: req.body.gen,
                     phone: req.body.phone,
                     email: req.body.email,
                     uid: req.body.uid,

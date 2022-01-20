@@ -36,6 +36,7 @@ class UserModify extends Component{
             clan: '',
             mssv: '',
             avatar: '',
+            gen:'',
             khoaList: null,
             anchorEl: null,
             openAvatarEditor: false,
@@ -69,6 +70,7 @@ class UserModify extends Component{
                             Name: user.name,
                             cls: user.cls,
                             clan: user.clan,
+                            gen: user.gen,
                             mssv: user.mssv,
                             avatar: user.avatar
                         })
@@ -113,7 +115,7 @@ class UserModify extends Component{
 
     handleChange2 = (event) =>{
         console.log(event.target.value)
-        this.setState({ clan: event.target.value})
+        this.setState({ [event.target.name]: event.target.value})
     }
 
     handleAvatarClick = (event) => {
@@ -138,6 +140,7 @@ class UserModify extends Component{
             Boolean(this.state.cls) &&
             Boolean(this.state.clan) &&
             Boolean(this.state.mssv) &&
+            Boolean(this.state.gen) &&
             Boolean(this.state.avatar) 
         )
     }
@@ -204,6 +207,7 @@ class UserModify extends Component{
                                 email: this.state.email,
                                 phone: this.state.phone,
                                 name: this.state.Name,
+                                gen: this.state.gen,
                                 cls: this.state.cls,
                                 clan: this.state.clan,
                                 mssv: this.state.mssv,
@@ -223,6 +227,7 @@ class UserModify extends Component{
                     name: this.state.Name,
                     cls: this.state.cls,
                     clan: this.state.clan,
+                    gen: this.state.gen,
                     mssv: this.state.mssv,
                     avatar: this.state.avatar
                 }
@@ -236,7 +241,7 @@ class UserModify extends Component{
     }
 
     render() {
-        const { email, Name, phone, clan, mssv, cls, khoaList, anchorEl, openAvatarEditor, avatar } = this.state;
+        const { email, Name, phone, clan, mssv, cls, khoaList, gen, openAvatarEditor, avatar } = this.state;
 
         return (
             <div>
@@ -305,17 +310,32 @@ class UserModify extends Component{
                                 variant="outlined" 
                                 sx = {{mt: "20px"}}
                             />
-                            
-                            <TextField
-                                required
-                                className = "tiems"
-                                label="Lớp - Khóa"
-                                onChange={this.handleChange}
-                                name="cls"
-                                value={cls}
-                                variant="outlined" 
-                                sx = {{mt: "20px"}}
-                            />
+                            <Box sx = {{mt: "20px", display:"flex"}}
+                                className = "tiems">
+                                <TextField
+                                    required
+                                    label="Lớp"
+                                    onChange={this.handleChange}
+                                    name="cls"
+                                    value={cls}
+                                    variant="outlined" 
+                                    
+                                />
+                                <TextField
+                                    required
+                                    select
+                                    label="Khóa"
+                                    onChange={this.handleChange2}
+                                    name="gen"
+                                    value={gen}
+                                    variant="outlined" 
+                                    sx = {{ml: "10px", flexGrow: 1}}
+                                >
+                                    <MenuItem value="K45" >K45</MenuItem>
+                                    <MenuItem value="K46" >K46</MenuItem>
+                                    <MenuItem value="K47" >K47</MenuItem>
+                                </TextField>
+                            </Box>
                             
                             <TextField
                                 required

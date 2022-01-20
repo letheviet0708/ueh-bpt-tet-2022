@@ -30,27 +30,27 @@ class PageWrapper extends Component{
                                 
                                 <ul className="list-inline text-center">
                                     <li className="list-inline-item"> <Link href="https://youth.ueh.edu.vn/"><a>
-                                        <span id="webicon" className="fa-stack  "><i className="fa fa-circle fa-stack-2x"></i><i className="fas fa-globe fa-stack-1x fa-inverse"></i></span> 
+                                        <span id="webicon" className="fa-stack  "><i className="fa fa-circle fa-stack-2x" style={{color: "#ff9933"}}></i><i className="fas fa-globe fa-stack-1x fa-inverse" style={{color: "#990000"}}></i></span> 
                                     </a></Link> </li>
 
                                     <li className="list-inline-item"> <Link href="https://tiktok.com/@bptueh"><a>
-                                        <span id="titokicon" className="fa-stack  "><i className="fa fa-circle fa-stack-2x"></i><i className="fab fa-tiktok fa-stack-1x fa-inverse"></i></span>   
+                                        <span id="titokicon" className="fa-stack  "><i className="fa fa-circle fa-stack-2x" style={{color: "#ff9933"}}></i><i className="fab fa-tiktok fa-stack-1x fa-inverse" style={{color: "#990000"}}></i></span>   
                                     </a></Link> </li>
 
                                     <li className="list-inline-item"> <Link href="https://www.facebook.com/bptueh"><a>
-                                        <span id="fbicon" className="fa-stack  "><i className="fa fa-circle fa-stack-2x"></i><i className="fab fa-facebook-f fa-stack-1x fa-inverse"></i></span>       
+                                        <span id="fbicon" className="fa-stack  "><i className="fa fa-circle fa-stack-2x" style={{color: "#ff9933"}}></i><i className="fab fa-facebook-f fa-stack-1x fa-inverse" style={{color: "#990000"}}></i></span>       
                                     </a></Link> </li>
 
                                     <li className="list-inline-item"> <Link href="https://www.youtube.com/channel/UCukkP4Wu3VH5kqK1inZNOAg"><a>
-                                        <span id="yticon" className="fa-stack  "><i className="fa fa-circle fa-stack-2x"></i><i className="fab fa-youtube fa-stack-1x fa-inverse"></i></span>
+                                        <span id="yticon" className="fa-stack  "><i className="fa fa-circle fa-stack-2x" style={{color: "#ff9933"}}></i><i className="fab fa-youtube fa-stack-1x fa-inverse" style={{color: "#990000"}}></i></span>
                                     </a></Link> </li>
 
                                     <li className="list-inline-item"> <Link href="https://instagram.com/banphongtrao.ueh"><a>
-                                        <span id="insicon" className="fa-stack  "><i className="fa fa-circle fa-stack-2x"></i><i className="fab fa-instagram fa-stack-1x fa-inverse"></i></span>  
+                                        <span id="insicon" className="fa-stack  "><i className="fa fa-circle fa-stack-2x" style={{color: "#ff9933"}}></i><i className="fab fa-instagram fa-stack-1x fa-inverse" style={{color: "#990000"}}></i></span>  
                                     </a></Link> </li>
                                     
                                 </ul>
-                                <p className="text-muted copyright">Ban Phong trào - Tình Nguyện UEH</p>
+                                <p className="" style={{color:"white"}}>Ban Phong trào - Tình Nguyện UEH</p>
                             </div>
                         </div>
                     </div>

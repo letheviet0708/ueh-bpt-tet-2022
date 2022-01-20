@@ -11,6 +11,7 @@ const personSchema = new mongoose.Schema({
         avatar: String,
         cls: String,
         phone: String,
+        gen: String,
         email: String,
         uid: String,
         count: Number,

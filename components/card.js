@@ -10,6 +10,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import CancelIcon from '@mui/icons-material/Cancel';
 import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 
 class CardImg extends Component{
     constructor(props){
@@ -36,20 +37,22 @@ class CardImg extends Component{
     render(){
         return(<>
                 <Box className="cardimg">
-                    <Box sx={{width:"100%"}} onClick={this.handleOpen}>
-                        <CardMedia
-                            component="img"
-                            image={this.props.image}
-                            alt="green iguana"
-                        />
+                    <Box sx={{width:"100%", cursor: "pointer"}} onClick={this.handleOpen}>
+                        <Tooltip title="Xem" arrow>
+                            <CardMedia
+                                component="img"
+                                image={this.props.image}
+                                alt="green iguana"
+                            />
+                        </Tooltip>
                         <Box sx={{mt:"5px"}}>
                             <Box sx={{display: "flex"}}>
                                 <Avatar alt="Remy Sharp" src={this.props.user.avatar} />                        
                                 <Box sx = {{ml: "10px"}}>
-                                    <Typography sx={{ fontWeight: 'bold', fontSize: "15px" }} variant="subtitle2" component="div">
+                                    <Typography sx={{ fontWeight: 'bold', fontSize: "17px", color:"#ff9933", fontFamily: 'Montserrat'}} variant="subtitle2" component="div">
                                         {this.props.user.name}
                                     </Typography>
-                                    <Typography sx={{ fontSize: "10px" }} paragraph={true} variant="caption" display="block">
+                                    <Typography sx={{ textAlign: 'left', fontWeight: 'light', fontSize: "12px", color:"#ff9933", fontFamily: 'Montserrat' }} paragraph={true} variant="caption" display="block">
                                         {this.props.user.cls}
                                     </Typography>
                                 </Box>
@@ -76,16 +79,14 @@ class CardImg extends Component{
                             onClick={this.handleClose2}
                         >
                             <Box 
+                                className="viewCard"
                                 sx={{ 
-                                    backgroundColor: '#fff', 
                                     borderRadius: 3
                                 }}
                             >   
-                                <Box sx={{}}
+                                <Box sx={{ mt: "-7px"}}
                                 >   
-                                    <IconButton>
-                                        <CancelIcon onClick={this.handleClose}/>
-                                    </IconButton>
+                                        <CancelIcon sx={{color:"#ff9933"}} onClick={this.handleClose}/>
                                 </Box>
                                 <Box 
                                     className="wideScreen">
@@ -100,46 +101,51 @@ class CardImg extends Component{
                                         justifyContent: 'center',
                                     }}
                                 >
-                                <Box id="ccc" sx={{width: "80vw"}}>
-                                <Box
-                                    sx={{
+                                <Box id="ccc" sx={{width: "80vw", border:2, borderRadius: 3, borderColor: "#ff9933"}}>
+                                <Box sx={{
                                         width: "100%",
-                                        paddingTop: "38%",
-                                        position: "relative",
-                                    }}
-                                >
+                                        padding: "12px"}}>
                                     <Box
                                         sx={{
-                                            position: "absolute",
-                                            top: 0, 
-                                            left: 0,
                                             width: "100%",
-                                            height: "100%",
-                                            display: 'flex',
-                                            justifyContent: 'space-around'
+                                            paddingTop: "38%",
+                                            position: "relative",
+                                            margin: "10px"
                                         }}
                                     >
-                                        <Box className="imgCard">
-                                            <div 
-                                                dangerouslySetInnerHTML={{ 
-                                                    __html: `<img class="cardI" style=" width: 100%;border-radius: 8px;" src="${this.props.image}" />` 
-                                            }} />
-                                        </Box>
-                                        <Box className="imgText" style={{}}>
-                                            
-                                            <Box sx={{display: "flex"}}>
-                                                <Avatar alt="Remy Sharp" src={this.props.user.avatar} />                        
-                                                <Box sx = {{ml: "10px"}}>
-                                                    <Typography sx={{ fontWeight: 'bold', fontSize: "15px" }} variant="subtitle2" component="div">
-                                                        {this.props.user.name}
-                                                    </Typography>
-                                                    <Typography sx={{ fontSize: "10px" }} paragraph={true} variant="caption" display="block">
-                                                        {this.props.user.cls}
-                                                    </Typography>
-                                                </Box>
+                                        <Box
+                                            sx={{
+                                                position: "absolute",
+                                                top: 0, 
+                                                left: 0,
+                                                width: "100%",
+                                                height: "100%",
+                                                display: 'flex',
+                                                justifyContent: 'space-around'
+                                            }}
+                                        >
+                                            <Box className="imgCard">
+                                                <div 
+                                                    dangerouslySetInnerHTML={{ 
+                                                        __html: `<img class="cardI" style=" width: 100%;border-radius: 8px;" src="${this.props.image}" />` 
+                                                }} />
                                             </Box>
-                                            <Box sx={{overflow: 'auto', border: 1, borderColor: 'grey.500',borderRadius: 2}}>
-                                                <Typography sx = {{m:"20px"}}>{this.props.text}</Typography>
+                                            <Box className="imgText" style={{}}>
+                                                
+                                                <Box sx={{display: "flex"}}>
+                                                    <Avatar sx={{ width: 56, height: 56 }} alt="Remy Sharp" src={this.props.user.avatar} />                        
+                                                    <Box sx = {{ml: "10px"}}>
+                                                        <Typography sx={{ fontWeight: 'bold', fontSize: "17px", color:"#ff9933", fontFamily: 'Montserrat'}} variant="subtitle2" component="div">
+                                                            {this.props.user.name}
+                                                        </Typography>
+                                                        <Typography sx={{ textAlign: 'left', fontWeight: 'light', fontSize: "12px", color:"#ff9933", fontFamily: 'Montserrat' }} paragraph={true} variant="caption" display="block">
+                                                            {this.props.user.cls}
+                                                        </Typography>
+                                                    </Box>
+                                                </Box>
+                                                <Box sx={{overflow: 'auto', border: 1, borderColor: 'grey.500',borderRadius: 2}}>
+                                                    <p style = {{margin:"20px", textAlign:"left", color:"white", fontSize: "smaller"}}>{this.props.text}</p>
+                                                </Box>
                                             </Box>
                                         </Box>
                                     </Box>
@@ -155,36 +161,46 @@ class CardImg extends Component{
                                         
                                         maxHeight: "100%",
                                         overflow: "auto",
+                                        border:2, 
+                                        borderRadius: 3, 
+                                        borderColor: "#ff9933",
                                         ml:"14px",
                                         mb:"14px",
                                         mt:"14px",
                                         mr:"14px"
                                     }}
                                 >
-                                    <Box sx={{}}>
+                                    
+                                    <Box
+                                        sx={{
+                                            maxHeight: "100%",
+                                            m: "11px"
+                                        }}
+                                    >
+
+                                        <Box sx={{}}>
                                             <div 
                                                 dangerouslySetInnerHTML={{ 
                                                     __html: `<img class="cardI" style=" width: 100%;border-radius: 8px;" src="${this.props.image}" />` 
                                             }} />
                                         </Box>
                                         <Box >
-                                            
                                             <Box sx={{mt: "10px", display: "flex"}}>
-                                                <Avatar alt="Remy Sharp" src={this.props.user.avatar} />                        
+                                                <Avatar sx={{ width: 56, height: 56 }} alt="Remy Sharp" src={this.props.user.avatar} />                        
                                                 <Box sx = {{ml: "10px"}}>
-                                                    <Typography sx={{ fontWeight: 'bold', fontSize: "15px" }} variant="subtitle2" component="div">
+                                                    <Typography sx={{ fontWeight: 'bold', fontSize: "17px", color:"#ff9933", fontFamily: 'Montserrat'}} variant="subtitle2" component="div">
                                                         {this.props.user.name}
                                                     </Typography>
-                                                    <Typography sx={{ fontSize: "10px" }} paragraph={true} variant="caption" display="block">
+                                                    <Typography sx={{ textAlign: 'left', fontWeight: 'light', fontSize: "12px", color:"#ff9933", fontFamily: 'Montserrat' }} paragraph={true} variant="caption" display="block">
                                                         {this.props.user.cls}
                                                     </Typography>
                                                 </Box>
                                             </Box>
-                                            <Typography>{this.props.text}</Typography>
+                                            <p style = {{margin:"0px", textAlign:"left", color:"white", fontSize: "smaller"}}>{this.props.text}</p>
                                         </Box>
-
+                                    </Box>
                                 </Box>
-                                <Typography sx={{textAlign: "center", fontSize: "9px", mb:"1px" }} paragraph={true} variant="caption" display="block">
+                                <Typography sx={{color: "#ff9933", textAlign: "center", fontSize: "9px", mb:"1px" }} paragraph={true} variant="caption" display="block">
                                     Chúc lời yêu thương - Tết mới 2022
                                 </Typography>
                             </Box>

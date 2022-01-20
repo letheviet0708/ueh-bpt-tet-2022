@@ -3,8 +3,17 @@ import styles from '../styles/Home.module.css'
 import Banner from '../components/Banner';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-
+import Timeline from '@mui/lab/Timeline';
+import TimelineItem from '@mui/lab/TimelineItem';
+import TimelineSeparator from '@mui/lab/TimelineSeparator';
+import TimelineConnector from '@mui/lab/TimelineConnector';
+import TimelineContent from '@mui/lab/TimelineContent';
+import TimelineDot from '@mui/lab/TimelineDot';
+import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
+import SessionCard from "../components/sessionCard";
+import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
 import { Component } from 'react'
+import Brightness1Icon from '@mui/icons-material/Brightness1';
 
 class Home extends Component {
 
@@ -13,12 +22,107 @@ class Home extends Component {
       <div>
         <PageWrapper>
           <Banner/>
-          <Box sx={{maxWidth: "800px", mr: "auto", ml:"auto"}}>
-            <Box sx={{ m: "20px"}}>
-              <Typography sx={{ textAlign: "center"}} variant="h4" component="div" gutterBottom>CHUỖI TRUYỀN THÔNG TẾT 2022: TẾT MỚI</Typography>
+          <Box className="backGroundI">
+          <Box sx={{maxWidth: "1200px", mr: "auto", ml:"auto"}}>
+            <Box sx={{ p: "20px"}}>
+              <Box id="introduce">
+                <h1 style={{ textAlign: "center", color: "#990000"}}>CHUỖI TRUYỀN THÔNG TẾT 2022: TẾT MỚI</h1>
+                 <p>Chuỗi truyền thông “Tết mới” được xây dựng với mục đích truyền tải thông điệp đến các bạn sinh viên UEH cũng như sinh viên ngoài trường về một cái Tết mới: mới trong tư duy, mới trong cách tiếp nhận, mới trong cách ăn Tết. Năm nay, Tết diễn ra trong một thời điểm đặc biệt khi mà các hoạt động trực tuyến đang dần trở thành “khẩu vị” của sinh viên và thúc đẩy những thay đổi, hành vi của chúng ta trong cuộc sống thường ngày. Với việc ứng dụng các nền tảng Digital, chúng ta có thể đảm bảo có một cái Tết đầy đủ dư vị truyền thống nhưng cũng không kém phần mới mẻ qua các hình thức như: học hỏi các cách dọn dẹp nhà cửa và nấu mâm cỗ Tết qua các trang mạng xã hội, lì xì và chúc Tết online, tìm hiểu và chia sẻ kiến thức về phong tục ngày Tết,…</p>
+              </Box>
+              <Box id="timeline">
+                <h1 style={{ textAlign: "center", color: '#ff9933'}}>TIMELINE</h1>
+
+                <VerticalTimeline
+                  layout={ "1-column-left" }
+                  animate={false}
+                  lineColor={"#ff9933"}
+                >
+                  <VerticalTimelineElement
+                    className="vertical-timeline-element--work"
+                    contentStyle={{ background: 'rgb(255, 51, 51)', color: '#fff' }}
+                    contentArrowStyle={{ borderRight: '7px solid  rgb(255, 51, 51)' }}
+                    date="21/1/2022"
+                    iconStyle={{ background: '#ff9933', color: '#fff' }}
+                    icon={<Brightness1Icon />}
+                  >
+                    <h3 className="vertical-timeline-element-title">Stage 1: Chúc lời yêu thương</h3>
+                  </VerticalTimelineElement>
+
+                  <VerticalTimelineElement
+                    className="vertical-timeline-element--work"
+                    contentStyle={{ background: 'rgb(255, 51, 51)', color: '#fff' }}
+                    contentArrowStyle={{ borderRight: '7px solid  rgb(255, 51, 51)' }}
+                    date="25/1/2022"
+                    iconStyle={{ background: '#ff9933', color: '#fff' }}
+                    icon={<Brightness1Icon />}
+                  >
+                    <h3 className="vertical-timeline-element-title">Công chiếu MV TẾT 4.0 - 4 PHƯƠNG TRỜI 0 KHOẢNG CÁCH</h3>
+                  </VerticalTimelineElement>
+
+                  <VerticalTimelineElement
+                    className="vertical-timeline-element--work"
+                    contentStyle={{ background: 'rgb(255, 51, 51)', color: '#fff' }}
+                    contentArrowStyle={{ borderRight: '7px solid  rgb(255, 51, 51)' }}
+                    date="26/1/2022"
+                    iconStyle={{ background: '#ff9933', color: '#fff' }}
+                    icon={<Brightness1Icon />}
+                  >
+                    <h3 className="vertical-timeline-element-title">Stage 2: Gắn kết đón Tết</h3>
+                  </VerticalTimelineElement>
+
+                  <VerticalTimelineElement
+                    className="vertical-timeline-element--work"
+                    contentStyle={{ background: 'rgb(255, 51, 51)', color: '#fff' }}
+                    contentArrowStyle={{ borderRight: '7px solid  rgb(255, 51, 51)' }}
+                    date="29/1/2022"
+                    iconStyle={{ background: '#ff9933', color: '#fff' }}
+                    icon={<Brightness1Icon />}
+                  >
+                    <h3 className="vertical-timeline-element-title">Stage 3: Tết 4.0 cùng UEHers</h3>
+                  </VerticalTimelineElement>
                 
-              <Typography>Chuỗi truyền thông “Tết mới” được xây dựng với mục đích truyền tải thông điệp đến các bạn sinh viên UEH cũng như sinh viên ngoài trường về một cái Tết mới: mới trong tư duy, mới trong cách tiếp nhận, mới trong cách ăn Tết. Năm nay, Tết diễn ra trong một thời điểm đặc biệt khi mà các hoạt động trực tuyến đang dần trở thành “khẩu vị” của sinh viên và thúc đẩy những thay đổi, hành vi của chúng ta trong cuộc sống thường ngày. Với việc ứng dụng các nền tảng Digital, chúng ta có thể đảm bảo có một cái Tết đầy đủ dư vị truyền thống nhưng cũng không kém phần mới mẻ qua các hình thức như: học hỏi các cách dọn dẹp nhà cửa và nấu mâm cỗ Tết qua các trang mạng xã hội, lì xì và chúc Tết online, tìm hiểu và chia sẻ kiến thức về phong tục ngày Tết,…</Typography>
+                  <VerticalTimelineElement
+                      className="vertical-timeline-element--work"
+                      contentStyle={{ background: 'rgb(255, 51, 51)', color: '#fff' }}
+                      contentArrowStyle={{ borderRight: '7px solid  rgb(255, 51, 51)' }}
+                      date="4/2/2022"
+                      iconStyle={{ background: '#ff9933', color: '#fff' }}
+                      icon={<Brightness1Icon />}
+                    >
+                      <h3 className="vertical-timeline-element-title">Stage 4: Tết mới trong tim</h3>
+                    </VerticalTimelineElement>
+                </VerticalTimeline>
+              </Box>
+              <Box id="infomation">
+                <h1 style={{ textAlign: "center", color:"#ff9933"}}>INFORMATION SECTION</h1>
+ 
+                <p style = {{
+                                color: "white",}}>Chuỗi truyền thông “Tết mới” được xây dựng với mục đích truyền tải thông điệp đến các bạn sinh viên UEH cũng như sinh viên ngoài trường về một cái Tết mới: mới trong tư duy, mới trong cách tiếp nhận, mới trong cách ăn Tết. Năm nay, Tết diễn ra trong một thời điểm đặc biệt khi mà các hoạt động trực tuyến đang dần trở thành “khẩu vị” của sinh viên và thúc đẩy những thay đổi, hành vi của chúng ta trong cuộc sống thường ngày. Với việc ứng dụng các nền tảng Digital, chúng ta có thể đảm bảo có một cái Tết đầy đủ dư vị truyền thống nhưng cũng không kém phần mới mẻ qua các hình thức như: học hỏi các cách dọn dẹp nhà cửa và nấu mâm cỗ Tết qua các trang mạng xã hội, lì xì và chúc Tết online, tìm hiểu và chia sẻ kiến thức về phong tục ngày Tết,…</p>
+
+                <Box id="session">
+                  
+                  <SessionCard
+                    link="/chuc-loi-yeu-thuong#view"
+                    sessionName="Chúc lời yêu thương"
+                    img="https://i.imgur.com/7UWFqTu.png"
+                    sessionDescription = "Đây là nơi tổng hợp những hình ảnh và lời chúc của mọi người đến những người thân xung quanh mình. Hãy trao đi những tâm tình có giá trị để Tết năm nay sẽ trọn vẹn và mang nhiều kỷ niệm đẹp đẽ, sâu sắc hơn nhé!"
+                  />
+                  <SessionCard
+                    link="/chuc-loi-yeu-thuong#view"
+                    sessionName="Album Tết mới trong tim"
+                    img="https://i.imgur.com/z0R9wvx.png"
+                    sessionDescription = "Album này sẽ ghi dấu lại những khoảnh khắc đẹp của các bạn trong dịp Tết 2022. Hãy chọn những bức ảnh mà bạn thích thú và ưng ý nhất thể hiện được những hoạt động của mình trong Tết năm nay nhé!"
+                  />
+                  <SessionCard
+                    link="/chuc-loi-yeu-thuong#view"
+                    sessionName="Danh sách hoạt động"
+                    img="https://i.imgur.com/23gCmXn.png"
+                    sessionDescription = "Các giai đoạn của chuỗi truyền thông “Tết mới” sẽ được cập nhật ở đây. Các bạn nhớ theo dõi để không bỏ lỡ các hoạt động nhé!"
+                  />
+                </Box>
+              </Box>
             </Box>
+          </Box>
           </Box>
         </PageWrapper>
       </div>

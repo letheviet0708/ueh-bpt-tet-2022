@@ -4,8 +4,11 @@ import PageWrapper from "../components/PageWrapper";
 import CardImg from "../components/card"
 import Box from '@mui/material/Box';
 import Pagination from '@mui/material/Pagination';
+import Skeleton from '@mui/material/Skeleton';
+import Stack from '@mui/material/Stack';
 
 import personService from "../Services/person.service";
+import { Typography } from "@mui/material";
 
 const userClone = {
         activityIndex: 1,
@@ -106,8 +109,12 @@ class ChucLoiYeuThuong extends Component{
                 <Banner></Banner>
                 <a className="anchor" id="view"/>
                 <Box >
-                <div id = "cardsWrapper">
-                { this.state.numberOfPage != 0 && 
+                <Box sx={{mr: "20px", ml: "20px"}}>
+                    <h1 style={{ textAlign: "center", color:"#ff9933"}}>CHÚC LỜI YÊU THƯƠNG</h1>
+                    <p style={{color: "white"}}>Lời chúc năm mới sẽ là món quà chân thành các bạn có thể dành tặng cho gia đình mình. Những lời chúc qua mạng xã hội biến việc thể hiện tình cảm qua trở nên mới mẻ, cực kỳ thuận tiện nếu các bạn gửi cho một người thân đang ở xa.</p>
+                </Box>
+                <div className = "cardsWrapper">
+                { this.state.numberOfPage != 0 ? 
                     this.state.pageData[this.state.page].map((result, key) =>(
                         <CardImg
                             key = {result.key}
@@ -115,10 +122,42 @@ class ChucLoiYeuThuong extends Component{
                             text = {result.text[0]}
                             user = {result.user}
                         />
-                ))}
+                    ))
+                    :
+                    [1,2,3,4].map((key) => (
+                        <Box key= {key} className="cardimg">
+                            <Box
+                                sx={{
+                                    width: "100%",//"100%",
+                                    paddingTop: "75%",
+                                    position: "relative"
+                                }}
+                            >
+                                <Box
+                                    sx={{
+                                        position: "absolute",
+                                        top: 0, 
+                                        left: 0,
+                                        width: "100%",
+                                        height: "100%",
+                                        display: "flex",
+                                        justifyContent: "center"
+                                    }}
+                                >
+                                    
+                                    <Skeleton variant="rectangular" width="100%" height="100%" />
+                                </Box>
+                            </Box>
+                            <Box sx={{mt:"5px"}}>
+                                <Box sx={{display: "flex"}}>
+                                    <Skeleton variant="circular" width={40} height={40} />
+                                    <Skeleton sx={{ml:"5px"}} variant="text" width={100}/>
+                                </Box>
+                            </Box>
+                        </Box>
+                    ))
+                }
                 </div>
-                
-                
                 <Box sx={{display: "flex", justifyContent: "center",mt: "10px"}}>
                         <Pagination  count={this.state.numberOfPage} page={this.state.page} onChange={this.handelPageChange} />
                     </Box>
