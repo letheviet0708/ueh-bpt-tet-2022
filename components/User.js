@@ -84,6 +84,9 @@ class User extends Component{
     
     signOut = () =>{
         this.props.signOut().then(()=>{
+            this.setState({
+                avatar: null
+            })
             this.props.changePage("/");
         })
         console.log("check user", this.props.user)

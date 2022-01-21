@@ -114,7 +114,7 @@ class ChucLoiYeuThuong extends Component{
                     <p style={{color: "white"}}>Lời chúc năm mới sẽ là món quà chân thành các bạn có thể dành tặng cho gia đình mình. Những lời chúc qua mạng xã hội biến việc thể hiện tình cảm qua trở nên mới mẻ, cực kỳ thuận tiện nếu các bạn gửi cho một người thân đang ở xa.</p>
                 </Box>
                 <div className = "cardsWrapper">
-                { this.state.numberOfPage != 0 ? 
+                {/* this.state.numberOfPage != 0 ? 
                     this.state.pageData[this.state.page].map((result, key) =>(
                         <CardImg
                             key = {result.key}
@@ -156,7 +156,7 @@ class ChucLoiYeuThuong extends Component{
                             </Box>
                         </Box>
                     ))
-                }
+                */}
                 </div>
                 <Box sx={{display: "flex", justifyContent: "center",mt: "10px"}}>
                         <Pagination color="warning"  count={this.state.numberOfPage} page={this.state.page} onChange={this.handelPageChange} />
