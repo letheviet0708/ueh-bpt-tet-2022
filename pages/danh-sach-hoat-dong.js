@@ -23,12 +23,14 @@ class DanhSachHoatDong extends Component {
                 <p  style={{ color: "white" }}>Hãy tham gia đầy đủ các hoạt động để đạt được số điểm cao nhất và cập nhật mã vạch nha!</p>
                 <Box id="activity" style={{display:"flex", justifyContent:"center"}}>
                   <Box sx={{maxWidth:"400px"}}>
+                   { /*
                   <SessionCard
                     link="/stage1#view"
                     sessionName="Chúc lời yêu thương"
                     img="https://i.imgur.com/7UWFqTu.png"
                     sessionDescription = "Chúc lời yêu thương"
                   />
+                  */}
                   </Box>
                 </Box>
               </Box>
