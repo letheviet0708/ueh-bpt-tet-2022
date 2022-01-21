@@ -64,7 +64,7 @@ class UserModify extends Component{
             messageSB: 'nothing',
             severitySB: 'info',
             luser: null,
-            saved: false,
+            saved: true,
             avatarChanged: false
         }
     }
@@ -165,6 +165,7 @@ class UserModify extends Component{
     }
 
     handleSBClick = (message, severity) => {
+        this.handleSBClose()
         this.setState({openSB: true, messageSB: message, severitySB: severity})
     }
 
@@ -263,48 +264,55 @@ class UserModify extends Component{
     handleSubmit = () => {
         const imgurID = clientID.clientID[0]
         const uid = firebase.auth().currentUser.uid
-        if (this.checkForm()){
-            if (this.state.avatarChanged){
-                this.uploadImage(this.state.avatar, imgurID)
-                    .then((imageLink) => {
-                        console.log(imageLink)
-                        if (imageLink){
-                            const data = {
-                                uid: uid,
-                                email: this.state.email,
-                                phone: this.state.phone,
-                                name: this.state.Name,
-                                gen: this.state.gen,
-                                cls: this.state.cls,
-                                clan: this.state.clan,
-                                mssv: this.state.mssv,
-                                avatar: imageLink
-                            }
-
-                            console.log(data)
-
-                            this.uploadProfile(uid, data)
+        if (this.state.saved){
+            this.setState({saved: false}, ()=>{
+                if (this.checkForm()){
+                    if (this.state.avatarChanged){
+                        this.uploadImage(this.state.avatar, imgurID)
+                            .then((imageLink) => {
+                                console.log(imageLink)
+                                if (imageLink){
+                                    const data = {
+                                        uid: uid,
+                                        email: this.state.email,
+                                        phone: this.state.phone,
+                                        name: this.state.Name,
+                                        gen: this.state.gen,
+                                        cls: this.state.cls,
+                                        clan: this.state.clan,
+                                        mssv: this.state.mssv,
+                                        avatar: imageLink
+                                    }
+        
+                                    console.log(data)
+        
+                                    this.uploadProfile(uid, data)
+                                }
+                            })
+                    }else{
+                        const data = {
+                            uid: uid,
+                            email: this.state.email,
+                            phone: this.state.phone,
+                            name: this.state.Name,
+                            cls: this.state.cls,
+                            clan: this.state.clan,
+                            gen: this.state.gen,
+                            mssv: this.state.mssv,
+                            avatar: this.state.avatar
                         }
-                    })
-            }else{
-                const data = {
-                    uid: uid,
-                    email: this.state.email,
-                    phone: this.state.phone,
-                    name: this.state.Name,
-                    cls: this.state.cls,
-                    clan: this.state.clan,
-                    gen: this.state.gen,
-                    mssv: this.state.mssv,
-                    avatar: this.state.avatar
+        
+                        this.uploadProfile(uid, data)
+                    }
+        
+                }else{
+                    this.handleSBClick("Bạn cần nhập đầy đủ thông tin!", "warning")
                 }
-
-                this.uploadProfile(uid, data)
-            }
-
+            })
         }else{
-            this.handleSBClick("Bạn cần nhập đầy đủ thông tin!", "warning")
-        }
+            this.handleSBClick("Bạn ơi đợi tí", "info")
+        }       
+        
     }
 
     render() {
@@ -356,7 +364,7 @@ class UserModify extends Component{
                             <CssTextField
                                 required
                                 className = "tiems"
-                                label="Tên"
+                                label="Họ và tên"
                                 onChange={this.handleChange}
                                 name="Name"
                                 value={Name}
