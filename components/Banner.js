@@ -11,7 +11,7 @@ class Banner extends Component {
                 <Carousel infiniteLoop={true} autoPlay={true} showThumbs={false}>
                     <div>
                         {/*<Link href="https://bptueh.vercel.app/"><a>*/}
-                            <Image blurDataURL src="https://i.imgur.com/lbcjit6.png" placeholder="blur" width="1920px" height="1080" />
+                            <Image blurDataURL src="https://i.imgur.com/Q4JZAJC.png" placeholder="blur" width="1920px" height="1080" />
                         {/*</a></Link>*/}
                     </div>
                 </Carousel>
