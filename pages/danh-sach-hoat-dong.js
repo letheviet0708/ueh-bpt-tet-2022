@@ -27,7 +27,7 @@ class DanhSachHoatDong extends Component {
                   <SessionCard
                     link="/stage1#view"
                     sessionName="Chúc lời yêu thương"
-                    img="https://i.imgur.com/h1HC4ES.jpg"
+                    img="https://i.imgur.com/h1HC4ESl.jpg"
                     sessionDescription = "Stage 1: Chúc lời yêu thương"
                   />
                   
