@@ -1,7 +1,7 @@
 module.exports = {
   reactStrictMode: true,
   env: {
-    GDPR: 0,
+    GDPR: 1,
   },
   images: {
     domains: ['i.imgur.com'],

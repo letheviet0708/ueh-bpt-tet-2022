@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import SessionCard from "../components/sessionCard";
 import GiaiDoan1From from "../components/GiaiDoan1From"
+import CImg from "../components/ccImg"
 import firebase from 'firebase/app';
 import personService from "../Services/person.service";
 
@@ -68,9 +69,10 @@ class Stage1 extends Component {
             <Box sx={{maxWidth: "1200px", mr: "auto", ml:"auto"}}>
                 <Box sx={{ p: "20px"}}>
                     <h1 style={{ textAlign: "center", color:"#990000", marginBottom: "23px"}}>CHÚC LỜI YÊU THƯƠNG</h1>
+                    
                     <p  style={{ textAlign: "left", color: "white" }}>Đây là nơi bạn sẽ gửi gắm hình ảnh và những lời chúc tốt đẹp, ý nghĩa nhất đến với những người mà bạn thật sự yêu quý và trân trọng. Từ đó, bạn có thể thể hiện sự quan tâm, tình cảm một cách rõ ràng nhất cũng như giúp mối quan hệ ngày càng bền chặt hơn.</p>
                     <p  style={{ textAlign: "left", color: "white" }}>Những lời chúc năm mới đều có ý nghĩa và giá trị tinh thần vô cùng sâu sắc đối với mỗi người. Hãy chọn những từ ngữ hay và “đắt” nhất nhé!</p>
-                    <p  style={{ textAlign: "left", color: "white" }}>Link bài phát động (kèm thể lệ)</p>
+                    
                     
                     <h2 style={{ textAlign: "left", color:"#990000", marginBottom: "23px"}}>Điền kết quả</h2>
                     {user &&

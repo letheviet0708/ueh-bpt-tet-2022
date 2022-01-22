@@ -129,13 +129,13 @@ class User extends Component{
                         <PersonIcon/><Typography sx={{ml:"5px"}} textAlign="center">Thông tin cá nhân</Typography>
                     </MenuItem>
                     </Link>
-                    {/* 
+                    
                         <Link href="/result">
                         <MenuItem onClick={this.handleCloseNavMenu}>
                             <RateReviewIcon/><Typography sx={{ml:"5px"}} textAlign="center">Điền kết quả</Typography>
                         </MenuItem>
                         </Link>
-                    */}
+                    
                     <Link href="/">
                     <MenuItem onClick={this.handleCloseNavMenu}>
                         <LogoutIcon/><Typography sx={{ml:"5px"}} onClick = {this.signOut} textAlign="center">Đăng xuất</Typography>

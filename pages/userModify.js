@@ -22,7 +22,8 @@ import { withRouter } from "next/router";
 import clientID from '../components/ClientID.json'
 import uploadImage from '../components/uploadImg'
 
-import { alpha, styled } from '@mui/material/styles';
+import {styled } from '@mui/material/styles';
+import CharacterCreator from "../components/characterCreator";
 
 const CssTextField = styled(TextField)({
     backgroundColor: "white",
@@ -360,7 +361,8 @@ class UserModify extends Component{
                             </Badge>
                         </Box>
                         <div className = "containerForm">
-
+                            
+                            
                             <CssTextField
                                 required
                                 className = "tiems"
@@ -459,9 +461,13 @@ class UserModify extends Component{
                                 mr: "auto"
                             }}>Lưu</ColorButton>
 
+                        <div className = "containerForm"></div>
                     </Box>
+                    {/*
+                    <div className = "containerForm">
+                        <CharacterCreator/>
+                    </div>*/}
                 </div>
-                
             </PageWrapper>
             {openAvatarEditor &&
             <Box

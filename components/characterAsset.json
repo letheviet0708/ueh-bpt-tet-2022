@@ -1,0 +1,32 @@
+{
+    "base":"https://i.imgur.com/H2f69yH.png",
+    "top":[
+        [
+            "https://i.imgur.com/ThGlnkK.png", 
+            "https://i.imgur.com/JeuT0MZ.png", 
+            "https://i.imgur.com/TKEtwhz.png",
+            "https://i.imgur.com/24f8nsy.png"
+        ],
+        [
+            "https://i.imgur.com/iHul6MU.png",
+            "https://i.imgur.com/fVylbst.png",
+            "https://i.imgur.com/2fN2QL7.png",
+            "https://i.imgur.com/7hLSaVs.png"
+        ]
+    ],
+    "hair":[
+        "https://i.imgur.com/fGPS9p3.png",
+        "https://i.imgur.com/VufTA0A.png"
+    ],
+    "eyes":[
+        "https://i.imgur.com/EaqCJ06.png",
+        "https://i.imgur.com/4t0MURQ.png"
+    ],
+    "hearts":[
+        "https://i.imgur.com/71oCdn1.png",
+        "https://i.imgur.com/561A5X7.png",
+        "https://i.imgur.com/6dXZ7D3.png",
+        "https://i.imgur.com/60M4BDT.png"
+    ],
+    "textBox": "https://i.imgur.com/wA0RP2i.png"
+}

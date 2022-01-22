@@ -18,6 +18,7 @@ import PendingIcon from '@mui/icons-material/Pending';
 import ErrorIcon from '@mui/icons-material/Error';
 
 import { alpha, styled } from '@mui/material/styles';
+import { withRouter } from 'next/router'
 
 const CssTextField = styled(TextField)({
     backgroundColor: "white",
@@ -167,8 +168,8 @@ class GiaiDoan1From extends Component {
         })
     }    
 
-
     submit = () =>{
+        this.handleSBClick("Đang lưu ...", "info")
         if (!this.state.editor || !this.state.text){
             this.handleSBClick("Bạn chưa nhập đủ thông tin!", "info")
             return
@@ -191,6 +192,7 @@ class GiaiDoan1From extends Component {
                     console.log(response.data);
                     this.setState({saved: true})
                     this.handleSBClick("Đã lưu thành công!", "success")
+                    this.props.router.reload()
                 })
                 .catch(e=> {
                     console.log(e);
@@ -326,9 +328,9 @@ class GiaiDoan1From extends Component {
                                     </Box>
                                 </Box>
                             :
-                                <Button onClick={this.handleDivclick} variant="contained" startIcon={<PhotoSizeSelectActualIcon />}>
+                                <ColorButton onClick={this.handleDivclick} variant="contained" startIcon={<PhotoSizeSelectActualIcon />}>
                                     Chọn ảnh
-                                </Button>
+                                </ColorButton>
                             }       
                         </Box>
                         <Box id="gd1Text">
@@ -367,7 +369,7 @@ class GiaiDoan1From extends Component {
                     <Box sx={{
                         display: "flex",
                         justifyContent: "flex-end",
-                        mt: "-12px"
+                        mt: "10px"
                     }}
                     >
                         {saveButton}
@@ -404,4 +406,4 @@ class GiaiDoan1From extends Component {
     }
 }
 
-export default GiaiDoan1From
+export default withRouter(GiaiDoan1From)
