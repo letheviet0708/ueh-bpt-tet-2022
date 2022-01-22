@@ -23,7 +23,6 @@ import clientID from '../components/ClientID.json'
 import uploadImage from '../components/uploadImg'
 
 import {styled } from '@mui/material/styles';
-import CharacterCreator from "../components/characterCreator";
 
 const CssTextField = styled(TextField)({
     backgroundColor: "white",

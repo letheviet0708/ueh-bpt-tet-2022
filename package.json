@@ -5,8 +5,7 @@
     "dev": "next -p 9000",
     "build": "next build",
     "start": "next start -p $PORT",
-    "lint": "next lint",
-    "vercel-build": "yum install --skip-broken libuuid-devel libmount-devel && cp /lib64/{libuuid,libmount,libblkid}.so.1 node_modules/canvas/build/Release/ && npm run build"
+    "lint": "next lint"
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",
