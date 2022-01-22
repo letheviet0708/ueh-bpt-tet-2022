@@ -383,10 +383,11 @@ class GiaiDoan1From extends Component {
                     </Box>
                     <Box sx={{
                         display: "flex",
-                        justifyContent: "flex-end",
+                        justifyContent: "space-between",
                         mt: "10px"
                     }}
                     >
+                        <span style={{fontSize: "12px"}}>Lưu ý: Đăng tải ảnh người mà bạn yêu quý và gửi lời chúc đến họ nhé!</span>
                         {saveButton}
                     </Box>
                 </Box>
