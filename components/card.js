@@ -35,13 +35,16 @@ class CardImg extends Component{
     }
 
     render(){
+        let arr = this.props.image.split('.')
+        const img =  arr[0]+'.'+arr[1]+'.'+arr[2]+'l.'+arr[3]
+        //console.log(this.props.image,img)
         return(<>
                 <Box className="cardimg">
                     <Box sx={{width:"100%", cursor: "pointer"}} onClick={this.handleOpen}>
                         <Tooltip title="Xem" arrow>
                             <CardMedia
                                 component="img"
-                                image={this.props.image}
+                                image={img}
                                 alt="green iguana"
                             />
                         </Tooltip>
