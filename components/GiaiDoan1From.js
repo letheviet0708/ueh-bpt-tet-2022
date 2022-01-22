@@ -178,6 +178,10 @@ class GiaiDoan1From extends Component {
         this.setState({saving: true}, ()=>{
             const img64 = this.state.editor.getImage().toDataURL();
             this.uploadImage(img64, clientID.clientID[1]).then((imageLink) => {
+                if(imageLink == null){
+                    this.handleSBClick("Có lỗi xảy ra vui lòng thử lại!", "error")
+                    return 
+                }
                 const neednew = (this.props.Data == null)
                 const id = (this.props.Data) ? this.props.Data._id : ""
                 const data = {
