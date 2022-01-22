@@ -113,6 +113,7 @@ class Manager extends Component {
             user: null,
             updateAt: -1,
             section: 1,
+            gen: "All",
             filter: 'All',
             state: 4,
             number: 1,
@@ -186,13 +187,14 @@ class Manager extends Component {
     }
 
     handleRetrieve = () =>{
-        const {filter, updateAt, section, state, number,mssv} = this.state
+        const {filter, updateAt, section, state, number,mssv, gen} = this.state
         let data ;
         let flip;
         switch(filter){
             case "All":
                 data = {
                     type: "all",
+                    gen: gen,
                     updateAt: updateAt
                 }
                 flip = false;
@@ -201,6 +203,7 @@ class Manager extends Component {
                 data = {
                     type: "Activity",
                     section: section,
+                    gen: gen,
                     state: state,
                     updateAt: updateAt
                 }
@@ -210,6 +213,7 @@ class Manager extends Component {
                 data = {
                     type: "Count",
                     number: number,
+                    gen: gen,
                     updateAt: updateAt
                 }
                 flip = false;
@@ -276,7 +280,7 @@ class Manager extends Component {
     }
 
     render(){
-        const {filter, updateAt, section, state, number,mssv} = this.state
+        const {filter, updateAt, section, state, number,mssv,gen} = this.state
         return(<div style={{backgroundColor:"white"}}>
         <Box sx = {{pt: "50px"}}>
                 <Box sx = {{display: "flex"}}>
@@ -297,6 +301,24 @@ class Manager extends Component {
                             <MenuItem value={"Count"}>Theo số hoạt động đã hoàn thành</MenuItem>
                         </TextField>
                     </Box>
+
+                    {filter == "All" &&
+                        <TextField
+                            select
+                            label="Khóa"
+                            onChange={this.filterChange}
+                            name="gen"
+                            value={gen}
+                            variant="outlined" 
+                            sx = {{ml: "20px"}}
+                            defaultValue={"All"}
+                        >
+                            <MenuItem value={"All"}>All</MenuItem>
+                            <MenuItem value={"K47"}>K47</MenuItem>
+                            <MenuItem value={"K46"}>K46</MenuItem>
+                            <MenuItem value={"K45"}>K45</MenuItem>
+                        </TextField>
+                    }
 
                     {filter == "MSSV" &&
                         
@@ -346,6 +368,7 @@ class Manager extends Component {
                     }
 
                     {filter == "Count" &&
+                    <Box>
                         <TextField
                             select
                             label="Số"
@@ -361,6 +384,22 @@ class Manager extends Component {
                             <MenuItem value={3}>3</MenuItem>
                             <MenuItem value={4}>4</MenuItem>
                         </TextField>
+                        <TextField
+                            select
+                            label="Khóa"
+                            onChange={this.filterChange}
+                            name="gen"
+                            value={gen}
+                            variant="outlined" 
+                            sx = {{ml: "20px"}}
+                            defaultValue={"All"}
+                        >
+                            <MenuItem value={"All"}>All</MenuItem>
+                            <MenuItem value={"K47"}>K47</MenuItem>
+                            <MenuItem value={"K46"}>K46</MenuItem>
+                            <MenuItem value={"K45"}>K45</MenuItem>
+                        </TextField>
+                        </Box>
                     }
                     {filter != "MSSV" &&
                         <TextField
@@ -398,7 +437,8 @@ class Manager extends Component {
             { this.state.numberOfPage != 0 && 
             <Box>
                 
-            <Box sx={{display: "flex", justifyContent: "end",mt: "10px"}}>
+            <Box sx={{display: "flex", justifyContent: "space-between",mt: "10px"}}>
+                <Typography>Số lượng: {this.state.totalData.length}</Typography>
                 <Pagination  count={this.state.numberOfPage} page={this.state.page} onChange={this.handelPageChange} />
             </Box>
             <TableContainer component={Paper}>
@@ -412,6 +452,7 @@ class Manager extends Component {
                     <TableCell>Email</TableCell>
                     <TableCell>SDT</TableCell>
                     <TableCell>Lớp</TableCell>
+                    <TableCell>Khóa</TableCell>
                     <TableCell>Khoa</TableCell>
                 </TableRow>
                 </TableHead>

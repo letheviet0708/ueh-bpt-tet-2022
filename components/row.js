@@ -58,6 +58,7 @@ class Row extends Component {
               <TableCell >{user.email}</TableCell>
               <TableCell >{user.phone}</TableCell>
               <TableCell >{user.cls}</TableCell>
+              <TableCell >{user.gen}</TableCell>
               <TableCell >{user.clan}</TableCell>
             </TableRow>
             <TableRow>

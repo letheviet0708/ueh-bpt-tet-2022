@@ -64,7 +64,8 @@ class GiaiDoan1From extends Component {
             editor: null,
             scaleValue: 1,
             editor: null,
-            hasChange: false
+            hasChange: false,
+            saving: false
         }
         this.myInput = React.createRef()
     }
@@ -174,31 +175,34 @@ class GiaiDoan1From extends Component {
             this.handleSBClick("Bạn chưa nhập đủ thông tin!", "info")
             return
         }
-        const img64 = this.state.editor.getImage().toDataURL();
-        this.uploadImage(img64, clientID.clientID[1]).then((imageLink) => {
-            const neednew = (this.props.Data == null)
-            const id = (this.props.Data) ? this.props.Data._id : ""
-            const data = {
-                images: [imageLink],
-                text: [this.state.text],
-                activityIndex: 1,
-                state: 0,
-                new: neednew,
-                id: id
-            }
-            console.log(data)
-            personService.saveResult(this.props.uid, data)
-                .then(response => {
-                    console.log(response.data);
-                    this.setState({saved: true})
-                    this.handleSBClick("Đã lưu thành công!", "success")
-                    this.props.router.reload()
-                })
-                .catch(e=> {
-                    console.log(e);
-                    this.handleSBClick("Có lỗi xảy ra vui lòng thử lại!", "error")
-                });
+        this.setState({saving: true}, ()=>{
+            const img64 = this.state.editor.getImage().toDataURL();
+            this.uploadImage(img64, clientID.clientID[1]).then((imageLink) => {
+                const neednew = (this.props.Data == null)
+                const id = (this.props.Data) ? this.props.Data._id : ""
+                const data = {
+                    images: [imageLink],
+                    text: [this.state.text],
+                    activityIndex: 1,
+                    state: 0,
+                    new: neednew,
+                    id: id
+                }
+                console.log(data)
+                personService.saveResult(this.props.uid, data)
+                    .then(response => {
+                        console.log(response.data);
+                        this.setState({saving: false})
+                        this.handleSBClick("Đã lưu thành công!", "success")
+                        this.props.router.reload()
+                    })
+                    .catch(e=> {
+                        console.log(e);
+                        this.handleSBClick("Có lỗi xảy ra vui lòng thử lại!", "error")
+                    });
+            })
         })
+        
         
     }    
 
@@ -215,7 +219,7 @@ class GiaiDoan1From extends Component {
     } 
 
     render(){
-        const {imgH, imgW, openCropper, selectedImage, scaleValue, text,hasChange} = this.state
+        const {imgH, imgW, openCropper, selectedImage, scaleValue, text,hasChange, saving} = this.state
         let saveButton= (
             <ColorButton  sx={{backgroundColor:"#1b4338"}} onClick={this.submit} variant="contained" startIcon={<CheckCircleIcon />}>
                 Lưu
@@ -257,6 +261,13 @@ class GiaiDoan1From extends Component {
             }
         }
         
+        if (saving){
+            saveButton = (
+                <ColorButton disabled onClick={this.submit} variant="contained" startIcon={<CheckCircleIcon />}>
+                    Lưu
+                </ColorButton>)
+        }
+
         return (<div>
             <Box sx={{ borderRadius: 2,boxShadow: 3, backgroundColor: "white",
                     mt: "20px",

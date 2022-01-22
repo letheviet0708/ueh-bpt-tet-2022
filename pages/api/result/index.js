@@ -16,21 +16,32 @@ export default async (req, res) => {
                 const {type} = req.body
                 switch(type){                    
                     case "all":
-                        const persons = await Person.find().sort({updatedAt: req.body.updateAt}).populate('result')
+                        let cond = {}
+                        if (req.body.gen != "All"){
+                            cond["gen"] = req.body.gen
+                        }
+                        const persons = await Person.find(cond).sort({updatedAt: req.body.updateAt}).populate('result')
                         res.send(persons)
                         break;
                     case "Activity":
-                        const filter = {
+                        let cond1 = {
                             activityIndex: req.body.section
                         }
                         if (req.body.state != 4){
-                            filter["state"] = req.body.state
+                            cond1["state"] = req.body.state
                         }
-                        const results = await ActivityResult.find(filter).sort({updatedAt: req.body.updateAt}).populate('user')
+                        if (req.body.gen != "All"){
+                            cond1["gen"] = req.body.gen
+                        }
+                        const results = await ActivityResult.find(cond1).sort({updatedAt: req.body.updateAt}).populate('user')
                         res.send(results)
                         break;
                     case "Count":
-                        const persons2 = await Person.find({count: req.body.number}).sort({updatedAt: req.body.updateAt}).populate('result')
+                        let cond2 = {count: req.body.number}
+                        if (req.body.gen != "All"){
+                            cond2["gen"] = req.body.gen
+                        }
+                        const persons2 = await Person.find(cond2).sort({updatedAt: req.body.updateAt}).populate('result')
                         res.send(persons2)
                         break;
                     case "MSSV":
