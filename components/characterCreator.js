@@ -279,7 +279,7 @@ class CharacterCreator extends Component{
                     >
                         <Box className="characterE characterEyes">
                             {asset.eyes.map((el, i) => (
-                                <CImg className={this.state.aEyes[i] ? "" : "disable"} img={el} /> 
+                                <CImg key={i} className={this.state.aEyes[i] ? "" : "disable"} img={el} /> 
                             ))}
                         </Box>
                         <Box className="characterE characterBase">
@@ -287,17 +287,17 @@ class CharacterCreator extends Component{
                         </Box>
                         <Box className="characterE characterTop">
                             {asset.top[this.state.topType].map((el, i) => (
-                                <CImg className={this.state.aTop[i] ? "" : "disable"} img={el} /> 
+                                <CImg key={i} className={this.state.aTop[i] ? "" : "disable"} img={el} /> 
                             ))}
                         </Box>
                         <Box className="characterE characterHair">
                             {asset.hair.map((el, i) => (
-                                <CImg className={this.state.aHair[i] ? "" : "disable"} img={el} /> 
+                                <CImg key={i} className={this.state.aHair[i] ? "" : "disable"} img={el} /> 
                             ))}
                         </Box>
                         <Box className="characterE characterHearts">
                             {asset.hearts.map((el, i) => (
-                                <CImg className={this.state.aHears[i] ? "" : "disable"} img={el} /> 
+                                <CImg key={i} className={this.state.aHears[i] ? "" : "disable"} img={el} /> 
                             ))}
                         </Box>
                     </Box>
