@@ -22,6 +22,8 @@ import { withRouter } from "next/router";
 import clientID from '../components/ClientID.json'
 import uploadImage from '../components/uploadImg'
 
+import CharacterCreator from '../components/characterCreator'
+
 import {styled } from '@mui/material/styles';
 
 const CssTextField = styled(TextField)({
@@ -462,10 +464,10 @@ class UserModify extends Component{
 
                         <div className = "containerForm"></div>
                     </Box>
-                    {/*
+                    
                     <div className = "containerForm">
                         <CharacterCreator/>
-                    </div>*/}
+                    </div>
                 </div>
             </PageWrapper>
             {openAvatarEditor &&

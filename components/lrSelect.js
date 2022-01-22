@@ -45,7 +45,7 @@ class LRselect extends Component{
                 <IconButton onClick={() => this.handleChange(-1)}>
                     <ArrowLeftIcon/>
                 </IconButton>
-                <p style={{margin: "auto 0"}}>{this.state.value!=null ? this.state.title[this.state.value] : ""}</p>
+                <p style={{margin: "auto 0", fontSize:"15px"}}>{this.state.value!=null ? this.state.title[this.state.value] : ""}</p>
                 <IconButton onClick={() => this.handleChange(1)}>
                     <ArrowRightIcon/>
                 </IconButton>

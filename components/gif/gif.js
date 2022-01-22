@@ -278,7 +278,7 @@
                     workerScript: "static/assets/script/gif.worker.js",
                     workers: 2,
                     repeat: 0,
-                    background: "#fff",
+                    background: "#0000ffff",
                     quality: 10,
                     width: null,
                     height: null,
@@ -502,8 +502,8 @@
                         this._canvas.height = this.options.height
                     }
                     ctx = this._canvas.getContext("2d");
-                    ctx.setFill = this.options.background;
-                    ctx.fillRect(0, 0, this.options.width, this.options.height);
+                    //ctx.setFill = this.options.background;
+                    //ctx.fillRect(0, 0, this.options.width, this.options.height);
                     ctx.drawImage(image, 0, 0);
                     return this.getContextData(ctx)
                 };

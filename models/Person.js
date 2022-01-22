@@ -19,10 +19,7 @@ const personSchema = new mongoose.Schema({
           type: mongoose.Schema.Types.ObjectId,
           ref: "ActivityResult"
         }],
-        gifCharacter:{
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "GifCharacter"
-        }
+        gifCharacter:String
 
     },{ timestamps: true });
 
