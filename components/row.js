@@ -65,13 +65,20 @@ class Row extends Component {
               <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
                 <Collapse in={this.state.open} timeout="auto" unmountOnExit>
                   <Box sx={{ margin: 1 }}>
-                    <Typography gutterBottom >
-                      Kết quả hoạt động
-                    </Typography>
-                    
-                    {activityResult[1] &&
-                      <GiaiDoan1Check onChange={this.handleCheckChange} uid={user.uid} result={activityResult[1]}/>
+                    {this.props.customContent ? 
+                      this.props.customContent
+                      :
+                      <Box>
+                        <Typography gutterBottom >
+                          Kết quả hoạt động
+                        </Typography>
+                        
+                        {activityResult[1] &&
+                          <GiaiDoan1Check onChange={this.handleCheckChange} uid={user.uid} result={activityResult[1]}/>
+                        }
+                      </Box>
                     }
+                    
 
                   </Box>
                 </Collapse>

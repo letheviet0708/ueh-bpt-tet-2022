@@ -48,6 +48,10 @@ export default async (req, res) => {
                         const person3 = await Person.find({mssv: req.body.mssv}).populate("result")
                         res.send(person3)
                         break;
+                    case "GIF":
+                        const person4 = await Person.find({gifCharacter: { $ne: null }}).sort({updatedAt: req.body.updateAt}).populate("result")
+                        res.send(person4)
+                        break;
                 }
             }catch (e) {
                 res.status(500).json({ message: e.message || "Some error occurred while retrieving tutorials."})

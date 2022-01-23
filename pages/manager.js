@@ -24,6 +24,7 @@ import personService from "../Services/person.service";
 import Row from "../components/row"
 import CTSnackbar from "../components/SnackBar";
 import { appendOwnerState } from '@mui/material';
+import xlsx from 'json-as-xlsx';
 
 const clone = {
     "result": [
@@ -127,16 +128,17 @@ class Manager extends Component {
             openSB: false,
             messageSB: 'nothing',
             severitySB: 'info',
+            custom: false,
         }
     }
     
-    retrieveResult = (data, flip) =>{
+    retrieveResult = (data, flip, custom) =>{
         personService.retrieveResult(data)
             .then(response => {
                 this.setState({
                     totalData: response.data
                 },()=>{
-                    this.determineNumberOfPages(flip)
+                    this.determineNumberOfPages(flip, custom)
                 })
             })
             .catch(e=> {
@@ -144,8 +146,9 @@ class Manager extends Component {
             });
     }
 
-    determineNumberOfPages = (flip) => {
+    determineNumberOfPages = (flip, custom) => {
         const { totalData, itemsPerPage } = this.state;
+        console.log(totalData)
         let paginatedDataObject = {};
     
         let index = 0;
@@ -164,7 +167,8 @@ class Manager extends Component {
         this.setState({
             numberOfPage: chunkArray.length,
             pageData: paginatedDataObject,
-            flip: flip
+            flip: flip,
+            custom: custom
         })
     };
 
@@ -189,7 +193,7 @@ class Manager extends Component {
     handleRetrieve = () =>{
         const {filter, updateAt, section, state, number,mssv, gen} = this.state
         let data ;
-        let flip;
+        let flip, custom;
         switch(filter){
             case "All":
                 data = {
@@ -198,6 +202,7 @@ class Manager extends Component {
                     updateAt: updateAt
                 }
                 flip = false;
+                custom = false
                 break;
             case "Activity":
                 data = {
@@ -208,6 +213,7 @@ class Manager extends Component {
                     updateAt: updateAt
                 }
                 flip = true;
+                custom = false
                 break;
             case "Count":
                 data = {
@@ -217,6 +223,7 @@ class Manager extends Component {
                     updateAt: updateAt
                 }
                 flip = false;
+                custom = false
                 break;
             
             case "MSSV":
@@ -225,9 +232,20 @@ class Manager extends Component {
                     mssv: mssv
                 }
                 flip = false;
+                custom = false
+                break;
+
+            case "GIF":
+                data = {
+                    type: "GIF",
+                    updateAt: updateAt,
+                    gen: gen,
+                }
+                flip = false;
+                custom = true
                 break;
         }
-        this.retrieveResult(data, flip)
+        this.retrieveResult(data, flip, custom)
     }
 
     handleExport = () =>{
@@ -279,6 +297,100 @@ class Manager extends Component {
         })
     }
 
+    LoadXLSX = async () => {
+        console.log("XLSX")
+        let contents = []
+        let data
+        if(this.state.flip == false){
+            for (var person of this.state.totalData){
+                let activityResult = [null, null, null, null, null];
+                for (const x of person.result) if(x) { 
+                    activityResult[x.activityIndex] = x
+                }
+                var d = {
+                    name: person.name, 
+                    mssv: person.mssv, 
+                    cls: person.cls,
+                    clan: person.clan, 
+                    gen: person.gen, 
+                    count: person.count,
+                    email: person.email,
+                    phone: person.phone,
+                    activity1Img: activityResult[1] ? activityResult[1].images[0] : "", 
+                    activity1Text: activityResult[1] ? activityResult[1].text[0] : "", 
+                }
+                contents.push(d)
+            }
+
+            data = [
+                {
+                    sheet: 'sheet1',
+                    columns: [
+                        { label: 'Tên', value: 'name' }, 
+                        { label: "Tên", value: "name" },
+                        { label: "MSSV", value: "mssv" },
+                        { label: "Lớp", value: "cls" },
+                        { label: "Khoa", value: "clan" },
+                        { label: "Khóa", value: "gen" },
+                        { label: "Số hoạt động hoàn thành", value: "count" },
+                        { label: "Email", value: "email" },
+                        { label: "SDT", value: "phone" },
+                        { label: "GD1 - ảnh", value: "activity1Img" },
+                        { label: "GD1 - Lời chúc", value: "activity1Text" },
+                    ],
+                    content: contents
+                }
+            ]
+        }else{
+            switch(this.state.section){
+                case 1:
+                    for (var result of this.state.totalData){
+                        var d = {
+                            name: result.user.name, 
+                            mssv: result.user.mssv, 
+                            cls: result.user.cls,
+                            clan: result.user.clan, 
+                            gen: result.user.gen, 
+                            count: result.user.count,
+                            email: result.user.email,
+                            phone: result.user.phone,
+                            activity1Img: result.images[0], 
+                            activity1Text: result.text[0], 
+                        }
+                        contents.push(d)
+                    }
+    
+                    data = [
+                        {
+                            sheet: 'sheet1',
+                            columns: [
+                                { label: 'Tên', value: 'name' }, 
+                                { label: "Tên", value: "name" },
+                                { label: "MSSV", value: "mssv" },
+                                { label: "Lớp", value: "cls" },
+                                { label: "Khoa", value: "clan" },
+                                { label: "Khóa", value: "gen" },
+                                { label: "Số hoạt động hoàn thành", value: "count" },
+                                { label: "Email", value: "email" },
+                                { label: "SDT", value: "phone" },
+                                { label: "GD1 - ảnh", value: "activity1Img" },
+                                { label: "GD1 - Lời chúc", value: "activity1Text" },
+                            ],
+                            content: contents
+                        }
+                    ]
+                    break;
+            }
+        }
+        let settings = {
+            fileName: 'Danh_Sach', // Name of the spreadsheet
+            extraLength: 5, // A bigger number means that columns will be wider
+            writeOptions: {} // Style options from https://github.com/SheetJS/sheetjs#writing-options
+        }
+          
+        xlsx(data, settings)
+    }
+
     render(){
         const {filter, updateAt, section, state, number,mssv,gen} = this.state
         return(<div style={{backgroundColor:"white"}}>
@@ -299,6 +411,7 @@ class Manager extends Component {
                             <MenuItem value={"MSSV"}>Tìm theo MSSV</MenuItem>
                             <MenuItem value={"Activity"}>Theo giai đoạn</MenuItem>
                             <MenuItem value={"Count"}>Theo số hoạt động đã hoàn thành</MenuItem>
+                            <MenuItem value={"GIF"}>Những người đã tạo GIF</MenuItem>
                         </TextField>
                     </Box>
 
@@ -428,7 +541,7 @@ class Manager extends Component {
 
                         <Button 
                             variant="contained" 
-                            onClick={this.handleExport}
+                            onClick={this.LoadXLSX}
                             sx = {{
                                 ml: "20px",
                                 mt: "10px"
@@ -457,13 +570,29 @@ class Manager extends Component {
                 </TableRow>
                 </TableHead>
                     {this.state.flip == false && this.state.pageData[this.state.page].map((user, key) =>(
-                        <Row
-                            onChange={this.handleChange}
-                            key={key}
-                            test = {user}
-                            user = {user}
-                            result = {user.result}
-                        />
+                        this.state.custom ?
+                            <Row
+                                onChange={this.handleChange}
+                                key={key}
+                                test = {user}
+                                user = {user}
+                                result = {user.result}
+                                customContent = {
+                                    <div 
+                                        //style={{width: "100%"}}
+                                        dangerouslySetInnerHTML={{ 
+                                            __html: `<img preload class="" src="${user.gifCharacter}" />` 
+                                    }} />
+                                }
+                            />
+                            :
+                            <Row
+                                onChange={this.handleChange}
+                                key={key}
+                                test = {user}
+                                user = {user}
+                                result = {user.result}
+                            />
                     ))}
 
                     
