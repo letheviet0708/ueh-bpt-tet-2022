@@ -477,6 +477,7 @@ class CharacterCreator extends Component{
                         <Box id="characterContainerP1">
                             <Box id="characterContainer">
                             <Box
+                            //hihi
                                 sx={{
                                     width: "100%",
                                     paddingTop: "80%",
