@@ -260,7 +260,6 @@ h1 {
 
 #characterContainer{
   position: relative;
-  width: 320px;
 }
 .characterE{
   position: absolute;
@@ -278,4 +277,39 @@ h1 {
   object-fit: cover;
   object-position: 0% 100%;
   
+}
+
+#characterContainerP1{
+  display: flex
+}
+
+#characterSelect{
+  flex-grow: 1;
+}
+
+@media screen and (max-width: 555px){
+
+  #characterContainerP1{
+    display: flex;
+    flex-direction: column;
+  }
+  #characterContainer{
+    width: 100%;
+  }
+
+}
+@media screen and (min-width: 555px){
+  #characterContainer{
+    width: 320px;
+  }
+
+
+  #characterContainerP1{
+    display: flex;
+    flex-direction: row;
+  }
+  
+  #characterSelect{
+    flex-grow: 1;
+  }
 }

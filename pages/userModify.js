@@ -21,8 +21,9 @@ import { withRouter } from "next/router";
 
 import clientID from '../components/ClientID.json'
 import uploadImage from '../components/uploadImg'
+import CImg from "../components/ccImg"
 
-import CharacterCreator from '../components/characterCreator'
+import GifShow from "../components/gifShower"
 
 import {styled } from '@mui/material/styles';
 
@@ -86,6 +87,7 @@ class UserModify extends Component{
                         })
                     }else{
                         this.setState({
+                            user: user,
                             email: user.email,
                             phone: user.phone,
                             Name: user.name,
@@ -93,7 +95,8 @@ class UserModify extends Component{
                             clan: user.clan,
                             gen: user.gen,
                             mssv: user.mssv,
-                            avatar: user.avatar
+                            avatar: user.avatar,
+                            gif: user.gifCharacter
                         })
                     }
                     this.setState({luser: user})
@@ -464,10 +467,9 @@ class UserModify extends Component{
 
                         <div className = "containerForm"></div>
                     </Box>
-                    
-                    <div className = "containerForm">
-                        <CharacterCreator/>
-                    </div>
+                    {this.state.user && 
+                        <GifShow gif = {this.state.gif}/>
+                    }
                 </div>
             </PageWrapper>
             {openAvatarEditor &&

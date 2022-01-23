@@ -8,6 +8,7 @@ import personService from "../Services/person.service";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
+
 const GDPR = process.env.GDPR
 const env = process.env.NODE_ENV
 
@@ -79,6 +80,7 @@ class Result extends Component {
                                     uid= {user.uid}
                                 />
                             }
+
                             {/*
                             {(env == "development" || (GDPR >= 2))&&
                                 <GiaiDoan2Form

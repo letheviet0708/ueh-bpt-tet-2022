@@ -1,5 +1,9 @@
 {
     "base":"https://i.imgur.com/H2f69yH.png",
+    "background": [
+        "https://i.imgur.com/fOSC5kh.png",
+        "https://i.imgur.com/tBwYpY3.png"
+    ],
     "top":[
         [
             "https://i.imgur.com/ThGlnkK.png", 

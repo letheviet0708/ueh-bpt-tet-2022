@@ -21,6 +21,8 @@ import clientID from '../components/ClientID.json'
 import TextField from '@mui/material/TextField';
 import { Typography } from "@mui/material";
 
+
+
 const CssTextField = styled(TextField)({
     backgroundColor: "white",
     fontFamily:"Montserrat",
@@ -41,6 +43,7 @@ const ColorButton = styled(Button)({
 });
 
 
+
 class CharacterCreator extends Component{
 
     constructor(props){
@@ -51,11 +54,13 @@ class CharacterCreator extends Component{
             eyes: 0,
             hearts: 0,
             topType: 0,
+            background: 0,
             text: "",
             aTop:[],
             aHair:[],
             aEyes:[],
             aHears:[],
+            aBackground: [],
             openBD: false,
             imgResult: null,
             openSB: false,
@@ -70,17 +75,20 @@ class CharacterCreator extends Component{
         let aHair = new Array(asset.hair.length).fill(false)
         let aEyes = new Array(asset.eyes.length).fill(false)
         let aHears = new Array(asset.hearts.length).fill(false)
+        let aBackground = new Array(asset.background.length).fill(false)
 
         aTop[this.state.top] = true
         aHair[this.state.hair] = true
         aEyes[this.state.eyes] = true
         aHears[this.state.hearts] = true
+        aBackground[this.state.background] = true
 
         this.setState({
             aTop: aTop,
             aHair: aHair,
             aEyes: aEyes,
             aHears: aHears,
+            aBackground: aBackground
         })
     }
 
@@ -117,6 +125,14 @@ class CharacterCreator extends Component{
                 this.setState({
                     aHears: aHears,
                     hearts: value
+                })
+                break;
+            case "background":
+                let aBackground = new Array(asset.background.length).fill(false)
+                aBackground[value] = true
+                this.setState({
+                    aBackground: aBackground,
+                    background: value
                 })
                 break;
             case "topType":
@@ -221,9 +237,10 @@ class CharacterCreator extends Component{
             openBD:true,
             imgResult: null
         })
-        const {top,hair,eyes,hearts,topType} = this.state
+        const {top,hair,eyes,hearts,topType,background} = this.state
         const itop = await this.url2Base64(asset.top[topType][top])
         const ihair = await this.url2Base64(asset.hair[hair])
+        const ibackground = await this.url2Base64(asset.background[background])
         const ieyes = await this.url2Base64(asset.eyes[eyes])
         const ihearts = await this.url2Base64(asset.hearts[hearts])
         const ibase = await this.url2Base64(asset.base)
@@ -234,8 +251,6 @@ class CharacterCreator extends Component{
         var gif = new GIF({
             workers: 2,
             quality: 10,
-            background: null,
-            transparent: "#fff",
         });
 
         const test = createCanvas(320, 320);
@@ -247,6 +262,7 @@ class CharacterCreator extends Component{
             const ctx = canvas.getContext('2d');
 
             const topImg = await loadImage(itop)
+            const gbImg = await loadImage(ibackground)
             const hairImg = await loadImage(ihair)
             const eyesImg = await loadImage(ieyes)
             const heartsImg = await loadImage(ihearts)
@@ -254,6 +270,7 @@ class CharacterCreator extends Component{
             const texBoxImg = await loadImage(itexBox)
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(gbImg,0,0)
             ctx.drawImage(texBoxImg,0,0)
             ctx.drawImage(eyesImg,0,0)
             ctx.drawImage(baseImg,0,0)
@@ -274,6 +291,7 @@ class CharacterCreator extends Component{
             reader.readAsDataURL(blob); 
             reader.onloadend = () => {
                 var base64data = reader.result;
+                this.handleSave(base64data)
                 this.setState({
                     imgResult: base64data
                 })
@@ -318,6 +336,9 @@ class CharacterCreator extends Component{
 
     handleClose = () =>{
         this.setState({openBD: false})
+        if (this.props.togger == true){
+            this.props.router.reload()
+        }
     }
 
     handleClose2 =(event) =>{
@@ -382,7 +403,6 @@ class CharacterCreator extends Component{
                 console.log(response.data);
                 this.setState({saving: false})
                 this.handleSBClick("Đã lưu thành công!", "success")
-                this.props.router.reload()
             })
             .catch(e=> {
                 console.log(e);
@@ -390,11 +410,11 @@ class CharacterCreator extends Component{
             });
     }
 
-    handleSave = () => {
+    handleSave = (base64) => {
         const imgurID = clientID.clientID[0]
         const uid = firebase.auth().currentUser.uid
         this.setState({saving: true}, () =>{
-            this.uploadImage(this.state.imgResult, imgurID)
+            this.uploadImage(base64, imgurID)
             .then((imageLink) => {
                 console.log(imageLink)
                 if (imageLink){
@@ -407,8 +427,6 @@ class CharacterCreator extends Component{
             })
         })        
     }
-
-    
 
     handleSBClick = (message, severity) => {
         this.handleSBClose()
@@ -436,107 +454,135 @@ class CharacterCreator extends Component{
             <Box sx={{
                 mt: "30px",
                 boxShadow: 2,
+                position: "relative",
                 backgroundColor: "white",
-                borderRadius: 2
+                borderRadius: 2,
+                m: "12px",
+                color: "black"
             }}>
-                <Box id="characterContainer">
-                <Box
-                    sx={{
-                        width: "100%",
-                        paddingTop: "80%",
-                        position: "relative",
-                    }}
-                >
-                    <Box
-                        sx={{
-                            position: "absolute",
-                            top: 0, 
+                {this.props.togger == false &&
+                <Box sx={{  position: "absolute",
+                            top: 0,
+                            cursor: "pointer",
                             left: 0,
-                            width: "100%",
-                            height: "100%",
-                            display: "flex",
-                            justifyContent: "center"
+                            display: "flex"
                         }}
-                    >
-                        <Box className="characterE characterEyes">
-                            <CImg className={""} img="https://i.imgur.com/fOSC5kh.png" /> 
-                        </Box>
-
-                        <Box className="characterE characterEyes">
-                            {asset.eyes.map((el, i) => (
-                                <CImg key={i} className={this.state.aEyes[i] ? "" : "disable"} img={el} /> 
-                            ))}
-                        </Box>
-                        <Box className="characterE characterBase">
-                            <CImg img={asset.base} />
-                        </Box>
-                        <Box className="characterE characterTop">
-                            {asset.top[this.state.topType].map((el, i) => (
-                                <CImg key={i} className={this.state.aTop[i] ? "" : "disable"} img={el} /> 
-                            ))}
-                        </Box>
-                        <Box className="characterE characterHair">
-                            {asset.hair.map((el, i) => (
-                                <CImg key={i} className={this.state.aHair[i] ? "" : "disable"} img={el} /> 
-                            ))}
-                        </Box>
-                        <Box className="characterE characterHearts">
-                            {asset.hearts.map((el, i) => (
-                                <CImg key={i} className={this.state.aHears[i] ? "" : "disable"} img={el} /> 
-                            ))}
-                        </Box>
-                    </Box>
+                >   
+                        <CancelIcon sx={{color: "#1b4338"}} onClick={this.props.handleClose}/>
                 </Box>
-                </Box>
-                <Box id="characterSelect">
-                    <LRselect
-                        name="topType"
-                        value={this.state.topType}
-                        title={["Áo dài", "Áo sơ mi"]}
-                        onChange={this.handleChange}
-                    />
-                    <LRselect
-                        name="top"
-                        value={this.state.top}
-                        title={["Áo 1", "Áo 2", "Áo 3", "Áo 4"]}
-                        onChange={this.handleChange}
-                    />
-                    <LRselect
-                        name="hair"
-                        value={this.state.hair}
-                        title={["Tóc 1", "Tóc 2"]}
-                        onChange={this.handleChange}
-                    />
-                    <LRselect
-                        name="eyes"
-                        value={this.state.eyes}
-                        title={["Màu mắt 1", "Màu mắt 2"]}
-                        onChange={this.handleChange}
-                    />
-                    <LRselect
-                        name="hearts"
-                        value={this.state.hearts}
-                        title={["Màu tym 1", "Màu tym 2", "Màu tym 3", "Màu tym 4"]}
-                        onChange={this.handleChange}
-                    />
-                    <Box
-                        sx = {{ mt: "10px", display: "flex", width:"100%", justifyContent:"center"}}>
-                        <CssTextField
-                            value={this.state.text}
-                            onChange={this.handleTChange}
-                            multiline
-                            maxRows={4}
-                            required
-                            label="Lời chúc của bạn"
-                            variant="outlined" 
-                            sx = {{width:"85%"}}
-                        />
-                    </Box>
-                    <Box sx={{width:"100%", display: "flex", justifyContent:"center", mt:"5px", mb:"5px"}}>
-                    <ColorButton onClick={this.handleCreate}>Tạo</ColorButton>
-                    
-                            
+                }
+                <Typography sx={{fontSize: "22px", fontWeight: "bold", mb: "7px", pt:"16px"}}>Trao GIF - Ship yêu thương</Typography>
+                <Box sx={{p:"0px 12px 12px 12px"}}>
+                    <Box>
+                        <Box id="characterContainerP1">
+                            <Box id="characterContainer">
+                            <Box
+                                sx={{
+                                    width: "100%",
+                                    paddingTop: "80%",
+                                    position: "relative",
+                                }}
+                            >
+                                <Box
+                                    sx={{
+                                        position: "absolute",
+                                        top: 0, 
+                                        left: 0,
+                                        width: "100%",
+                                        height: "100%",
+                                        display: "flex",
+                                        justifyContent: "center"
+                                    }}
+                                >
+                                    <Box className="characterE characterBackground">
+                                        {asset.background.map((el, i) => (
+                                            <CImg key={i} className={this.state.aBackground[i] ? "" : "disable"} img={el} /> 
+                                        ))}
+                                    </Box>
 
+                                    <Box className="characterE characterEyes">
+                                        {asset.eyes.map((el, i) => (
+                                            <CImg key={i} className={this.state.aEyes[i] ? "" : "disable"} img={el} /> 
+                                        ))}
+                                    </Box>
+                                    <Box className="characterE characterBase">
+                                        <CImg img={asset.base} />
+                                    </Box>
+                                    <Box className="characterE characterTop">
+                                        {asset.top[this.state.topType].map((el, i) => (
+                                            <CImg key={i} className={this.state.aTop[i] ? "" : "disable"} img={el} /> 
+                                        ))}
+                                    </Box>
+                                    <Box className="characterE characterHair">
+                                        {asset.hair.map((el, i) => (
+                                            <CImg key={i} className={this.state.aHair[i] ? "" : "disable"} img={el} /> 
+                                        ))}
+                                    </Box>
+                                    <Box className="characterE characterHearts">
+                                        {asset.hearts.map((el, i) => (
+                                            <CImg key={i} className={this.state.aHears[i] ? "" : "disable"} img={el} /> 
+                                        ))}
+                                    </Box>
+                                </Box>
+                            </Box>
+                            </Box>
+                            <Box id="characterSelect">
+                                <LRselect
+                                    name="topType"
+                                    value={this.state.topType}
+                                    title={["Áo dài", "Áo sơ mi"]}
+                                    onChange={this.handleChange}
+                                />
+                                <LRselect
+                                    name="top"
+                                    value={this.state.top}
+                                    title={["Áo 1", "Áo 2", "Áo 3", "Áo 4"]}
+                                    onChange={this.handleChange}
+                                />
+                                <LRselect
+                                    name="hair"
+                                    value={this.state.hair}
+                                    title={["Tóc 1", "Tóc 2"]}
+                                    onChange={this.handleChange}
+                                />
+                                <LRselect
+                                    name="eyes"
+                                    value={this.state.eyes}
+                                    title={["Màu mắt 1", "Màu mắt 2"]}
+                                    onChange={this.handleChange}
+                                />
+                                <LRselect
+                                    name="hearts"
+                                    value={this.state.hearts}
+                                    title={["Màu tim 1", "Màu tim 2", "Màu tim 3", "Màu tim 4"]}
+                                    onChange={this.handleChange}
+                                />
+                                <LRselect
+                                    name="background"
+                                    value={this.state.background}
+                                    title={["Nền 1", "Nền 2"]}
+                                    onChange={this.handleChange}
+                                />
+                            </Box>
+                        </Box>
+                        <Box id="characterText">
+                            <Box
+                                sx = {{ mt: "10px", display: "flex", width:"100%", justifyContent:"center"}}>
+                                <CssTextField
+                                    value={this.state.text}
+                                    onChange={this.handleTChange}
+                                    multiline
+                                    maxRows={4}
+                                    required
+                                    label="Lời chúc của bạn"
+                                    variant="outlined" 
+                                    sx = {{width:"85%"}}
+                                />
+                            </Box>
+                            <Box sx={{width:"100%", display: "flex", justifyContent:"center", mt:"5px", mb:"5px"}}>
+                                <ColorButton onClick={this.handleCreate}>Tạo</ColorButton>
+                            </Box>
+                        </Box>
                     </Box>
                 </Box>
                 <Backdrop
@@ -546,7 +592,8 @@ class CharacterCreator extends Component{
                 >
                     {this.state.imgResult ?
                         <>
-                            <Box sx={{width:"320px", backgroundColor: "white", borderRadius: 2, position:"relative"}}>
+                            <Box sx={{backgroundColor: "white", borderRadius: 2, position:"relative" ,
+                                            padding: "18px"}}>
                                 
                                 <Box sx={{  position: "absolute",
                                             top: 0,
@@ -559,9 +606,8 @@ class CharacterCreator extends Component{
                                 </Box>
 
                                 <CImg img = {this.state.imgResult} className="" />
-                                <Box sx={{m: "5px", display: "flex", justifyContent:"space-between"}}>
-                                    {saveButton}
-                                    <ColorButton onClick={this.handleDownload}>Tải</ColorButton>
+                                <Box sx={{mt: "15px", display: "flex", justifyContent:"center"}}>
+                                    <ColorButton onClick={this.handleDownload}>Tải về</ColorButton>
                                 </Box>
                             </Box>
                         </>
