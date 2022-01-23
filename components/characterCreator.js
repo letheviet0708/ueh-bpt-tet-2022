@@ -292,9 +292,6 @@ class CharacterCreator extends Component{
             reader.onloadend = () => {
                 var base64data = reader.result;
                 this.handleSave(base64data)
-                this.setState({
-                    imgResult: base64data
-                })
             }
         });
         
@@ -397,11 +394,11 @@ class CharacterCreator extends Component{
         })
     }  
 
-    uploadProfile = (uid, data) =>{
+    uploadProfile = (uid, data, base64) =>{
         personService.saveProfiles(uid, data)
             .then(response => {
                 console.log(response.data);
-                this.setState({saving: false})
+                this.setState({saving: false, imgResult: base64})
                 this.handleSBClick("Đã lưu thành công!", "success")
             })
             .catch(e=> {
@@ -422,7 +419,7 @@ class CharacterCreator extends Component{
                         uid: uid,
                         gifCharacter: imageLink
                     }
-                    this.uploadProfile(uid, data)
+                    this.uploadProfile(uid, data, base64)
                 }
             })
         })        
@@ -578,6 +575,7 @@ class CharacterCreator extends Component{
                                     label="Lời chúc của bạn"
                                     variant="outlined" 
                                     sx = {{width:"85%"}}
+                                    inputProps={{ maxLength: 200 }}
                                 />
                             </Box>
                             <Box sx={{width:"100%", display: "flex", justifyContent:"center", mt:"5px", mb:"5px"}}>
