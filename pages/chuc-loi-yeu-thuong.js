@@ -104,7 +104,13 @@ class ChucLoiYeuThuong extends Component{
 
     render (){
         //const testArr = [userClone,userClone,userClone,userClone,userClone,userClone,userClone]
-        return(<div>
+        return(<div
+                style={{
+                    position: "relative",
+                    zIndex: 0
+                }}
+            
+            >
             <PageWrapper>
                 <Banner></Banner>
                 <a className="anchor" id="view"/>
@@ -163,6 +169,44 @@ class ChucLoiYeuThuong extends Component{
                     </Box>
                 </Box>
             </PageWrapper>
+
+            
+
+        <Box
+            sx={{
+                width: "100%",
+                paddingTop: "15%",
+                position: "absolute",
+                bottom: 0
+            }}
+        >
+          <div
+            style={{
+              position: "absolute",
+              top: 0, 
+              left: 0,
+              display: "flex",
+              height: "100%",
+              justifyContent: "space-between",
+              position: "absolute",
+              width: "100%",  
+              bottom: 0,
+            }}
+          >
+            <div 
+                style={{ flex: "0 0 20%", height: "100%"}}
+                dangerouslySetInnerHTML={{ 
+                    __html: `<img preload class="" style="height: 100%;" src="https://i.imgur.com/Y1gfUUX.png" />` 
+            }} />
+
+            <div 
+                style={{ flex: "0 0 20%", height: "100%"}}
+                dangerouslySetInnerHTML={{ 
+                    __html: `<img preload class="" style="height: 100%;" src="https://i.imgur.com/EAyYCSI.png" />` 
+            }} />
+          </div>
+        </Box>
+        
         </div>)
     }
 }

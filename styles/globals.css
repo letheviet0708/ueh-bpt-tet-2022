@@ -79,7 +79,7 @@ h1 {
   #indexBg{
     background: linear-gradient(
       179deg
-      , #ffcc66 19%, #bd1b1b 29%)
+      , #ffcc66 19%, #990000 29%)
   }
 
   .wideScreen{
@@ -115,7 +115,7 @@ h1 {
   #indexBg{
     background: linear-gradient(
       180deg
-      , #ffcc66 33%, #bd1b1b 41%)
+      , #ffcc66 33%, #990000 41%)
   }
 
   .smallScreen{
@@ -255,7 +255,10 @@ h1 {
   
   background: linear-gradient(
     181deg
-    , #ff9933 40%, #990000);
+    , #ff9933 40%, #cf451b);
+
+  position: relative;
+  z-index: 0
 }
 
 #characterContainer{

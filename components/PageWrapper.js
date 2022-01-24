@@ -12,7 +12,12 @@ class PageWrapper extends Component{
 
     render(){
         return (
-            <div>
+            <div 
+                style = {{
+                    position: "relative",
+                    zIndex: 10,
+                }}
+            >
                 <Head>
                     <title>TẾT MỚI</title>
                     <meta property="og:title" content="TẾT MỚI 2022" />
@@ -29,7 +34,11 @@ class PageWrapper extends Component{
                 <div style = {{paddingBottom:'75px'}}></div>
                 {this.props.children}
 
-                <footer>
+                <footer
+                    style={{
+                        padding: "50px 0 14px"
+                    }}
+                >
                     <div className="container">
                         <div className="row">
                             <div className="col-md-10 col-lg-8 mx-auto">
