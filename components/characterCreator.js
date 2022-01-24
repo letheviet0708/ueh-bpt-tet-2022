@@ -232,6 +232,35 @@ class CharacterCreator extends Component{
         elem.remove()
     }
 
+    generateFrame = async(gif, delay, itop, ihair,ibackground,ieyes,ihearts,ibase,itexBox) =>{
+        const canvas = createCanvas(320, 320);
+        const ctx = canvas.getContext('2d');
+
+        const topImg = await loadImage(itop)
+        const gbImg = await loadImage(ibackground)
+        const hairImg = await loadImage(ihair)
+        const eyesImg = await loadImage(ieyes)
+        const heartsImg = await loadImage(ihearts)
+        const baseImg = await loadImage(ibase)
+        const texBoxImg = await loadImage(itexBox)
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(gbImg,0,0)
+        ctx.drawImage(texBoxImg,0,0)
+        ctx.drawImage(eyesImg,0,0)
+        ctx.drawImage(baseImg,0,0)
+        ctx.drawImage(topImg,0,0)
+        ctx.drawImage(hairImg,0,0)
+        ctx.drawImage(heartsImg,0,0)
+        // 45 39 270 94
+        ctx.textAlign = "start";
+        ctx.fillStyle = "black";
+        ctx.font = '12px Montserrat';
+
+        this.wrapText(ctx, text, 45, 51, 230, 18, 4);
+        gif.addFrame(canvas, {delay: delay});
+    }
+
     handleCreate = async () =>{
         this.setState({
             openBD:true,
@@ -281,9 +310,69 @@ class CharacterCreator extends Component{
             ctx.textAlign = "start";
             ctx.fillStyle = "black";
             ctx.font = '12px Montserrat';
-
+            
             this.wrapText(ctx, text.slice(0,step), 45, 51, 230, 18, 4);
-            gif.addFrame(canvas, {delay: 100});
+            gif.addFrame(canvas, {delay: 200});
+                
+        }
+
+        {  
+            const canvas = createCanvas(320, 320);
+            const ctx = canvas.getContext('2d');
+
+            const topImg = await loadImage(itop)
+            const gbImg = await loadImage(ibackground)
+            const hairImg = await loadImage(ihair)
+            const eyesImg = await loadImage(ieyes)
+            const heartsImg = await loadImage(ihearts)
+            const baseImg = await loadImage(ibase)
+            const texBoxImg = await loadImage(itexBox)
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(gbImg,0,0)
+            ctx.drawImage(texBoxImg,0,0)
+            ctx.drawImage(eyesImg,0,0)
+            ctx.drawImage(baseImg,0,0)
+            ctx.drawImage(topImg,0,0)
+            ctx.drawImage(hairImg,0,0)
+            ctx.drawImage(heartsImg,0,0)
+            // 45 39 270 94
+            ctx.textAlign = "start";
+            ctx.fillStyle = "black";
+            ctx.font = '12px Montserrat';
+
+            this.wrapText(ctx, text, 45, 51, 230, 18, 4);
+            gif.addFrame(canvas, {delay: 200});
+        }
+
+        
+        {  
+            const canvas = createCanvas(320, 320);
+            const ctx = canvas.getContext('2d');
+
+            const topImg = await loadImage(itop)
+            const gbImg = await loadImage(ibackground)
+            const hairImg = await loadImage(ihair)
+            const eyesImg = await loadImage(ieyes)
+            const heartsImg = await loadImage(ihearts)
+            const baseImg = await loadImage(ibase)
+            const texBoxImg = await loadImage(itexBox)
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(gbImg,0,0)
+            ctx.drawImage(texBoxImg,0,0)
+            ctx.drawImage(eyesImg,0,0)
+            ctx.drawImage(baseImg,0,0)
+            ctx.drawImage(topImg,0,0)
+            ctx.drawImage(hairImg,0,0)
+            ctx.drawImage(heartsImg,0,0)
+            // 45 39 270 94
+            ctx.textAlign = "start";
+            ctx.fillStyle = "black";
+            ctx.font = '12px Montserrat';
+
+            this.wrapText(ctx, text, 45, 51, 230, 18, 4);
+            gif.addFrame(canvas, {delay: 1000});
         }
 
         gif.on('finished', (blob) => {
