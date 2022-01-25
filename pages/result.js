@@ -81,20 +81,20 @@ class Result extends Component {
                                 />
                             }
 
-                            {/*
                             {(env == "development" || (GDPR >= 2))&&
                                 <GiaiDoan2Form
                                     Data= {Data[2]}
                                     uid= {user.uid}
                                 />
                             }
+                            {/*
                             {(env == "development" || (GDPR >= 3))&&
                                 <GiaiDoan3Form
                                     Data= {Data[3]}
                                     uid= {user.uid}
                                 />
                             }    
-                        */ }                  
+                            */ }                  
                         </Box>
                     }
                 </div>

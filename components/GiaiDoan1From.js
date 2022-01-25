@@ -202,6 +202,7 @@ class GiaiDoan1From extends Component {
                     })
                     .catch(e=> {
                         console.log(e);
+                        this.setState({saving: false})
                         this.handleSBClick("Có lỗi xảy ra vui lòng thử lại!", "error")
                     });
             })

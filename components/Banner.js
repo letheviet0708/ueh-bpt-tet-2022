@@ -11,7 +11,7 @@ class Banner extends Component {
                 <Carousel infiniteLoop={true} autoPlay={true} showThumbs={false}>
                         
                     <div>
-                        <Link href="https://www.youtube.com/watch?v=7Tdofs-BNto"><a target="_blank">
+                        <Link href="https://youtu.be/SzejvjuEJS4"><a target="_blank">
                             <Image blurDataURL src="https://i.imgur.com/iw0GzXQ.png" placeholder="blur" width="1920px" height="1080" />
                         </a></Link>
                     </div>

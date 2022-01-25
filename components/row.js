@@ -16,6 +16,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import {Component} from 'react'
 import Avatar from '@mui/material/Avatar';
 import GiaiDoan1Check from './GiaiDoan1Check'
+import GiaiDoan2Check from './GiaiDoan2Check'
 
 class Row extends Component {
     
@@ -75,6 +76,9 @@ class Row extends Component {
                         
                         {activityResult[1] &&
                           <GiaiDoan1Check onChange={this.handleCheckChange} uid={user.uid} result={activityResult[1]}/>
+                        }
+                        {activityResult[2] &&
+                          <GiaiDoan2Check onChange={this.handleCheckChange} uid={user.uid} result={activityResult[2]}/>
                         }
                       </Box>
                     }
