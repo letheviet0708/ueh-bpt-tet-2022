@@ -84,7 +84,7 @@ class Home extends Component {
                       className="vertical-timeline-element--work"
                       contentStyle={{ background: 'rgb(255, 51, 51)', color: '#fff' }}
                       contentArrowStyle={{ borderRight: '7px solid  rgb(255, 51, 51)' }}
-                      date="26/1/2022"
+                      date="27/1/2022"
                       iconStyle={{ background: '#ff9933', color: '#fff' }}
                       icon={<Brightness1Icon />}
                     >
