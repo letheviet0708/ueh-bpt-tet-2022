@@ -49,12 +49,12 @@ class DanhSachHoatDong extends Component {
                   <Box style={{display:"flex", justifyContent:"center"}}>
                   <Box id="activity" style={{display:"flex", flexWrap: "wrap" ,justifyContent:"center", maxWidth: "1000px"}}>
                     
-                      <Card className="stage" sx={{borderRadius: "20px", backgroundColor: "#ff3333"}} >
+                      <Card className="stage" sx={{ cursor: "pointer", borderRadius: "20px", backgroundColor: "#ff3333"}} >
                         <Link href= "/stage1#view" >
                             <Box>
                             <CardMedia
                                 component="img"
-                                image= "https://i.imgur.com/h1HC4ESl.jpg"
+                                image= "https://i.imgur.com/B1IOHzkl.png"
                                 className="sessionImg"
                             />
                             <CardContent style={{textAlign: "center"}}>
@@ -70,12 +70,12 @@ class DanhSachHoatDong extends Component {
                         </Link>
                       </Card>
                       
-                      <Card className="stage" sx={{borderRadius: "20px", backgroundColor: "#ff3333"}} >
+                      <Card className="stage" sx={{ cursor: "pointer", borderRadius: "20px", backgroundColor: "#ff3333"}} >
                         <Link href= "/stage2#view" >
                             <Box>
                             <CardMedia
                                 component="img"
-                                image= "https://i.imgur.com/ggLrRNCl.png"
+                                image= "https://i.imgur.com/rOGhdoFl.png"
                                 className="sessionImg"
                             />
                             <CardContent style={{textAlign: "center"}}>
