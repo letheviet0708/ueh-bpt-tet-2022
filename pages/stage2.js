@@ -74,7 +74,7 @@ class Stage2 extends Component {
                     <p  style={{ textAlign: "left", color: "white" }}>Đến với giai đoạn này, các bạn sẽ quay video với nội dung những hoạt động đón Tết cùng gia đình trên nền nhạc MV TẾT 4.0 - 4 PHƯƠNG TRỜI 0 KHOẢNG CÁCH. </p>
                     <p  style={{ textAlign: "left", color: "white" }}>Qua đó, chúng ta cùng khẳng định việc ăn Tết online không những không làm mất đi giá trị truyền thống của Tết mà còn tạo nên sự thú vị và mới mẻ.</p>
                     
-                    <p  style={{ textAlign: "left", color: "white" }}>Link bài phát động: <Link href="https://www.facebook.com/BPTUEH/posts/4822691434518160"><a target="_blank">https://www.facebook.com/BPTUEH/posts/4822691434518160</a></Link></p>
+                    <p  style={{ textAlign: "left", color: "white", overflowWrap: "break-word" }}>Link bài phát động: <Link href="https://www.facebook.com/BPTUEH/posts/4822691434518160"><a target="_blank">https://www.facebook.com/BPTUEH/posts/4822691434518160</a></Link></p>
                     
                     <h2 style={{ textAlign: "left", color:"#990000", marginBottom: "23px"}}>Điền kết quả</h2>
                     {user &&
