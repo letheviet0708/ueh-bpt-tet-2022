@@ -203,13 +203,14 @@ class GiaiDoan2Form extends Component {
             return
         }
         await this.setState({saving: true})
-
-        let arr = this.props.Data.images
-        if (this.state.img != this.props.Data.images[0]){
+        let arr = [null, null]
+        if (this.props.Data)
+            arr = this.props.Data.images
+        if (this.props.Data == null || this.state.img != this.props.Data.images[0]){
             arr[0] = await this.uploadImage(this.state.img, clientID.clientID[1])
         }
 
-        if (this.state.img2 != this.props.Data.images[1]){
+        if (this.props.Data == null || this.state.img2 != this.props.Data.images[1]){
             arr[1] = await this.uploadImage(this.state.img2, clientID.clientID[2])
         }
 
@@ -313,12 +314,13 @@ class GiaiDoan2Form extends Component {
                     pl:"10px",
                     pr:"10px",
                 }}>
-                    <Typography sx={{fontWeight: "bold"}}>Giai Đoạn 2: Album Tết mới trong tim</Typography>
+                    <Typography sx={{fontSize: "22px", fontWeight: "bold", mb: "12px", mt:"6px"}}>Giai Đoạn 2: Album Tết mới trong tim</Typography>
                     <Box >
                         <Box >
+                        
                             <Box>
                                 <ColorButton onClick={this.handleDivclick} variant="contained" startIcon={<PhotoSizeSelectActualIcon />}>
-                                    Chọn ảnh story
+                                    Ảnh story của bạn
                                 </ColorButton>
                                 {this.state.img &&
                                     <div 
@@ -330,7 +332,7 @@ class GiaiDoan2Form extends Component {
                             </Box>
                             <Box sx={{mt: "5px"}} >
                                 <ColorButton onClick={this.handleDivclick2} variant="contained" startIcon={<PhotoSizeSelectActualIcon />}>
-                                    Chọn ảnh like video
+                                    Ảnh xem MV của bạn
                                 </ColorButton>
                                 {this.state.img2 &&
                                     <div 
@@ -340,6 +342,7 @@ class GiaiDoan2Form extends Component {
                                     }} />
                                 }
                             </Box>
+                            <span style={{fontSize: "12px"}}>Hãy upload ảnh chứng minh bạn đã đăng video lên story (ít nhất 12 giờ) của trang Facebook cá nhân và ảnh bạn đã xem MV “TẾT 4.0 - 4 PHƯƠNG TRỜI, 0 KHOẢNG CÁCH”</span>
                         </Box>
                     </Box>
                     <Box sx={{

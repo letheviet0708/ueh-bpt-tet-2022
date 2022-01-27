@@ -4,7 +4,11 @@ import Banner from '../components/Banner';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import SessionCard from "../components/sessionCard";
-
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Link from 'next/link'
 import { Component } from 'react'
 
 class DanhSachHoatDong extends Component {
@@ -42,17 +46,51 @@ class DanhSachHoatDong extends Component {
               <Box id="infomation">
                   <h1 style={{ textAlign: "center", color:"#990000", marginBottom: "23px"}}>DANH SÁCH HOẠT ĐỘNG</h1>
                   <p  style={{ color: "white" }}>Hãy tham gia đầy đủ các hoạt động để đạt được số điểm cao nhất và cập nhật mã vạch nha!</p>
-                  <Box id="activity" style={{display:"flex", justifyContent:"center"}}>
-                    <Box sx={{maxWidth:"400px"}}>
+                  <Box style={{display:"flex", justifyContent:"center"}}>
+                  <Box id="activity" style={{display:"flex", flexWrap: "wrap" ,justifyContent:"center", maxWidth: "1000px"}}>
                     
-                    <SessionCard
-                      link="/stage1#view"
-                      sessionName="Chúc lời yêu thương"
-                      img="https://i.imgur.com/h1HC4ESl.jpg"
-                      sessionDescription = "Stage 1: Chúc lời yêu thương"
-                    />
-                    
-                    </Box>
+                      <Card className="stage" sx={{borderRadius: "20px", backgroundColor: "#ff3333"}} >
+                        <Link href= "/stage1#view" >
+                            <Box>
+                            <CardMedia
+                                component="img"
+                                image= "https://i.imgur.com/h1HC4ESl.jpg"
+                                className="sessionImg"
+                            />
+                            <CardContent style={{textAlign: "center"}}>
+                                <p style = {{
+                                    color: "white",
+                                    margin: 0,
+                                    fontSize: "smaller",
+                                }}>
+                                    Stage 1: Chúc lời yêu thương
+                                </p>
+                            </CardContent>
+                            </Box>
+                        </Link>
+                      </Card>
+                      
+                      <Card className="stage" sx={{borderRadius: "20px", backgroundColor: "#ff3333"}} >
+                        <Link href= "/stage2#view" >
+                            <Box>
+                            <CardMedia
+                                component="img"
+                                image= "https://i.imgur.com/ggLrRNCl.png"
+                                className="sessionImg"
+                            />
+                            <CardContent style={{textAlign: "center"}}>
+                                <p style = {{
+                                    color: "white",
+                                    margin: 0,
+                                    fontSize: "smaller",
+                                }}>
+                                    Stage 2: Gắn kết đón Tết
+                                </p>
+                            </CardContent>
+                            </Box>
+                        </Link>
+                      </Card>
+                  </Box>
                   </Box>
                 </Box>
               </Box>
