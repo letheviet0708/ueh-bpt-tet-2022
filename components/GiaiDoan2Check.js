@@ -60,6 +60,10 @@ class GiaiDoan2Check extends Component {
   }
 
   render(){
+      let arr = this.props.result.images[0].split('.')
+      const img1 =  arr[0]+'.'+arr[1]+'.'+arr[2]+'l.'+arr[3]
+      arr = this.props.result.images[1].split('.')
+      const img2 =  arr[0]+'.'+arr[1]+'.'+arr[2]+'l.'+arr[3]
       let chipText;
       let chipColor;
       switch(this.props.result.state){
@@ -96,13 +100,13 @@ class GiaiDoan2Check extends Component {
                   <Box sx={{}} onClick={()=>this.handleView(0)}>
                     <div 
                         dangerouslySetInnerHTML={{ 
-                            __html: `<img class="cardI" style=" width: 100%; " src="${this.props.result.images[0]}" />` 
+                            __html: `<img class="cardI" style=" width: 100%; " src="${img1}" />` 
                     }} />
                   </Box>
                   <Box sx={{ml:"10px"}} onClick={()=>this.handleView(1)}>
                     <div 
                         dangerouslySetInnerHTML={{ 
-                            __html: `<img class="cardI" style=" width: 100%; " src="${this.props.result.images[1]}" />` 
+                            __html: `<img class="cardI" style=" width: 100%; " src="${img2}" />` 
                     }} />
                   </Box>
                   <ColorRadioButtons value={this.state.state} onChange={this.handleChange} />
