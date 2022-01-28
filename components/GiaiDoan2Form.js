@@ -314,7 +314,7 @@ class GiaiDoan2Form extends Component {
                     pl:"10px",
                     pr:"10px",
                 }}>
-                    <Typography sx={{fontSize: "22px", fontWeight: "bold", mb: "12px", mt:"6px"}}>Giai Đoạn 2: Album Tết mới trong tim</Typography>
+                    <Typography sx={{fontSize: "22px", fontWeight: "bold", mb: "12px", mt:"6px"}}>Stage 2: Album Tết mới trong tim</Typography>
                     <Box >
                         <Box >
                         
