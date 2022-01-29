@@ -87,14 +87,12 @@ class Result extends Component {
                                     uid= {user.uid}
                                 />
                             }
-                            {/*
                             {(env == "development" || (GDPR >= 3))&&
                                 <GiaiDoan3Form
                                     Data= {Data[3]}
                                     uid= {user.uid}
                                 />
-                            }    
-                            */ }                  
+                            }                     
                         </Box>
                     }
                 </div>

@@ -17,6 +17,7 @@ import {Component} from 'react'
 import Avatar from '@mui/material/Avatar';
 import GiaiDoan1Check from './GiaiDoan1Check'
 import GiaiDoan2Check from './GiaiDoan2Check'
+import GiaiDoan3Check from './GiaiDoan3Check'
 
 class Row extends Component {
     
@@ -79,6 +80,9 @@ class Row extends Component {
                         }
                         {activityResult[2] &&
                           <GiaiDoan2Check onChange={this.handleCheckChange} uid={user.uid} result={activityResult[2]}/>
+                        }
+                        {activityResult[3] &&
+                          <GiaiDoan3Check onChange={this.handleCheckChange} uid={user.uid} result={activityResult[3]}/>
                         }
                       </Box>
                     }

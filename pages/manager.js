@@ -320,6 +320,8 @@ class Manager extends Component {
                     activity1Text: activityResult[1] ? activityResult[1].text[0] : "", 
                     activity2Img1: activityResult[2] ? activityResult[2].images[0] : "", 
                     activity2Img2: activityResult[2] ? activityResult[2].images[1] : "", 
+                    activity3Img: activityResult[3] ? activityResult[3].images[0] : "", 
+                    activity3Link: activityResult[3] ? activityResult[3].text[0] : "", 
                 }
                 contents.push(d)
             }
@@ -341,6 +343,8 @@ class Manager extends Component {
                         { label: "GD1 - Lời chúc", value: "activity1Text" },
                         { label: "GD2 - ảnh story", value: "activity2Img1" },
                         { label: "GD2 - ảnh like", value: "activity2Img2" },
+                        { label: "GD3 - ảnh đăng video", value: "activity3Img" },
+                        { label: "GD3 - Link bài post", value: "activity3Link" },
                     ],
                     content: contents
                 }
@@ -419,6 +423,43 @@ class Manager extends Component {
                                     { label: "SDT", value: "phone" },
                                     { label: "GD2 - ảnh story", value: "activity2Img1" },
                                     { label: "GD2 - ảnh like", value: "activity2Img2" },
+                                ],
+                                content: contents
+                            }
+                        ]
+                        break;
+                    case 3:
+                        for (var result of this.state.totalData){
+                            var d = {
+                                name: result.user.name, 
+                                mssv: result.user.mssv, 
+                                cls: result.user.cls,
+                                clan: result.user.clan, 
+                                gen: result.user.gen, 
+                                count: result.user.count,
+                                email: result.user.email,
+                                phone: result.user.phone,
+                                activity3Img: result.images[0], 
+                                activity3Link: result.text[0], 
+                            }
+                            contents.push(d)
+                        }
+        
+                        data = [
+                            {
+                                sheet: 'sheet1',
+                                columns: [
+                                    { label: 'Tên', value: 'name' }, 
+                                    { label: "Tên", value: "name" },
+                                    { label: "MSSV", value: "mssv" },
+                                    { label: "Lớp", value: "cls" },
+                                    { label: "Khoa", value: "clan" },
+                                    { label: "Khóa", value: "gen" },
+                                    { label: "Số hoạt động hoàn thành", value: "count" },
+                                    { label: "Email", value: "email" },
+                                    { label: "SDT", value: "phone" },
+                                    { label: "GD3 - ảnh đăng video", value: "activity3Img" },
+                                    { label: "GD3 - Link bài post", value: "activity3Link" },
                                 ],
                                 content: contents
                             }

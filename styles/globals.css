@@ -327,7 +327,7 @@ h1 {
 
 @media screen and (min-width: 603px){
   .stage{
-    flex: 0 0 45%;
+    flex: 0 0 29%;
     margin: 5px
   }
 }

@@ -17,7 +17,37 @@ import CTSnackbar from "./SnackBar"
 import PendingIcon from '@mui/icons-material/Pending';
 import ErrorIcon from '@mui/icons-material/Error';
 import Link from 'next/link'
+import { alpha, styled } from '@mui/material/styles';
+import { withRouter } from 'next/router'
 
+
+const ColorButton = styled(Button)({
+    color: 'white',
+    backgroundColor: '#1b4338',
+    '&:hover': {
+      backgroundColor: '#1b4338',
+    },
+});
+
+
+const CssTextField = styled(TextField)({
+    backgroundColor: "white",
+    borderRadius: "5px 5px 0px 0px",
+    '& label.Mui-focused': {
+        color: '#1b4338',
+        fontWeight: 'bold'
+    },
+    '& label': {
+        color: '#1b4338'
+    },
+    '& .MuiOutlinedInput-root': {
+      
+      '&.Mui-focused fieldset': {
+        borderColor: '#1b4338',
+        border: "3 solid"
+      },
+    },
+});
 class GiaiDoan3Form extends Component {
     constructor(props){
         super(props)
@@ -28,16 +58,16 @@ class GiaiDoan3Form extends Component {
             messageSB: 'nothing',
             severitySB: 'info',
             file: null,
-            hasChange: false
+            hasChange: false,
+            saving: false
         }
         this.myInput = React.createRef()
     }
 
     componentDidMount () {
-        console.log(this.myInput)
         if (this.props.Data){
             this.setState({
-                image: this.props.Data.images[0],
+                img: this.props.Data.images[0],
                 text: this.props.Data.text[0]
             })
         }
@@ -47,19 +77,20 @@ class GiaiDoan3Form extends Component {
         this.setState({ 
             text : event.target.value,
             hasChange: true
-        });
+        })
         
     }
 
     handleDivclick = (e) => {
         this.inputElement.click();
     }
-    
 
     profilePicChange = (fileChangeEvent) => {
         const file = fileChangeEvent.target.files[0];
         console.log(file)
-        this.setState({file: file})
+        this.getBase64(file).then((img64) => {
+            this.setState({img: img64, hasChange: true})
+        })
     };
 
     getBase64 = file => {
@@ -135,39 +166,43 @@ class GiaiDoan3Form extends Component {
         })
     }    
 
-
-    submit = () =>{
-        if (!this.state.file || !this.state.text ){
-            this.handleSBClick("Bạn chưa nhập đủ thông tin!", "info")
+    submit = async () =>{
+        this.handleSBClick("Đang lưu ...", "info")
+        if (!this.state.img || !this.state.text || this.state.text.length == 0 ){
+            this.handleSBClick("Bạn chưa điền đủ thông tin!", "info")
             return
         }
-        if (this.state.file){
-            this.getBase64(this.state.file).then((img64) => {
-                this.uploadImage(img64, clientID.clientID[1]).then((imageLink) => {
-                    const neednew = (this.props.Data == null)
-                    const id = (this.props.Data) ? this.props.Data._id : ""
-                    const data = {
-                        images: [imageLink],
-                        text: [this.state.text],
-                        activityIndex: 3,
-                        state: 0,
-                        new: neednew,
-                        id: id
-                    }
-                    console.log(data)
-                    personService.saveResult(this.props.uid, data)
-                        .then(response => {
-                            console.log(response.data);
-                            this.setState({saved: true})
-                            this.handleSBClick("Đã lưu thành công!", "success")
-                        })
-                        .catch(e=> {
-                            console.log(e);
-                            this.handleSBClick("Có lỗi xảy ra vui lòng thử lại!", "error")
-                        });
-                })
-            })       
+        await this.setState({saving: true})
+        let imageLink
+        if (this.props.Data)
+            imageLink = this.props.Data.images[0]
+        if (this.props.Data == null || this.state.img != imageLink){
+            imageLink = await this.uploadImage(this.state.img, clientID.clientID[3])
         }
+
+        const neednew = (this.props.Data == null)
+        const id = (this.props.Data) ? this.props.Data._id : ""
+        const data = {
+            images: [imageLink],
+            text: [this.state.text],
+            activityIndex: 3,
+            state: 0,
+            new: neednew,
+            id: id
+        }
+        console.log(data)
+        personService.saveResult(this.props.uid, data)
+            .then(response => {
+                console.log(response.data);
+                this.setState({saving: false})
+                this.handleSBClick("Đã lưu thành công!", "success")
+                this.props.router.reload()
+            })
+            .catch(e=> {
+                this.setState({saving: false})
+                console.log(e);
+                this.handleSBClick("Có lỗi xảy ra vui lòng thử lại!", "error")
+            });
     }    
 
     handleSBClick = (message, severity) => {
@@ -183,24 +218,24 @@ class GiaiDoan3Form extends Component {
     } 
 
     render(){
-        const {imgH, imgW, openCropper, selectedImage, scaleValue, text,hasChange} = this.state
+        const {hasChange, saving} = this.state
         let saveButton= (
-            <Button onClick={this.submit} variant="contained" startIcon={<CheckCircleIcon />}>
+            <ColorButton  sx={{backgroundColor:"#1b4338"}} onClick={this.submit} variant="contained" startIcon={<CheckCircleIcon />}>
                 Lưu
-            </Button>)
+            </ColorButton>)
         if (this.props.Data == null){
             if (hasChange)
             saveButton = (
-                <Button onClick={this.submit} variant="contained" startIcon={<CheckCircleIcon />}>
+                <ColorButton sx={{backgroundColor:"#1b4338"}} onClick={this.submit} variant="contained" startIcon={<CheckCircleIcon />}>
                     Lưu
-                </Button>)
+                </ColorButton>)
             else
             saveButton = (
-                <Button disabled onClick={this.submit} variant="contained" startIcon={<CheckCircleIcon />}>
+                <ColorButton disabled variant="contained" startIcon={<CheckCircleIcon />}>
                     Lưu
-                </Button>)
+                </ColorButton>)
         }else{
-            if (this.props.Data.images[0] == this.state.image
+            if (this.props.Data.images[0] == this.state.img
                 && this.props.Data.text[0] == this.state.text){
                 switch(this.props.Data.state){
                     case 0:
@@ -225,21 +260,18 @@ class GiaiDoan3Form extends Component {
             }
         }
         
-        let imgInfo = (<div></div>);
-        if (this.state.image){
-            imgInfo = (
-                <Link href= {this.state.image} >
-                    <a target="_blank">
-                        <Typography>{this.state.image}</Typography>
-                    </a>
-                </Link>)
-        }
-        if (this.state.file){
-            imgInfo = (<Typography>{this.state.file.name}</Typography>)
+        if (saving){
+            saveButton = (
+                <ColorButton disabled onClick={this.submit} variant="contained" startIcon={<CheckCircleIcon />}>
+                    Lưu
+                </ColorButton>)
         }
 
         return (<div>
-            <Box sx={{ borderRadius: 2,boxShadow: 3,
+            <Box sx={{ 
+                    borderRadius: 2,
+                    boxShadow: 3,
+                    backgroundColor: "white",
                     mt: "20px",
                     mr:"10px",
                     ml:"10px"}}>
@@ -249,18 +281,24 @@ class GiaiDoan3Form extends Component {
                     pl:"10px",
                     pr:"10px",
                 }}>
-                    <Typography sx={{fontSize: "22px", fontWeight: "bold", mb: "12px", mt:"6px"}}>Giai Đoạn 2: Album Tết mới trong tim</Typography>
+                    <Typography sx={{fontSize: "22px", fontWeight: "bold", mb: "12px", mt:"6px"}}>Stage 3: Tết 4.0 cùng UEHers</Typography>
                     <Box >
                         <Box >
-                            <Button onClick={this.handleDivclick} variant="contained" startIcon={<PhotoSizeSelectActualIcon />}>
-                                Chọn ảnh
-                            </Button>
-                            {imgInfo}
+                            <ColorButton onClick={this.handleDivclick} variant="contained" startIcon={<PhotoSizeSelectActualIcon />}>
+                                Ảnh đã đăng video
+                            </ColorButton>
+                            {this.state.img &&
+                                <div 
+                                    style={{marginTop: "5px"}}
+                                    dangerouslySetInnerHTML={{ 
+                                        __html: `<img preload class="" style="max-height: 200px;" src="${this.state.img}" />` 
+                                }} />
+                            }
                         </Box>
                         <Box >
-                            <TextField
-                                label="Link bài post trên Facebook cá nhân"
-                                value={text}
+                            <CssTextField
+                                label="Link bài đăng"
+                                value={this.state.text}
                                 onChange={this.handleTextChange}
                                 sx={{
                                     mt: "10px",
@@ -268,6 +306,7 @@ class GiaiDoan3Form extends Component {
                                 }}
                             />
                         </Box>
+                        <span style={{fontSize: "12px"}}>Hãy upload ảnh chứng minh bạn đã đăng video trên trang Facebook cá nhân và link bài đăng!</span>
                     </Box>
                     <Box sx={{
                         display: "flex",
@@ -309,4 +348,4 @@ class GiaiDoan3Form extends Component {
     }
 }
 
-export default GiaiDoan3Form
+export default withRouter(GiaiDoan3Form)

@@ -90,6 +90,27 @@ class DanhSachHoatDong extends Component {
                             </Box>
                         </Link>
                       </Card>
+                      
+                      <Card className="stage" sx={{ cursor: "pointer", borderRadius: "20px", backgroundColor: "#ff3333"}} >
+                        <Link href= "/stage3#view" >
+                            <Box>
+                            <CardMedia
+                                component="img"
+                                image= "https://i.imgur.com/rOGhdoFl.png"
+                                className="sessionImg"
+                            />
+                            <CardContent style={{textAlign: "center"}}>
+                                <p style = {{
+                                    color: "white",
+                                    margin: 0,
+                                    fontSize: "smaller",
+                                }}>
+                                    Stage 3: Tết 4.0 cùng UEHers
+                                </p>
+                            </CardContent>
+                            </Box>
+                        </Link>
+                      </Card>
                   </Box>
                   </Box>
                 </Box>
