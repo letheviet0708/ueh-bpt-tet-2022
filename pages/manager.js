@@ -320,7 +320,6 @@ class Manager extends Component {
                     activity1Text: activityResult[1] ? activityResult[1].text[0] : "", 
                     activity2Img1: activityResult[2] ? activityResult[2].images[0] : "", 
                     activity2Img2: activityResult[2] ? activityResult[2].images[1] : "", 
-                    activity3Img: activityResult[3] ? activityResult[3].images[0] : "", 
                     activity3Link: activityResult[3] ? activityResult[3].text[0] : "", 
                 }
                 contents.push(d)
@@ -343,7 +342,6 @@ class Manager extends Component {
                         { label: "GD1 - Lời chúc", value: "activity1Text" },
                         { label: "GD2 - ảnh story", value: "activity2Img1" },
                         { label: "GD2 - ảnh like", value: "activity2Img2" },
-                        { label: "GD3 - ảnh đăng video", value: "activity3Img" },
                         { label: "GD3 - Link bài post", value: "activity3Link" },
                     ],
                     content: contents
@@ -439,7 +437,6 @@ class Manager extends Component {
                                 count: result.user.count,
                                 email: result.user.email,
                                 phone: result.user.phone,
-                                activity3Img: result.images[0], 
                                 activity3Link: result.text[0], 
                             }
                             contents.push(d)
@@ -458,7 +455,6 @@ class Manager extends Component {
                                     { label: "Số hoạt động hoàn thành", value: "count" },
                                     { label: "Email", value: "email" },
                                     { label: "SDT", value: "phone" },
-                                    { label: "GD3 - ảnh đăng video", value: "activity3Img" },
                                     { label: "GD3 - Link bài post", value: "activity3Link" },
                                 ],
                                 content: contents

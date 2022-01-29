@@ -84,12 +84,6 @@ class GiaiDoan3Check extends Component {
                 <Collapse in={this.state.open} timeout="auto" unmountOnExit>
                   <Box sx={{ margin: 1}}>                   
                     <Box >
-                      <Box sx={{flex: "0 0 40%"}}>
-                        <div 
-                            dangerouslySetInnerHTML={{ 
-                                __html: `<img class="cardI" style=" width: 100%; " src="${this.props.result.images[0]}" />` 
-                        }} />
-                      </Box>
                       <Box sx={{ml:"10px"}}>
                         <Typography sx={{m:"5px"}}><Link href={this.props.result.text[0]}><a target="_blank">{this.props.result.text[0]}</a></Link></Typography>
                       </Box>

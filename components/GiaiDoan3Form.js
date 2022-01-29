@@ -67,7 +67,6 @@ class GiaiDoan3Form extends Component {
     componentDidMount () {
         if (this.props.Data){
             this.setState({
-                img: this.props.Data.images[0],
                 text: this.props.Data.text[0]
             })
         }
@@ -168,22 +167,15 @@ class GiaiDoan3Form extends Component {
 
     submit = async () =>{
         this.handleSBClick("Đang lưu ...", "info")
-        if (!this.state.img || !this.state.text || this.state.text.length == 0 ){
+        if (!this.state.text || this.state.text.length == 0 ){
             this.handleSBClick("Bạn chưa điền đủ thông tin!", "info")
             return
         }
         await this.setState({saving: true})
-        let imageLink
-        if (this.props.Data)
-            imageLink = this.props.Data.images[0]
-        if (this.props.Data == null || this.state.img != imageLink){
-            imageLink = await this.uploadImage(this.state.img, clientID.clientID[3])
-        }
 
         const neednew = (this.props.Data == null)
         const id = (this.props.Data) ? this.props.Data._id : ""
         const data = {
-            images: [imageLink],
             text: [this.state.text],
             activityIndex: 3,
             state: 0,
@@ -284,18 +276,6 @@ class GiaiDoan3Form extends Component {
                     <Typography sx={{fontSize: "22px", fontWeight: "bold", mb: "12px", mt:"6px"}}>Stage 3: Tết 4.0 cùng UEHers</Typography>
                     <Box >
                         <Box >
-                            <ColorButton onClick={this.handleDivclick} variant="contained" startIcon={<PhotoSizeSelectActualIcon />}>
-                                Ảnh đã đăng video
-                            </ColorButton>
-                            {this.state.img &&
-                                <div 
-                                    style={{marginTop: "5px"}}
-                                    dangerouslySetInnerHTML={{ 
-                                        __html: `<img preload class="" style="max-height: 200px;" src="${this.state.img}" />` 
-                                }} />
-                            }
-                        </Box>
-                        <Box >
                             <CssTextField
                                 label="Link bài đăng"
                                 value={this.state.text}
@@ -306,7 +286,7 @@ class GiaiDoan3Form extends Component {
                                 }}
                             />
                         </Box>
-                        <span style={{fontSize: "12px"}}>Hãy upload ảnh chứng minh bạn đã đăng video trên trang Facebook cá nhân và link bài đăng!</span>
+                        <span style={{fontSize: "12px"}}>Hãy dán link bài đăng trên trang Facebook cá nhân nhé!</span>
                     </Box>
                     <Box sx={{
                         display: "flex",

@@ -96,7 +96,7 @@ class DanhSachHoatDong extends Component {
                             <Box>
                             <CardMedia
                                 component="img"
-                                image= "https://i.imgur.com/rOGhdoFl.png"
+                                image= "https://i.imgur.com/fQE2Ejml.png"
                                 className="sessionImg"
                             />
                             <CardContent style={{textAlign: "center"}}>

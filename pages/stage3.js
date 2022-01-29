@@ -73,7 +73,7 @@ class Stage3 extends Component {
                     
                     <p  style={{ textAlign: "left", color: "white" }}>Cuộc thi mong muốn đem đến cho các bạn sinh viên nguồn cảm hứng từ những giai điệu sôi động của MV “Tết 4.0 - 4 phương trời, 0 khoảng cách”, qua đó các bạn có cơ hội thể hiện năng lượng tích cực của bản thân, hào hứng đón nhận những điều mới mẻ của ngày Tết hiện đại. Tất cả chúng ta sẽ cùng xích lại gần nhau, gắn kết với nhau dù là ở 4 phương trời. </p>
                     
-                    <p  style={{ textAlign: "left", color: "white", overflowWrap: "break-word" }}>Link bài phát động: <Link href="https://www.facebook.com/BPTUEH/posts/4822691434518160"><a target="_blank">https://www.facebook.com/BPTUEH/posts/4822691434518160</a></Link></p>
+                    <p  style={{ textAlign: "left", color: "white", overflowWrap: "break-word" }}>Link bài phát động: <Link href="https://www.facebook.com/BPTUEH/posts/4831337473653556"><a target="_blank">https://www.facebook.com/BPTUEH/posts/4831337473653556</a></Link></p>
                     
                     <h2 style={{ textAlign: "left", color:"#990000", marginBottom: "23px"}}>Điền kết quả</h2>
                     {user &&
