@@ -20,6 +20,10 @@ import { useRouter } from 'next/router'
 
 const pages = [
   {
+    title: 'LÌ XÌ TẾT',
+    link: 'https://tdcueh.tech/'
+  },
+  {
     title: 'DANH SÁCH HOẠT ĐỘNG',
     link: '/danh-sach-hoat-dong#view'
   }, /*
