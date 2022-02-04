@@ -321,6 +321,14 @@ class Manager extends Component {
                     activity2Img1: activityResult[2] ? activityResult[2].images[0] : "", 
                     activity2Img2: activityResult[2] ? activityResult[2].images[1] : "", 
                     activity3Link: activityResult[3] ? activityResult[3].text[0] : "", 
+                    activity4ImgGT: activityResult[4] ? activityResult[4].images[0] : "", 
+                    activity4TextGT: activityResult[4] ? activityResult[4].text[0] : "", 
+                    activity4ImgM1: activityResult[4] ? activityResult[4].images[1] : "", 
+                    activity4TextM1: activityResult[4] ? activityResult[4].text[1] : "", 
+                    activity4ImgM2: activityResult[4] ? activityResult[4].images[2] : "", 
+                    activity4TextM2: activityResult[4] ? activityResult[4].text[2] : "", 
+                    activity4ImgM3: activityResult[4] ? activityResult[4].images[3] : "", 
+                    activity4TextM3: activityResult[4] ? activityResult[4].text[3] : "", 
                 }
                 contents.push(d)
             }
@@ -343,6 +351,14 @@ class Manager extends Component {
                         { label: "GD2 - ảnh story", value: "activity2Img1" },
                         { label: "GD2 - ảnh like", value: "activity2Img2" },
                         { label: "GD3 - Link bài post", value: "activity3Link" },
+                        { label: "GD4 - Giao Thừa ảnh", value: "activity4ImgGT" },
+                        { label: "GD4 - Giao Thừa cảm nghĩ", value: "activity4TextGT" },
+                        { label: "GD4 - Mùng 1 ảnh", value: "activity4ImgM1" },
+                        { label: "GD4 - Mùng 1 cảm nghĩ", value: "activity4TextM1" },
+                        { label: "GD4 - Mùng 2 ảnh", value: "activity4ImgM2" },
+                        { label: "GD4 - Mùng 2 cảm nghĩ", value: "activity4TextM2" },
+                        { label: "GD4 - Mùng 3 ảnh", value: "activity4ImgM3" },
+                        { label: "GD4 - Mùng 3 cảm nghĩ", value: "activity4TextM3" },
                     ],
                     content: contents
                 }
@@ -386,81 +402,129 @@ class Manager extends Component {
                         }
                     ]
                     break;
-                
-                    case 2:
-                        for (var result of this.state.totalData){
-                            var d = {
-                                name: result.user.name, 
-                                mssv: result.user.mssv, 
-                                cls: result.user.cls,
-                                clan: result.user.clan, 
-                                gen: result.user.gen, 
-                                count: result.user.count,
-                                email: result.user.email,
-                                phone: result.user.phone,
-                                activity1Img: result.images[0], 
-                                activity1Text: result.text[0], 
-                                activity2Img1: result.images[0],
-                                activity2Img2: result.images[1]
-                            }
-                            contents.push(d)
+                case 2:
+                    for (var result of this.state.totalData){
+                        var d = {
+                            name: result.user.name, 
+                            mssv: result.user.mssv, 
+                            cls: result.user.cls,
+                            clan: result.user.clan, 
+                            gen: result.user.gen, 
+                            count: result.user.count,
+                            email: result.user.email,
+                            phone: result.user.phone,
+                            activity1Img: result.images[0], 
+                            activity1Text: result.text[0], 
+                            activity2Img1: result.images[0],
+                            activity2Img2: result.images[1]
                         }
-        
-                        data = [
-                            {
-                                sheet: 'sheet1',
-                                columns: [
-                                    { label: 'Tên', value: 'name' }, 
-                                    { label: "Tên", value: "name" },
-                                    { label: "MSSV", value: "mssv" },
-                                    { label: "Lớp", value: "cls" },
-                                    { label: "Khoa", value: "clan" },
-                                    { label: "Khóa", value: "gen" },
-                                    { label: "Số hoạt động hoàn thành", value: "count" },
-                                    { label: "Email", value: "email" },
-                                    { label: "SDT", value: "phone" },
-                                    { label: "GD2 - ảnh story", value: "activity2Img1" },
-                                    { label: "GD2 - ảnh like", value: "activity2Img2" },
-                                ],
-                                content: contents
-                            }
-                        ]
-                        break;
-                    case 3:
-                        for (var result of this.state.totalData){
-                            var d = {
-                                name: result.user.name, 
-                                mssv: result.user.mssv, 
-                                cls: result.user.cls,
-                                clan: result.user.clan, 
-                                gen: result.user.gen, 
-                                count: result.user.count,
-                                email: result.user.email,
-                                phone: result.user.phone,
-                                activity3Link: result.text[0], 
-                            }
-                            contents.push(d)
+                        contents.push(d)
+                    }
+    
+                    data = [
+                        {
+                            sheet: 'sheet1',
+                            columns: [
+                                { label: 'Tên', value: 'name' }, 
+                                { label: "Tên", value: "name" },
+                                { label: "MSSV", value: "mssv" },
+                                { label: "Lớp", value: "cls" },
+                                { label: "Khoa", value: "clan" },
+                                { label: "Khóa", value: "gen" },
+                                { label: "Số hoạt động hoàn thành", value: "count" },
+                                { label: "Email", value: "email" },
+                                { label: "SDT", value: "phone" },
+                                { label: "GD2 - ảnh story", value: "activity2Img1" },
+                                { label: "GD2 - ảnh like", value: "activity2Img2" },
+                            ],
+                            content: contents
                         }
-        
-                        data = [
-                            {
-                                sheet: 'sheet1',
-                                columns: [
-                                    { label: 'Tên', value: 'name' }, 
-                                    { label: "Tên", value: "name" },
-                                    { label: "MSSV", value: "mssv" },
-                                    { label: "Lớp", value: "cls" },
-                                    { label: "Khoa", value: "clan" },
-                                    { label: "Khóa", value: "gen" },
-                                    { label: "Số hoạt động hoàn thành", value: "count" },
-                                    { label: "Email", value: "email" },
-                                    { label: "SDT", value: "phone" },
-                                    { label: "GD3 - Link bài post", value: "activity3Link" },
-                                ],
-                                content: contents
-                            }
-                        ]
-                        break;
+                    ]
+                    break;
+                case 3:
+                    for (var result of this.state.totalData){
+                        var d = {
+                            name: result.user.name, 
+                            mssv: result.user.mssv, 
+                            cls: result.user.cls,
+                            clan: result.user.clan, 
+                            gen: result.user.gen, 
+                            count: result.user.count,
+                            email: result.user.email,
+                            phone: result.user.phone,
+                            activity3Link: result.text[0], 
+                        }
+                        contents.push(d)
+                    }
+    
+                    data = [
+                        {
+                            sheet: 'sheet1',
+                            columns: [
+                                { label: 'Tên', value: 'name' }, 
+                                { label: "Tên", value: "name" },
+                                { label: "MSSV", value: "mssv" },
+                                { label: "Lớp", value: "cls" },
+                                { label: "Khoa", value: "clan" },
+                                { label: "Khóa", value: "gen" },
+                                { label: "Số hoạt động hoàn thành", value: "count" },
+                                { label: "Email", value: "email" },
+                                { label: "SDT", value: "phone" },
+                                { label: "GD3 - Link bài post", value: "activity3Link" },
+                            ],
+                            content: contents
+                        }
+                    ]
+                    break                    
+                case 4:
+                    for (var result of this.state.totalData){
+                        var d = {
+                            name: result.user.name, 
+                            mssv: result.user.mssv, 
+                            cls: result.user.cls,
+                            clan: result.user.clan, 
+                            gen: result.user.gen, 
+                            count: result.user.count,
+                            email: result.user.email,
+                            phone: result.user.phone,
+                            activity4ImgGT: result.images[0], 
+                            activity4TextGT: result.text[0], 
+                            activity4ImgM1: result.images[1], 
+                            activity4TextM1: result.text[1], 
+                            activity4ImgM2: result.images[2], 
+                            activity4TextM2: result.text[2], 
+                            activity4ImgM3: result.images[3], 
+                            activity4TextM3: result.text[3], 
+                        }
+                        contents.push(d)
+                    }
+    
+                    data = [
+                        {
+                            sheet: 'sheet1',
+                            columns: [
+                                { label: 'Tên', value: 'name' }, 
+                                { label: "Tên", value: "name" },
+                                { label: "MSSV", value: "mssv" },
+                                { label: "Lớp", value: "cls" },
+                                { label: "Khoa", value: "clan" },
+                                { label: "Khóa", value: "gen" },
+                                { label: "Số hoạt động hoàn thành", value: "count" },
+                                { label: "Email", value: "email" },
+                                { label: "SDT", value: "phone" },
+                                { label: "GD4 - Giao Thừa ảnh", value: "activity4ImgGT" },
+                                { label: "GD4 - Giao Thừa cảm nghĩ", value: "activity4TextGT" },
+                                { label: "GD4 - Mùng 1 ảnh", value: "activity4ImgM1" },
+                                { label: "GD4 - Mùng 1 cảm nghĩ", value: "activity4TextM1" },
+                                { label: "GD4 - Mùng 2 ảnh", value: "activity4ImgM2" },
+                                { label: "GD4 - Mùng 2 cảm nghĩ", value: "activity4TextM2" },
+                                { label: "GD4 - Mùng 3 ảnh", value: "activity4ImgM3" },
+                                { label: "GD4 - Mùng 3 cảm nghĩ", value: "activity4TextM3" },
+                            ],
+                            content: contents
+                        }
+                    ]
+                    break;
             }
         }
         let settings = {

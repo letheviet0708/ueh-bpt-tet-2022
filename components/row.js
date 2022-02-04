@@ -18,6 +18,7 @@ import Avatar from '@mui/material/Avatar';
 import GiaiDoan1Check from './GiaiDoan1Check'
 import GiaiDoan2Check from './GiaiDoan2Check'
 import GiaiDoan3Check from './GiaiDoan3Check'
+import GiaiDoan4Check from './GiaiDoan4Check'
 
 class Row extends Component {
     
@@ -64,13 +65,13 @@ class Row extends Component {
               <TableCell >{user.clan}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+              <TableCell style={{ paddingBottom: 0, paddingTop: 0, width: "100%" }} colSpan={6}>
                 <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-                  <Box sx={{ margin: 1 }}>
+                  <Box sx={{ margin: 1, width: "100%" }}>
                     {this.props.customContent ? 
                       this.props.customContent
                       :
-                      <Box>
+                      <Box id="dumu" sx={{width: "100%" }}>
                         <Typography gutterBottom >
                           Kết quả hoạt động
                         </Typography>
@@ -83,6 +84,9 @@ class Row extends Component {
                         }
                         {activityResult[3] &&
                           <GiaiDoan3Check onChange={this.handleCheckChange} uid={user.uid} result={activityResult[3]}/>
+                        }
+                        {activityResult[4] &&
+                          <GiaiDoan4Check onChange={this.handleCheckChange} uid={user.uid} result={activityResult[4]}/>
                         }
                       </Box>
                     }

@@ -4,31 +4,17 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import PhotoSizeSelectActualIcon from '@mui/icons-material/PhotoSizeSelectActual';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import Image from 'next/image'
-import Slider from '@mui/material/Slider';
-import AvatarEditor from 'react-avatar-editor';
 import React from 'react'
-import uploadImage from './uploadImg'
 import clientID from './ClientID.json'
 import personService from "../Services/person.service";
 import CTSnackbar from "./SnackBar"
 import PendingIcon from '@mui/icons-material/Pending';
 import ErrorIcon from '@mui/icons-material/Error';
-import Link from 'next/link'
+
 import { alpha, styled } from '@mui/material/styles';
 import { withRouter } from 'next/router'
-
-
-const ColorButton = styled(Button)({
-    color: 'white',
-    backgroundColor: '#1b4338',
-    '&:hover': {
-      backgroundColor: '#1b4338',
-    },
-});
-
+import Gd4El from './gd4El'
 
 const CssTextField = styled(TextField)({
     backgroundColor: "white",
@@ -48,71 +34,44 @@ const CssTextField = styled(TextField)({
       },
     },
 });
-class GiaiDoan3Form extends Component {
+
+const ColorButton = styled(Button)({
+    color: 'white',
+    backgroundColor: '#1b4338',
+    '&:hover': {
+      backgroundColor: '#1b4338',
+    },
+});
+
+const titles = ["Giao Thừa","Mùng 1","Mùng 2","Mùng 3",]
+
+class GiaiDoan4Form extends Component {
     constructor(props){
         super(props)
         this.state = {
-            image: '',
-            text: '',
+            images: [null, null, null, null],
+            text: [null, null, null, null],
             openSB: false,
             messageSB: 'nothing',
             severitySB: 'info',
-            file: null,
+            selectedImage: null,
+            fileUploadErrors: null,
             hasChange: false,
-            saving: false
+            saving: false,
+            enableB: false
         }
         this.myInput = React.createRef()
     }
 
     componentDidMount () {
+        console.log(this.myInput)
         if (this.props.Data){
             this.setState({
-                text: this.props.Data.text[0]
+                images: this.props.Data.images.slice(),
+                text: this.props.Data.text.slice()
             })
         }
     }
-
-    handleTextChange = (event) => {
-        this.setState({ 
-            text : event.target.value,
-            hasChange: true
-        })
-        
-    }
-
-    handleDivclick = (e) => {
-        this.inputElement.click();
-    }
-
-    profilePicChange = (fileChangeEvent) => {
-        const file = fileChangeEvent.target.files[0];
-        console.log(file)
-        this.getBase64(file).then((img64) => {
-            this.setState({img: img64, hasChange: true})
-        })
-    };
-
-    getBase64 = file => {
-        return new Promise(resolve => {
-          let fileInfo;
-          let baseURL = "";
-          // Make new FileReader
-          let reader = new FileReader();
-    
-          // Convert the file to base64 text
-          reader.readAsDataURL(file);
-    
-          // on reader load somthing...
-          reader.onload = () => {
-            // Make a fileInfo Object
-            console.log("Called", reader);
-            baseURL = reader.result;
-            console.log(baseURL);
-            return resolve(baseURL);
-          };
-          console.log(fileInfo);
-        });
-    };
 
     uploadImage = async(base64, clientid) => {
         const dataURI = base64
@@ -164,19 +123,26 @@ class GiaiDoan3Form extends Component {
         })
     }    
 
-    submit = async () =>{
+    submit = async() =>{
         this.handleSBClick("Đang lưu ...", "info")
-        if (!this.state.text || this.state.text.length == 0 ){
-            this.handleSBClick("Bạn chưa điền đủ thông tin!", "info")
-            return
-        }
         await this.setState({saving: true})
+        let arrlink = ['','','','']
+        for (let i = 0; i < 4; i++){
+            if (this.props.Data == null || this.state.images[i] != this.props.Data.images[i]){
+                arrlink[i] = await this.uploadImage(this.state.images[i], clientID.clientID[i+1])
+            }else{
+                arrlink[i] = this.props.Data.images[i]
+            }
+            console.log(`uploaded ${i+1}/4 image ...`)
+        }
+        console.log('upload images completed!')
 
         const neednew = (this.props.Data == null)
         const id = (this.props.Data) ? this.props.Data._id : ""
         const data = {
-            text: [this.state.text],
-            activityIndex: 3,
+            images: arrlink,
+            text: this.state.text,
+            activityIndex: 4,
             state: 0,
             new: neednew,
             id: id
@@ -208,26 +174,50 @@ class GiaiDoan3Form extends Component {
         this.setState({openSB: false})
     } 
 
+    checkE = () => {
+        let check = true
+        for (let i = 0; i < 4; i++){
+            if (this.state.images[i] == null || this.state.text[i] == null || this.state.text[i] == '' ){
+                check = false
+                break
+            }
+        }
+
+        this.setState({
+            enableB: check,
+            hasChange: true
+        })
+    }
+
+    onElChange = (key, type, value) => {
+        console.log({key, type, value})
+        let arr = this.state[type]
+        arr[key] = value
+        this.setState({
+            [type] : arr
+        })
+
+        this.checkE()
+    }
+
     render(){
-        const {hasChange, saving} = this.state
+        const {imgH, imgW, openCropper, selectedImage, scaleValue, text,hasChange, saving} = this.state
         let saveButton= (
             <ColorButton  sx={{backgroundColor:"#1b4338"}} onClick={this.submit} variant="contained" startIcon={<CheckCircleIcon />}>
                 Lưu
             </ColorButton>)
-        if (this.props.Data == null){
-            if (hasChange)
+        if (this.props.Data == null || (this.props.Data != null && this.state.hasChange)){
+            if (this.state.enableB)
             saveButton = (
                 <ColorButton sx={{backgroundColor:"#1b4338"}} onClick={this.submit} variant="contained" startIcon={<CheckCircleIcon />}>
                     Lưu
                 </ColorButton>)
             else
             saveButton = (
-                <ColorButton disabled variant="contained" startIcon={<CheckCircleIcon />}>
+                <ColorButton disabled onClick={this.submit} variant="contained" startIcon={<CheckCircleIcon />}>
                     Lưu
                 </ColorButton>)
         }else{
-            if (this.props.Data.images[0] == this.state.img
-                && this.props.Data.text[0] == this.state.text){
                 switch(this.props.Data.state){
                     case 0:
                         saveButton = (
@@ -248,21 +238,18 @@ class GiaiDoan3Form extends Component {
                             </Button>)
                     break;
                 }
-            }
+            
         }
         
         if (saving){
             saveButton = (
                 <ColorButton disabled onClick={this.submit} variant="contained" startIcon={<CheckCircleIcon />}>
-                    Lưu
+                    Đang lưu
                 </ColorButton>)
         }
 
         return (<div>
-            <Box sx={{ 
-                    borderRadius: 2,
-                    boxShadow: 3,
-                    backgroundColor: "white",
+            <Box sx={{ borderRadius: 2,boxShadow: 3, backgroundColor: "white",
                     mt: "20px",
                     mr:"10px",
                     ml:"10px"}}>
@@ -272,27 +259,26 @@ class GiaiDoan3Form extends Component {
                     pl:"10px",
                     pr:"10px",
                 }}>
-                    <Typography sx={{fontSize: "22px", fontWeight: "bold", mb: "12px", mt:"6px"}}>Stage 3: Tết 4.0 cùng UEHers</Typography>
+                    <Typography sx={{fontSize: "22px", fontWeight: "bold", mb: "12px", mt:"6px"}}>Stage 4: Tết mới trong tim</Typography>
                     <Box >
-                        <Box >
-                            <CssTextField
-                                label="Link bài đăng"
-                                value={this.state.text}
-                                onChange={this.handleTextChange}
-                                sx={{
-                                    mt: "10px",
-                                    width:"100%"
-                                }}
-                            />
+                        <Box
+                            sx={{
+                                display: "flex",
+                                flexDirection: "column"
+                            }}
+                        >
+                            {titles.map((title, key) => (
+                                <Gd4El index={key} key={key} image = {this.state.images[key]} onChange={this.onElChange} text = {this.state.text[key]} title={title}/>
+                            ))}
                         </Box>
-                        <span style={{fontSize: "12px"}}>Hãy dán link bài đăng trên trang Facebook cá nhân nhé!</span>
                     </Box>
                     <Box sx={{
                         display: "flex",
-                        justifyContent: "flex-end",
+                        justifyContent: "space-between",
                         mt: "10px"
                     }}
                     >
+                        <span style={{fontSize: "12px"}}>Lưu ý: Đăng tải ảnh người mà bạn yêu quý và gửi lời chúc đến họ nhé!</span>
                         {saveButton}
                     </Box>
                 </Box>
@@ -327,4 +313,4 @@ class GiaiDoan3Form extends Component {
     }
 }
 
-export default withRouter(GiaiDoan3Form)
+export default withRouter(GiaiDoan4Form)

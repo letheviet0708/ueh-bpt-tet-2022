@@ -3,6 +3,7 @@ import PageWrapper from "../components/PageWrapper";
 import GiaiDoan1From from "../components/GiaiDoan1From"
 import GiaiDoan2Form from "../components/GiaiDoan2Form"
 import GiaiDoan3Form from "../components/GiaiDoan3Form"
+import GiaiDoan4Form from "../components/GiaiDoan4Form"
 import firebase from 'firebase/app';
 import personService from "../Services/person.service";
 import Box from '@mui/material/Box';
@@ -92,7 +93,13 @@ class Result extends Component {
                                     Data= {Data[3]}
                                     uid= {user.uid}
                                 />
-                            }                     
+                            }     
+                            {(env == "development" || (GDPR >= 4))&&
+                                <GiaiDoan4Form
+                                    Data= {Data[4]}
+                                    uid= {user.uid}
+                                />
+                            }                  
                         </Box>
                     }
                 </div>
