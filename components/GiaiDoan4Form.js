@@ -127,7 +127,7 @@ class GiaiDoan4Form extends Component {
         this.handleSBClick("Đang lưu ...", "info")
         await this.setState({saving: true})
         let arrlink = ['','','','','']
-        for (let i = 0; i < 5; i++){
+        for (let i = 0; i < 4; i++){
             if (this.props.Data == null || this.state.images[i] != this.props.Data.images[i]){
                 arrlink[i] = await this.uploadImage(this.state.images[i], clientID.clientID[i])
                 console.log(`uploaded ${i+1}/5 image ...`)
