@@ -49,8 +49,8 @@ class GiaiDoan4Form extends Component {
     constructor(props){
         super(props)
         this.state = {
-            images: [null, null, null, null, null],
-            text: [null, null, null, null, null],
+            images: [null, null, null, null],
+            text: [null, null, null, null],
             openSB: false,
             messageSB: 'nothing',
             severitySB: 'info',
@@ -58,7 +58,8 @@ class GiaiDoan4Form extends Component {
             fileUploadErrors: null,
             hasChange: false,
             saving: false,
-            enableB: false
+            enableB: false,
+            savingMessage: 'Đang lưu'
         }
         this.myInput = React.createRef()
     }
@@ -125,17 +126,31 @@ class GiaiDoan4Form extends Component {
 
     submit = async() =>{
         this.handleSBClick("Đang lưu ...", "info")
-        await this.setState({saving: true})
-        let arrlink = ['','','','','']
-        for (let i = 0; i < 4; i++){
-            if (this.props.Data == null || this.state.images[i] != this.props.Data.images[i]){
-                arrlink[i] = await this.uploadImage(this.state.images[i], clientID.clientID[i])
-                console.log(`uploaded ${i+1}/5 image ...`)
+        await this.setState({saving: true, savingMessage: "Đang lưu ..."})
+        let arrlink = [null, null, null, null]
+        for (let i = 0; i < this.state.images.length; i++){
+            console.log(this.state.images[i].includes('https://i.imgur.com/'))
+            if (this.state.images[i].includes('https://i.imgur.com/') == false){
+                console.log(clientID.clientID.length)
+                for (let j = 0; j < clientID.clientID.length; j++){
+                    console.log(clientID.clientID[j])
+                    arrlink[i] = await this.uploadImage(this.state.images[i], clientID.clientID[j])
+                    if (arrlink[i] != null) break
+                }
+                if(arrlink[i] == null){
+                    this.setState({saving: false})
+                    this.handleSBClick("Có lỗi xảy ra khi tải lên :<, bạn vui lòng thử lại nha", "warning")
+                    return
+                }
             }else{
                 arrlink[i] = this.props.Data.images[i]
             }
+            console.log(`uploaded ${i+1}/4 image ...`)
+            await this.setState({savingMessage: `Đang lưu ${i+1}/4`})
         }
         console.log('upload images completed!')
+
+        console.log(arrlink)
 
         const neednew = (this.props.Data == null)
         const id = (this.props.Data) ? this.props.Data._id : ""
@@ -244,7 +259,7 @@ class GiaiDoan4Form extends Component {
         if (saving){
             saveButton = (
                 <ColorButton disabled onClick={this.submit} variant="contained" startIcon={<CheckCircleIcon />}>
-                    Đang lưu
+                    {this.state.savingMessage}
                 </ColorButton>)
         }
 
