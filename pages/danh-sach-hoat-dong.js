@@ -47,70 +47,101 @@ class DanhSachHoatDong extends Component {
                   <h1 style={{ textAlign: "center", color:"#990000", marginBottom: "23px"}}>DANH SÁCH HOẠT ĐỘNG</h1>
                   <p  style={{ color: "white" }}>Hãy tham gia đầy đủ các hoạt động để đạt được số điểm cao nhất và cập nhật mã vạch nha!</p>
                   <Box style={{display:"flex", justifyContent:"center"}}>
-                  <Box id="activity" style={{display:"flex", flexWrap: "wrap" ,justifyContent:"center", maxWidth: "1000px"}}>
-                    
-                      <Card className="stage" sx={{ cursor: "pointer", borderRadius: "20px", backgroundColor: "#ff3333"}} >
-                        <Link href= "/stage1#view" >
-                            <Box>
-                            <CardMedia
-                                component="img"
-                                image= "https://i.imgur.com/B1IOHzkl.png"
-                                className="sessionImg"
-                            />
-                            <CardContent style={{textAlign: "center"}}>
-                                <p style = {{
-                                    color: "white",
-                                    margin: 0,
-                                    fontSize: "smaller",
-                                }}>
-                                    Stage 1: Chúc lời yêu thương
-                                </p>
-                            </CardContent>
-                            </Box>
-                        </Link>
-                      </Card>
-                      
-                      <Card className="stage" sx={{ cursor: "pointer", borderRadius: "20px", backgroundColor: "#ff3333"}} >
-                        <Link href= "/stage2#view" >
-                            <Box>
-                            <CardMedia
-                                component="img"
-                                image= "https://i.imgur.com/rOGhdoFl.png"
-                                className="sessionImg"
-                            />
-                            <CardContent style={{textAlign: "center"}}>
-                                <p style = {{
-                                    color: "white",
-                                    margin: 0,
-                                    fontSize: "smaller",
-                                }}>
-                                    Stage 2: Gắn kết đón Tết
-                                </p>
-                            </CardContent>
-                            </Box>
-                        </Link>
-                      </Card>
-                      
-                      <Card className="stage" sx={{ cursor: "pointer", borderRadius: "20px", backgroundColor: "#ff3333"}} >
-                        <Link href= "/stage3#view" >
-                            <Box>
-                            <CardMedia
-                                component="img"
-                                image= "https://i.imgur.com/fQE2Ejml.png"
-                                className="sessionImg"
-                            />
-                            <CardContent style={{textAlign: "center"}}>
-                                <p style = {{
-                                    color: "white",
-                                    margin: 0,
-                                    fontSize: "smaller",
-                                }}>
-                                    Stage 3: Tết 4.0 cùng UEHers
-                                </p>
-                            </CardContent>
-                            </Box>
-                        </Link>
-                      </Card>
+                  <Box id="activity"
+                    style={{
+                      display:"flex", 
+                      flexWrap: "wrap" ,
+                      justifyContent:"center", 
+                      maxWidth: "1000px"}}
+                  >
+                      <Box className="cardimg">
+                        <Card sx={{ height: "100%", cursor: "pointer", borderRadius: "20px", backgroundColor: "#ff3333"}} >
+                          <Link href= "/stage1#view" >
+                              <Box>
+                              <CardMedia
+                                  component="img"
+                                  image= "https://i.imgur.com/B1IOHzkm.png"
+                                  className="sessionImg"
+                              />
+                              <CardContent style={{textAlign: "center"}}>
+                                  <p style = {{
+                                      color: "white",
+                                      margin: 0,
+                                      fontSize: "smaller",
+                                  }}>
+                                      Stage 1: Chúc lời yêu thương
+                                  </p>
+                              </CardContent>
+                              </Box>
+                          </Link>
+                        </Card>
+                      </Box>
+                      <Box className="cardimg">
+                        <Card sx={{ height: "100%", cursor: "pointer", borderRadius: "20px", backgroundColor: "#ff3333"}} >
+                          <Link href= "/stage2#view" >
+                              <Box>
+                              <CardMedia
+                                  component="img"
+                                  image= "https://i.imgur.com/rOGhdoFm.png"
+                                  className="sessionImg"
+                              />
+                              <CardContent style={{textAlign: "center"}}>
+                                  <p style = {{
+                                      color: "white",
+                                      margin: 0,
+                                      fontSize: "smaller",
+                                  }}>
+                                      Stage 2: Gắn kết đón Tết
+                                  </p>
+                              </CardContent>
+                              </Box>
+                          </Link>
+                        </Card>
+                      </Box>
+                      <Box className="cardimg">
+                        <Card sx={{ height: "100%", cursor: "pointer", borderRadius: "20px", backgroundColor: "#ff3333"}} >
+                          <Link href= "/stage3#view" >
+                              <Box>
+                              <CardMedia
+                                  component="img"
+                                  image= "https://i.imgur.com/fQE2Ejmm.png"
+                                  className="sessionImg"
+                              />
+                              <CardContent style={{textAlign: "center"}}>
+                                  <p style = {{
+                                      color: "white",
+                                      margin: 0,
+                                      fontSize: "smaller",
+                                  }}>
+                                      Stage 3: Tết 4.0 cùng UEHers
+                                  </p>
+                              </CardContent>
+                              </Box>
+                          </Link>
+                        </Card>
+                      </Box>
+                      <Box className="cardimg">
+                        <Card sx={{ height: "100%", cursor: "pointer", borderRadius: "20px", backgroundColor: "#ff3333"}} >
+                          <Link href= "/stage4#view" >
+                              <Box>
+                              <CardMedia
+                                  component="img"
+                                  image= "https://i.imgur.com/A3dpy1Pm.png"
+                                  className="sessionImg"
+                              />
+                              <CardContent style={{textAlign: "center"}}>
+                                  <p style = {{
+                                      color: "white",
+                                      margin: 0,
+                                      fontSize: "smaller",
+                                  }}>
+                                      Stage 4: Tết mới trong tim
+                                  </p>
+                              </CardContent>
+                              </Box>
+                          </Link>
+                        </Card>
+                      </Box>
                   </Box>
                   </Box>
                 </Box>

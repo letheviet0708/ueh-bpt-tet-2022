@@ -43,14 +43,14 @@ const ColorButton = styled(Button)({
     },
 });
 
-const titles = ["Giao Thừa","Mùng 1","Mùng 2","Mùng 3",]
+const titles = ["Giao Thừa","Mùng 1","Mùng 2","Mùng 3"]
 
 class GiaiDoan4Form extends Component {
     constructor(props){
         super(props)
         this.state = {
-            images: [null, null, null, null],
-            text: [null, null, null, null],
+            images: [null, null, null, null, null],
+            text: [null, null, null, null, null],
             openSB: false,
             messageSB: 'nothing',
             severitySB: 'info',
@@ -126,14 +126,14 @@ class GiaiDoan4Form extends Component {
     submit = async() =>{
         this.handleSBClick("Đang lưu ...", "info")
         await this.setState({saving: true})
-        let arrlink = ['','','','']
-        for (let i = 0; i < 4; i++){
+        let arrlink = ['','','','','']
+        for (let i = 0; i < 5; i++){
             if (this.props.Data == null || this.state.images[i] != this.props.Data.images[i]){
-                arrlink[i] = await this.uploadImage(this.state.images[i], clientID.clientID[i+1])
+                arrlink[i] = await this.uploadImage(this.state.images[i], clientID.clientID[i])
+                console.log(`uploaded ${i+1}/5 image ...`)
             }else{
                 arrlink[i] = this.props.Data.images[i]
             }
-            console.log(`uploaded ${i+1}/4 image ...`)
         }
         console.log('upload images completed!')
 
@@ -274,11 +274,10 @@ class GiaiDoan4Form extends Component {
                     </Box>
                     <Box sx={{
                         display: "flex",
-                        justifyContent: "space-between",
+                        justifyContent: "flex-end",
                         mt: "10px"
                     }}
                     >
-                        <span style={{fontSize: "12px"}}>Lưu ý: Đăng tải ảnh người mà bạn yêu quý và gửi lời chúc đến họ nhé!</span>
                         {saveButton}
                     </Box>
                 </Box>

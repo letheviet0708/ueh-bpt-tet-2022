@@ -21,7 +21,7 @@ import personService from '../Services/person.service';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
-const titles = ["Giao Thừa","Mùng 1","Mùng 2","Mùng 3",]
+const titles = ["Giao Thừa","Mùng 1","Mùng 2","Mùng 3"]
 
 class GiaiDoan4Check extends Component {
     
@@ -87,7 +87,7 @@ class GiaiDoan4Check extends Component {
         let imgLink = this.props.result.images.slice()
         for (const i in imgLink){
             const arr = this.props.result.images[i].split('.')
-            imgLink[i] =  arr[0]+'.'+arr[1]+'.'+arr[2]+'m.'+arr[3]
+            imgLink[i] =  arr[0]+'.'+arr[1]+'.'+arr[2]+'l.'+arr[3]
         }
         return(<React.Fragment>
             <Box>

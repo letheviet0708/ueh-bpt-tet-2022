@@ -26,11 +26,11 @@ const pages = [
   {
     title: 'DANH SÁCH HOẠT ĐỘNG',
     link: '/danh-sach-hoat-dong#view'
-  }, /*
+  }, 
   {
     title: 'ALBUM TẾT MỚI TRONG TIM',
-    link: ''
-  }, */
+    link: '/tet-moi-trong-tim#view'
+  }, 
   {
     title: 'CHÚC LỜI YÊU THƯƠNG',
     link: '/chuc-loi-yeu-thuong#view'

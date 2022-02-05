@@ -13,8 +13,25 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import Divider from '@mui/material/Divider';
+import { alpha, styled } from '@mui/material/styles';
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import FixedBox from './fixedBox'
+const titles = ["Giao Thừa","Mùng 1","Mùng 2","Mùng 3"]
 
-const titles = ["Giao Thừa","Mùng 1","Mùng 2","Mùng 3",]
+const CustomDivider = styled(Divider)({
+    "&.MuiDivider-root": {
+        "&::before": {
+          borderTop: "solid #ff9933"
+        },
+        "&::after": {
+          borderTop: "solid #ff9933"
+        }
+      }
+});
+
+const boder = "2px solid white"
 
 class CardGD4 extends Component{
     constructor(props){
@@ -51,22 +68,111 @@ class CardGD4 extends Component{
         this.setState({openView: true})
     }
 
+    resizeImgURL = (link, post) => {
+        const arr = link.split('.')
+        let res =  arr[0]+'.'+arr[1]+'.'+arr[2]+ post + '.'+arr[3]
+        return res
+    }
+
     render(){
         let imgLink = this.props.images.slice()
         for (const i in imgLink){
-            const arr = this.props.images[i].split('.')
-            imgLink[i] =  arr[0]+'.'+arr[1]+'.'+arr[2]+'l.'+arr[3]
+            imgLink[i] = this.resizeImgURL(this.props.images[i], 'l')
         }
         //console.log(this.props.image,img)
         return(<>
                 <Box className="cardimg">
                     <Box sx={{width:"100%", cursor: "pointer"}} onClick={this.handleOpen}>
                         <Tooltip title="Xem" arrow>
-                            <CardMedia
-                                component="img"
-                                image={imgLink[0]}
-                                alt="green iguana"
-                            />
+                            <Box>
+                                <FixedBox
+                                    width = {"100%"}
+                                    height = {"75%"}
+                                >
+                                    <Box
+                                        sx={{
+                                            width: "100%",
+                                            height: "100%",
+                                            display: "flex",
+                                            border: "2px solid white",
+                                            overflow: "hidden"
+                                        }}
+                                    >
+                                            <Box
+                                                sx={{
+                                                    display: "flex",
+                                                    flex: "0 0 75%"
+                                                }}
+                                            >
+                                                <div
+                                                    style = {{
+                                                        width: "100%",
+                                                        height: "100%",
+                                                        borderRight: boder
+                                                    }}
+                                                    dangerouslySetInnerHTML={{ 
+                                                        __html: `<img class="cardI" style=" height: 100%;width: 100%; object-fit: cover" src="${this.resizeImgURL(this.props.images[0], 'l')}" />` 
+                                                }} />
+                                            </Box>
+                                            <Box
+                                                sx={{
+                                                    display: "flex",
+                                                    flexDirection: "column",
+                                                    width: "100%",
+                                                    height: "100%"
+                                                }}
+                                            >
+                                                <FixedBox
+                                                    width = {"100%"}
+                                                    height = {"100%"}
+                                                >
+                                                    <div
+                                                        style = {{
+                                                            flex: "0 0 33.333333%",
+                                                            width: "100%",
+                                                            height: "100%",
+                                                            borderBottom: boder
+                                                        }}
+                                                        dangerouslySetInnerHTML={{ 
+                                                            __html: `<img class="cardI" style=" height: 100%;width: 100%; object-fit: cover" src="${this.resizeImgURL(this.props.images[1], 'l')}" />` 
+                                                    }} />
+                                                </FixedBox>
+                                                
+                                                <FixedBox
+                                                    width = {"100%"}
+                                                    height = {"100%"}
+                                                >
+                                                    <div
+                                                        style = {{
+                                                            flex: "0 0 33.333333%",
+                                                            width: "100%",
+                                                            height: "100%",
+                                                            borderBottom: boder
+                                                        }}
+                                                        dangerouslySetInnerHTML={{ 
+                                                            __html: `<img class="cardI" style=" height: 100%;width: 100%; object-fit: cover" src="${this.resizeImgURL(this.props.images[2], 'l')}" />` 
+                                                    }} />
+                                                </FixedBox>
+
+                                                <FixedBox
+                                                    width = {"100%"}
+                                                    height = {"100%"}
+                                                >
+                                                    <div
+                                                        style = {{
+                                                            flex: "0 0 33.333333%",
+                                                            width: "100%",
+                                                            height: "100%",
+                                                        }}
+                                                        dangerouslySetInnerHTML={{ 
+                                                            __html: `<img class="cardI" style=" height: 100%;width: 100%; object-fit: cover" src="${this.resizeImgURL(this.props.images[3], 'l')}" />` 
+                                                    }} />
+                                                </FixedBox>
+                                            </Box>
+                                    </Box>
+
+                                </FixedBox>
+                            </Box>
                         </Tooltip>
                         <Box sx={{mt:"5px"}}>
                             <Box sx={{display: "flex"}}>
@@ -168,7 +274,9 @@ class CardGD4 extends Component{
                                                 border:2, 
                                                 borderRadius: 3, 
                                                 borderColor: "#ff9933" ,
-                                                position: "relative"
+                                                backgroundColor: "black",
+                                                position: "relative",
+                                                overflow: "hidden"
                                             }}>
                                                 <div 
                                                     style ={{
@@ -176,7 +284,7 @@ class CardGD4 extends Component{
                                                         height: "100%",
                                                     }}
                                                     dangerouslySetInnerHTML={{ 
-                                                        __html: `<img class="cardI" style=" height: 100%;width: 100%; object-fit: scale-down" src="${this.props.images[this.state.currentI]}" />` 
+                                                        __html: `<img class="cardI" style=" height: 100%;width: 100%; object-fit: scale-down" src="${this.resizeImgURL(this.props.images[this.state.currentI], 'l')}" />` 
                                                 }} />
 
                                                 <Box class="inviciblee" style={{
@@ -189,18 +297,18 @@ class CardGD4 extends Component{
                                                         display: "flex",
                                                         justifyContent: "space-between",
                                                     }}>
-                                                    <Box style={{position:"relative"}} onClick={() => this.handleNav(-1)}>
+                                                    <Box id="navLeft" style={{position:"relative"}} onClick={() => this.handleNav(-1)}>
                                                         <Box style={{position: "relative", transform: "translateY(-50%)", top: "50%"}}>
                                                             <IconButton >
-                                                                <ArrowLeftIcon/>
+                                                                <KeyboardArrowLeftIcon fontSize="large" style={{color: "#ff9933"}}/>
                                                             </IconButton>
                                                         </Box>
                                                     </Box>
                                                     
-                                                    <Box style={{position:"relative"}} onClick={() => this.handleNav(1)}>
+                                                    <Box id="navRight" style={{position:"relative"}} onClick={() => this.handleNav(1)}>
                                                         <Box style={{position: "relative", transform: "translateY(-50%)", top: "50%"}}>
                                                             <IconButton >
-                                                                <ArrowRightIcon/>
+                                                                <KeyboardArrowRightIcon fontSize="large" style={{color: "#ff9933"}}/>
                                                             </IconButton>
                                                         </Box>
                                                     </Box>
@@ -220,7 +328,15 @@ class CardGD4 extends Component{
                                                         </Typography>
                                                     </Box>
                                                 </Box>
-                                                <Box sx={{ marginTop: "15px", overflow: 'auto', border: 1, borderColor: 'grey.500',borderRadius: 2}}>
+                                                <Typography sx={{ 
+                                                    fontWeight: 'bold', 
+                                                    fontSize: "20px", 
+                                                    color: "#ff9933", 
+                                                    fontFamily: 'Montserrat',
+                                                    }} variant="subtitle2" component="div">
+                                                        {titles[this.state.currentI]}
+                                                </Typography>
+                                                <Box sx={{ overflow: 'auto', border: 1, borderColor: 'grey.500',borderRadius: 2}}>
                                                     <p style = {{margin:"20px", textAlign:"left", color:"white", fontSize: "smaller"}}>{this.props.text[this.state.currentI]}</p>
                                                 </Box>
                                             </Box>
@@ -259,22 +375,32 @@ class CardGD4 extends Component{
                                                 <Typography sx={{ fontWeight: 'bold', fontSize: "16px", color:"white", fontFamily: 'Montserrat'}} variant="subtitle2" component="div">
                                                         {this.props.user.name}
                                                 </Typography>
-                                                <Typography sx={{ textAlign: 'left', fontWeight: 'light', fontSize: "13px", marginTop: "-7px", color:"#ff9933", fontFamily: 'Montserrat' }} paragraph={true} variant="caption" display="block">
+                                                <Typography sx={{ 
+                                                    textAlign: 'left', 
+                                                    fontWeight: 'light', 
+                                                    fontSize: "13px", 
+                                                    mt: "-7px",  
+                                                    mb: "0px", 
+                                                    color:"#ff9933", 
+                                                    fontFamily: 'Montserrat' 
+                                                }} paragraph={true} variant="caption" display="block">
                                                     {`${this.props.user.cls} - ${this.props.user.gen ? this.props.user.gen : ''}`}
                                                 </Typography>
                                             </Box>
                                         </Box>
                                         {titles.map((title, key) => (
                                             <Box>
-                                                <Typography sx={{ 
-                                                    fontWeight: 'bold', 
-                                                    fontSize: "20px", 
-                                                    color: "#ff9933", 
-                                                    fontFamily: 'Montserrat',
-                                                    textAlign: "center"
-                                                    }} variant="subtitle2" component="div">
-                                                        {title}
-                                                </Typography>
+                                                <CustomDivider >
+                                                    <Typography sx={{ 
+                                                        fontWeight: 'bold', 
+                                                        fontSize: "20px", 
+                                                        color: "#ff9933", 
+                                                        fontFamily: 'Montserrat',
+                                                        textAlign: "center"
+                                                        }} variant="subtitle2" component="div">
+                                                            {title}
+                                                    </Typography>
+                                                </CustomDivider>
                                                 <Box sx={{}}>
                                                     <div 
                                                         dangerouslySetInnerHTML={{ 
@@ -290,7 +416,7 @@ class CardGD4 extends Component{
                                     </Box>
                                 </Box>
                                 <Typography sx={{color: "#ff9933", textAlign: "center", fontSize: "9px", mb:"1px" }} paragraph={true} variant="caption" display="block">
-                                    Chúc lời yêu thương - Tết mới 2022
+                                    Album Tết mới trong tim - Tết mới 2022
                                 </Typography>
                             </Box>
                         </Box>

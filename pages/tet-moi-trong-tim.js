@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import Pagination from '@mui/material/Pagination';
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
-import CardGD4 from '../components/CardGD4'
+import CardGD4 from '../components/cardGD4'
 import personService from "../Services/person.service";
 import { Typography } from "@mui/material";
 
@@ -38,7 +38,7 @@ class TetMoiTrongTim extends Component{
         super(props)
         this.state = {
             totalData: null,
-            itemsPerPage: 2,
+            itemsPerPage: 8,
             page: 1,
             numberOfPage: 0,
             pageData: null,
@@ -100,11 +100,9 @@ class TetMoiTrongTim extends Component{
     }
 
     componentDidMount(){
-        this.retrieve()
-        return
         const data = {
             type: "Activity",
-            section: 1,
+            section: 4,
             state: 2,
             updateAt: -1
         }
@@ -125,8 +123,8 @@ class TetMoiTrongTim extends Component{
                 <a className="anchor" id="view"/>
                 <Box >
                 <Box sx={{mr: "20px", ml: "20px"}}>
-                    <h1 style={{ textAlign: "center", color:"#ff9933", marginTop: "20px", marginBottom:" -16px"}}>CHÚC LỜI YÊU THƯƠNG</h1>
-                    <p style={{color: "white"}}>Lời chúc năm mới sẽ là món quà chân thành các bạn có thể dành tặng cho gia đình mình. Những lời chúc qua mạng xã hội biến việc thể hiện tình cảm qua trở nên mới mẻ, cực kỳ thuận tiện nếu các bạn gửi cho một người thân đang ở xa.</p>
+                    <h1 style={{ textAlign: "center", color:"#ff9933", marginTop: "20px", marginBottom:" -16px"}}>ALBUM TẾT MỚI TRONG TIM</h1>
+                    <p style={{color: "white"}}>Những tấm hình dưới đây của các bạn sinh viên sẽ góp phần to lớn trong việc lan tỏa những giá trị và niềm vui mà Tết mang lại.</p>
                 </Box>
                 <div className = "cardsWrapper">
                 { this.state.numberOfPage != 0 ? 

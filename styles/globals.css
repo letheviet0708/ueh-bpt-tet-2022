@@ -331,3 +331,29 @@ h1 {
     margin: 5px
   }
 }
+
+#navLeft:hover{
+  background: linear-gradient(90deg, #000000ea, transparent);
+}
+
+#navRight:hover{
+  background: linear-gradient(270deg, #000000ea, transparent);
+}
+
+.Gcontainer {  
+  display: grid; 
+  grid-template-columns: 1fr; 
+  grid-template-rows: 1fr 1fr 1fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    "item1"
+    "item2"
+    "item3"; 
+  height: 100%;
+}
+
+.Gitem1 { grid-area: item1; }
+
+.Gitem2 { grid-area: item2; }
+
+.Gitem3 { grid-area: item3; }
