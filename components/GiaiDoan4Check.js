@@ -66,6 +66,18 @@ class GiaiDoan4Check extends Component {
         this.setState({ currentI: value })
     }
 
+    
+
+    resizeImgURL = (link, post) => {
+        if (link){
+            const arr = link.split('.')
+            let res =  arr[0]+'.'+arr[1]+'.'+arr[2]+ post + '.'+arr[3]
+            return res
+        }
+
+        return "https://i.imgur.com/8IXaUj5.png"
+    }
+
     render(){
         let chipText;
         let chipColor;
@@ -86,8 +98,8 @@ class GiaiDoan4Check extends Component {
 
         let imgLink = this.props.result.images.slice()
         for (const i in imgLink){
-            const arr = this.props.result.images[i].split('.')
-            imgLink[i] =  arr[0]+'.'+arr[1]+'.'+arr[2]+'l.'+arr[3]
+            
+            imgLink[i] = this.resizeImgURL(this.props.result.images[i],'l')
         }
         return(<React.Fragment>
             <Box>
