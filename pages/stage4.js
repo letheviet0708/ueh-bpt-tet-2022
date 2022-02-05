@@ -77,12 +77,14 @@ class Stage4 extends Component {
                     <p  style={{ textAlign: "left", color: "white", overflowWrap: "break-word" }}>Link bài phát động: <Link href="https://www.facebook.com/BPTUEH/posts/4853700184750618"><a target="_blank">https://www.facebook.com/BPTUEH/posts/4831337473653556</a></Link></p>
                     
                     <h2 style={{ textAlign: "left", color:"#990000", marginBottom: "23px"}}>Điền kết quả</h2>
-                    {user &&
+                    {/*user &&
                         <GiaiDoan4Form
                             Data= {Data[4]}
                             uid= {user.uid}
-                        />
+                        />*/
+                        <p  style={{ textAlign: "left", color: "white"}}>Có 1 số vấn đề nhỏ xảy ra mong bạn đợi mình xíu nha</p>
                     }
+
                 </Box>
             </Box>
             </Box>
