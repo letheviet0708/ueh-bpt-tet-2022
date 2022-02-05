@@ -389,7 +389,7 @@ class CardGD4 extends Component{
                                             </Box>
                                         </Box>
                                         {titles.map((title, key) => (
-                                            <Box>
+                                            <Box key={key}>
                                                 <CustomDivider >
                                                     <Typography sx={{ 
                                                         fontWeight: 'bold', 
