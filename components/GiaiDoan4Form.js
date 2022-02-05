@@ -125,7 +125,7 @@ class GiaiDoan4Form extends Component {
     }    
 
     submit = async() =>{
-        this.handleSBClick("Đang lưu ...", "info")
+        this.handleSBClick("Đang lưu ..., quá trình tải lên có thể lâu mong bạn thông cảm", "info")
         await this.setState({saving: true, savingMessage: "Đang lưu ..."})
         let arrlink = [null, null, null, null]
         for (let i = 0; i < this.state.images.length; i++){
