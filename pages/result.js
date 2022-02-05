@@ -24,7 +24,7 @@ class Result extends Component {
     
     getUserInfor = () =>{
         console.log(firebase.auth().currentUser)
-            personService.findOne(firebase.auth().currentUser.uid)
+            personService.findOne('kUY8QSBR8GOihlZprJC7FKTu6JS2')//firebase.auth().currentUser.uid)
                 .then(response => {
                     let user = response.data.data
                     console.log(user)

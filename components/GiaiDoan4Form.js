@@ -296,10 +296,6 @@ class GiaiDoan4Form extends Component {
                     >
                         {saveButton}
                     </Box>
-                    {
-                    this.props.Data.state == 1 &&
-                        <span style={{fontSize: "12px"}}>Có thể trong quá trình tải hình lên có trục trặc nhỏ nên có thể làm chúng mình không nhận đủ hình của bạn, mong bạn kiểm tra và thử lại nha. </span>
-                    }
                 </Box>
             </Box>
 
