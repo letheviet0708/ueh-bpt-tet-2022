@@ -60,8 +60,14 @@ class GiaiDoan2Check extends Component {
   }
 
   render(){
-      let arr = this.props.result.images[0].split('.')
-      const img1 =  arr[0]+'.'+arr[1]+'.'+arr[2]+'l.'+arr[3]
+      let img1;
+      if(this.props.result.images[0]){
+        let arr = this.props.result.images[0].split('.')
+        img1 =  arr[0]+'.'+arr[1]+'.'+arr[2]+'l.'+arr[3]
+      }
+      else{
+        img1 = ''
+      }
       arr = this.props.result.images[1].split('.')
       const img2 =  arr[0]+'.'+arr[1]+'.'+arr[2]+'l.'+arr[3]
       let chipText;
