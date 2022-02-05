@@ -271,6 +271,7 @@ class GiaiDoan4Form extends Component {
                                 <Gd4El index={key} key={key} image = {this.state.images[key]} onChange={this.onElChange} text = {this.state.text[key]} title={title}/>
                             ))}
                         </Box>
+                        <span style={{fontSize: "12px"}}>Lưu ý: Các bạn đăng tải đủ 04 tấm ảnh về những ngày Tết của bản thân.</span>
                     </Box>
                     <Box sx={{
                         display: "flex",
