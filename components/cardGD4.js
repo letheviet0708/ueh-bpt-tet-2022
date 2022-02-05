@@ -67,11 +67,15 @@ class CardGD4 extends Component{
     handleOpen =() =>{
         this.setState({openView: true})
     }
-
+    
     resizeImgURL = (link, post) => {
-        const arr = link.split('.')
-        let res =  arr[0]+'.'+arr[1]+'.'+arr[2]+ post + '.'+arr[3]
-        return res
+        if (link){
+            const arr = link.split('.')
+            let res =  arr[0]+'.'+arr[1]+'.'+arr[2]+ post + '.'+arr[3]
+            return res
+        }
+
+        return "https://i.imgur.com/8IXaUj5.png"
     }
 
     render(){
