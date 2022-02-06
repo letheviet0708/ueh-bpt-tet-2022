@@ -138,7 +138,7 @@ class CardGD4 extends Component{
                                                             borderBottom: boder
                                                         }}
                                                         dangerouslySetInnerHTML={{ 
-                                                            __html: `<img class="cardI" style=" height: 100%;width: 100%; object-fit: cover" src="${this.resizeImgURL(this.props.images[1], 'l')}" />` 
+                                                            __html: `<img class="cardI" style=" height: 100%;width: 100%; object-fit: cover" src="${this.resizeImgURL(this.props.images[1], 's')}" />` 
                                                     }} />
                                                 </FixedBox>
                                                 
@@ -154,7 +154,7 @@ class CardGD4 extends Component{
                                                             borderBottom: boder
                                                         }}
                                                         dangerouslySetInnerHTML={{ 
-                                                            __html: `<img class="cardI" style=" height: 100%;width: 100%; object-fit: cover" src="${this.resizeImgURL(this.props.images[2], 'l')}" />` 
+                                                            __html: `<img class="cardI" style=" height: 100%;width: 100%; object-fit: cover" src="${this.resizeImgURL(this.props.images[2], 's')}" />` 
                                                     }} />
                                                 </FixedBox>
 
@@ -169,7 +169,7 @@ class CardGD4 extends Component{
                                                             height: "100%",
                                                         }}
                                                         dangerouslySetInnerHTML={{ 
-                                                            __html: `<img class="cardI" style=" height: 100%;width: 100%; object-fit: cover" src="${this.resizeImgURL(this.props.images[3], 'l')}" />` 
+                                                            __html: `<img class="cardI" style=" height: 100%;width: 100%; object-fit: cover" src="${this.resizeImgURL(this.props.images[3], 's')}" />` 
                                                     }} />
                                                 </FixedBox>
                                             </Box>
