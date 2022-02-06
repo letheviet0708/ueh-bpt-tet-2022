@@ -126,7 +126,7 @@ class Home extends Component {
                     sessionDescription = "Đây là nơi tổng hợp những hình ảnh và lời chúc của mọi người đến những người thân xung quanh mình. Hãy trao đi những tâm tình có giá trị để Tết năm nay sẽ trọn vẹn và mang nhiều kỷ niệm đẹp đẽ, sâu sắc hơn nhé!"
                   />
                   <SessionCard
-                    link=""
+                    link="/tet-moi-trong-tim#view"
                     sessionName="Album Tết mới trong tim"
                     img="https://i.imgur.com/z0R9wvx.png"
                     sessionDescription = "Album này sẽ ghi dấu lại những khoảnh khắc đẹp của các bạn trong dịp Tết 2022. Hãy chọn những bức ảnh mà bạn thích thú và ưng ý nhất thể hiện được những hoạt động của mình trong Tết năm nay nhé!"
