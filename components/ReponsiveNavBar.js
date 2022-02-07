@@ -9,6 +9,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
+import Tabs from '@mui/material/Tabs';
 
 import { createTheme , ThemeProvider} from '@mui/material/styles';
 import Theme from './theme'
@@ -26,7 +27,11 @@ const pages = [
   {
     title: 'DANH SÁCH HOẠT ĐỘNG',
     link: '/danh-sach-hoat-dong#view'
-  }, 
+  }, /*
+  {
+    title: 'TẾT 4.0 CÙNG UEHERS',
+    link: '/tet-4-0-cung-uehers#view'
+  }, */ 
   {
     title: 'ALBUM TẾT MỚI TRONG TIM',
     link: '/tet-moi-trong-tim#view'
@@ -140,12 +145,20 @@ const ResponsiveNavBar = () => {
             {logo}
           </Box>
 
-          <Box sx={{ flexGrow: 1, flexDirection: 'row-reverse', display: { xs: 'none', md: 'flex' } }}>
+          <Box
+            id="scroll"
+             sx={{ 
+              flexGrow: 1, 
+              flexDirection: 'row-reverse', 
+              display: { xs: 'none', md: 'flex' }
+              }}
+            >
+            
             {pages.map((page, i) => (
               <Link key={i} href={page.link}>
                 <Button
                   onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: 'white', display: 'block' , fontWeight: 'bold' }}
+                  sx={{ my: 2, color: 'white', display: 'block' , fontWeight: 'bold', fontSize: '12px' }}
                 >
                   {page.title}
                 </Button>

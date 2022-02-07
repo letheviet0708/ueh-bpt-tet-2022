@@ -6,7 +6,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 import MuiAlert from '@mui/material/Alert';
 const Alert = React.forwardRef(function Alert(props, ref) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+    return <MuiAlert elevation={6} ref={ref} {...props} />;
 });
 
 class CTSnackbar extends React.Component{
@@ -35,7 +35,7 @@ class CTSnackbar extends React.Component{
             <div>
               <Snackbar
                 open={this.props.open}
-                autoHideDuration={6000}
+                autoHideDuration={3000}
                 onClose={this.props.handleClose}
                 
               >

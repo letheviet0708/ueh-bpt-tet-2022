@@ -6,6 +6,14 @@ class PersonDataService {
     return http.get(`/person?page=${page}&size=${size}&clan=${clan}&sort=${sort}`);
   }
 
+  getVoteData(){
+    return http.get("/vote")
+  }
+
+  vote(data){
+    return http.post("/vote", data)
+  }
+
   findAll() {
     return http.get("/person")
   }

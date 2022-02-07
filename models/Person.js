@@ -15,6 +15,7 @@ const personSchema = new mongoose.Schema({
         email: String,
         uid: String,
         count: Number,
+        vote: Number,
         result: [{
           type: mongoose.Schema.Types.ObjectId,
           ref: "ActivityResult"
