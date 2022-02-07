@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import Pagination from '@mui/material/Pagination';
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
+import MetaHeader from '../components/metaHeader'
 
 import personService from "../Services/person.service";
 import { Typography } from "@mui/material";

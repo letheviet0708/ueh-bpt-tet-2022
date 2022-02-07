@@ -51,7 +51,7 @@ class Tet40CungUehers extends Component {
   }
 
   handleClose = () => {
-    this.state.queryPlayer.target.pauseVideo()
+    if (this.state.queryPlayer) {this.state.queryPlayer.target.pauseVideo()}
     this.setState({openBD: false})
   }
 
@@ -166,7 +166,9 @@ class Tet40CungUehers extends Component {
           }}
       
       >
-          <PageWrapper>
+          <PageWrapper
+            customMeta = {true}
+          >
             <Head>
                 <title>TẾT 4.0 CÙNG UEHERS</title>
                 <meta property="og:title" content="TẾT 4.0 CÙNG UEHERS" />

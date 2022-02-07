@@ -19,11 +19,16 @@ class PageWrapper extends Component{
                 }}
             >
                 <Head>
-                    <title>TẾT MỚI</title>
-                    <meta property="og:title" content="TẾT MỚI 2022" />
-                    <meta property="og:image" content="https://i.imgur.com/qPjK08s.png" />
-                    <meta property="og:url" content="web" />
-                    <meta property="og:type" content="website" />
+                    {this.props.customMeta == null &&
+                        <>
+                            <title>TẾT MỚI</title>
+                            <meta property="og:title" content="TẾT MỚI 2022" />
+                            <meta property="og:image" content="https://i.imgur.com/qPjK08s.png" />
+                            <meta property="og:url" content="web" />
+                            <meta property="og:type" content="website" />
+                        </>
+                    }
+                    
                     <link rel="icon" href="https://i.imgur.com/IV6j1V4.png" />
                     <link rel="stylesheet" href="/static/assets/fonts/font-awesome.min.css" />
                     <link rel="stylesheet" href="/static/assets/bootstrap/css/bootstrap.min.css" />
