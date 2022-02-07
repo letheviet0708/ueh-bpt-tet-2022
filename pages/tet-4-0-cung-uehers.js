@@ -28,7 +28,7 @@ const clone =
   }
 }
 
-const cc = [clone, clone, clone]
+const cc = [clone, clone, clone, clone, clone, clone, clone, clone, clone, clone]
 
 class Tet40CungUehers extends Component {
 

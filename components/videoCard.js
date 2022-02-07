@@ -53,7 +53,7 @@ class VideoCard extends Component{
             })
         }
         this.setState({
-            shareURL: `https://tetmoi2022.vercel.app/tet-4-0-cung-uehers?queryIndex=${this.props.index}#view`
+            shareURL: `https://tetmoi2022.vercel.app/tet-4-0-cung-uehers?queryIndex=${this.props.index + 1}#view`
         })
     }
 
