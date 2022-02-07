@@ -28,7 +28,98 @@ const clone =
   }
 }
 
-const cc = [clone, clone, clone, clone, clone, clone, clone, clone, clone, clone]
+const cc = [
+  {
+    src: "O5ZKrl3cPXQ",
+    user:{
+      avatar: "https://i.imgur.com/5uRSM7A.png",
+      name: "Văn Dương Thiên Lam",
+      cls: "HM003",
+      gen: "K47"
+    }
+  },
+  {
+    src: "OcIxpJPd_B0",
+    user:{
+      avatar: "https://lh3.googleusercontent.com/a/AATXAJz3s5yQQphMHiLwlqNzKJOQZpfwQbKm_jupUu3K=s96-c",
+      name: "Phan Ngọc Phương Anh",
+      cls: "BA001",
+      gen: "K47"
+    }
+  },
+  {
+    src: "pzN1WAApuiU",
+    user:{
+      avatar: "https://lh3.googleusercontent.com/a-/AOh14Gg78jU60WC6g3sRflI1uK5RtZ8S_uAA_lowf4cQ=s96-c",
+      name: "Nguyễn Hoàng Thanh Nhã",
+      cls: "ADC03",
+      gen: "K47"
+    }
+  },
+  {
+    src: "DhJ7w9cqF8I",
+    user:{
+      avatar: "https://lh3.googleusercontent.com/a/AATXAJyeRaKG3UcDhJYdlA33NgW_AcMNE-64hwW-6N7u=s96-c",
+      name: "Ngô Thị Thảo Dung",
+      cls: "NH001",
+      gen: "K47"
+    }
+  },
+  {
+    src: "p7QLPWtyGFQ",
+    user:{
+      avatar: "https://lh3.googleusercontent.com/a-/AOh14GgneSmfwAXErhB9_T9FOQqAEcpT2Jr_Fj56h5zU=s96-c",
+      name: "Hoàng Khánh Nhi",
+      cls: "FB003",
+      gen: "K47"
+    }
+  },
+  {
+    src: "4oWU-DXBsVw",
+    user:{
+      avatar: "https://lh3.googleusercontent.com/a-/AOh14Gh52bUuioDk_f7SSBeQkMoLvnCqSXhIJ8bVHz0v=s96-c",
+      name: "Ngô Lê Thanh Thảo",
+      cls: "IBC04",
+      gen: "K47"
+    }
+  },
+  {
+    src: "EdpMdru9qhc",
+    user:{
+      avatar: "https://lh3.googleusercontent.com/a/AATXAJzsxQaDQwnMwT8tVAFjvsyc52_vMxB-ZU9OMntr=s96-c",
+      name: "Phạm Trần Thanh Xuân",
+      cls: "DT002",
+      gen: "K47"
+    }
+  },
+  {
+    src: "NnRX9aolJgI",
+    user:{
+      avatar: "https://lh3.googleusercontent.com/a-/AOh14GiuAKMz5fN7O6TjBNv56WtMBeRxDho1n7n730mN0A=s96-c",
+      name: "Huỳnh Kim Khánh",
+      cls: "KNC04",
+      gen: "K47"
+    }
+  },
+  {
+    src: "YiwcVWPBG0Q",
+    user:{
+      avatar: "https://lh3.googleusercontent.com/a/AATXAJzvrkJv6GtmmRtr2Isvd5fWvIcyKi1bS7pt9cMp=s96-c",
+      name: "Lê Vũ Anh Thư",
+      cls: "FNC05",
+      gen: "K47"
+    }
+  },
+  {
+    src: "Mhpt9uNYVIk",
+    user:{
+      avatar: "https://lh3.googleusercontent.com/a/AATXAJxsuZ-_TbiiL9vgamw1D-z2LU4maoiZyiJuvHNu=s96-c",
+      name: "Phạm Thị Mỹ Linh",
+      cls: "KM002",
+      gen: "K47"
+    }
+  },
+]
 
 class Tet40CungUehers extends Component {
 

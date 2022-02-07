@@ -105,6 +105,7 @@ class VideoCard extends Component{
                 <Box className="cardimg">
                     <Box sx={{
                         width:"100%",
+                        height:"100%",
                         backgroundColor: "#d30000",
                         borderRadius: "15px"    
                     }} onClick={this.handleOpen}>
@@ -123,12 +124,13 @@ class VideoCard extends Component{
                                         iv_load_policy : 3,
                                         fs : 0,
                                         controls : 0,
+                                        playlist:this.props.src
                                     },
                                 }} 
                             />
                             {this.props.likeCount != -1 &&
                                 <span style={{
-                                    fontSize: "12px",
+                                    fontSize: "13px",
                                     fontFamily: 'Montserrat',
                                     color: "white",
                                     marginLeft: "5px"
@@ -143,13 +145,17 @@ class VideoCard extends Component{
                                         <Typography sx={{ fontWeight: 'bold', fontSize: "16px", color:"white", fontFamily: 'Montserrat'}} variant="subtitle2" component="div">
                                                 {this.props.user.name}
                                         </Typography>
-                                        <Typography sx={{ textAlign: 'left', fontWeight: 'light', fontSize: "13px", marginTop: "-7px", color:"#ff9933", fontFamily: 'Montserrat' }} paragraph={true} variant="caption" display="block">
+                                        <Typography sx={{ textAlign: 'left', fontWeight: 'bold', fontSize: "13px", marginTop: "-7px", color:"#ff9933", fontFamily: 'Montserrat' }} paragraph={true} variant="caption" display="block">
                                             {`${this.props.user.cls} - ${this.props.user.gen ? this.props.user.gen : ''}`}
                                         </Typography>
                                     </Box>
                                 </Box>
                                 
-                                <Box>
+                                <Box
+                                    sx={{
+                                        display: "inline-flex"
+                                    }}
+                                >
                                     <ButtonBase onClick={this.onLike}>
                                         {!this.state.liked ? 
                                             <FavoriteBorderIcon fontSize="large" sx={{
