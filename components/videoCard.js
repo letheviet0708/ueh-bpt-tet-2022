@@ -108,12 +108,13 @@ class VideoCard extends Component{
                         backgroundColor: "#d30000",
                         borderRadius: "15px"    
                     }} onClick={this.handleOpen}>
-                        <Box>
+                        <Box className="ytIframe">
                             <YouTube 
                                 videoId={this.props.src}
                                 onStateChange = {this.props.onStateChange}
                                 onReady={this.onReady}   
                                 opts={{
+                                    width: "100%",
                                     playerVars: {
                                         loop : 1,
                                         showinfo : 0,

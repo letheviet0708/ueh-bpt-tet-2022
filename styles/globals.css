@@ -358,10 +358,6 @@ h1 {
 
 .Gitem3 { grid-area: item3; }
 
-iframe{
-  width: 100% !important;
-}
-
 .ytp-chrome-top.ytp-show-cards-title {
   display: none !important;
 }
