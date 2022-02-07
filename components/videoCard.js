@@ -182,7 +182,7 @@ class VideoCard extends Component{
                     'aria-labelledby': 'basic-button',
                     }}
                 >
-                    <CopyToClipboard text={this.state.link} 
+                    <CopyToClipboard text={this.state.shareURL} 
                         onCopy={() => this.handleSBClick("Đã sao chép vào clipboard!", "info")}>
                         <MenuItem onClick={this.handleCloseUserMenu}>
                             <ListItemIcon>

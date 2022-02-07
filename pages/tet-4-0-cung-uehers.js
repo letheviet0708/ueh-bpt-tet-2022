@@ -15,6 +15,7 @@ import firebase from 'firebase/app';
 import personService from "../Services/person.service";
 import Backdrop from '@mui/material/Backdrop';
 import CancelIcon from '@mui/icons-material/Cancel';
+import Head from "next/head"
 
 const clone = 
 {
@@ -166,6 +167,13 @@ class Tet40CungUehers extends Component {
       
       >
           <PageWrapper>
+            <Head>
+                <title>TẾT 4.0 CÙNG UEHERS</title>
+                <meta property="og:title" content="TẾT 4.0 CÙNG UEHERS" />
+                <meta property="og:image" content="https://i.imgur.com/fQE2Ejmm.png" />
+                <meta property="og:url" content="web" />
+                <meta property="og:type" content="website" />
+            </Head>
             <Banner/>
             <Box className="backGroundI">
                   <a className="anchor" id="view"/>
