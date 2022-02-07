@@ -27,11 +27,11 @@ const pages = [
   {
     title: 'DANH SÁCH HOẠT ĐỘNG',
     link: '/danh-sach-hoat-dong#view'
-  }, /*
+  }, 
   {
     title: 'TẾT 4.0 CÙNG UEHERS',
     link: '/tet-4-0-cung-uehers#view'
-  }, */ 
+  }, 
   {
     title: 'ALBUM TẾT MỚI TRONG TIM',
     link: '/tet-moi-trong-tim#view'
